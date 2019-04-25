@@ -1,0 +1,69 @@
+Push
+Pop
+Underflow
+All of the above
+Queue
+Queue
+FIFO (First In First Out) list
+Rear = MAX_SIZE – 1
+ABCD
+Linked list
+Pointer to node
+Dynamic
+O(n)
+O(1)
+3
+O(n2)
+It is not scalable
+LIFO (Last In First Out) list
+O(n2)
+Divide and conquer
+Smaller instances of the same problem 
+You may or may not have the ‘next’ pointer point to null in a circular linked list
+O(n) 
+All of the above
+Undo operation in text editors
+O(n)
+All of the above
+Stack
+1
+<=
+~
+31
+>>
+Boolean
+true and false are non numeric values
+Multiple Inheritance
+Compile time polymorphism
+At compile time 
+Encapsulation
+JDK
+JRE
+Platform independent programming language
+private
+.java
+.class
+They read high level code and execute them
+constructor
+this
+All of the above
+System calls 
+All of the above
+to get and execute the next user-specified command
+log file
+Palm OS
+hybrid kernel
+Bootstrap program
+Throughput 
+Data Structure
+the number of processes in memory
+only one task at a time
+cooperating process 
+race condition
+semaphore
+priority inversion
+a condition variable must be declared as condition
+communication between two process
+PID of child process
+wait 
+Program counter 
