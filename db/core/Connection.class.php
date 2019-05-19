@@ -22,6 +22,7 @@ class Connection
         try{
             self::$pdo = new PDO(self::$dataSourceName, USERNAME, PASSWORD);
             self::$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+            return self::$pdo;
         }
         catch(PDOException $exception){
             die("Some error occurred while connecting to db " .$exception);
