@@ -56,7 +56,9 @@ class TableCRUD
     }
 
     public static function update($tableName, $associativeArray, $condition){
-
+        if(self::$isIntialized == false){
+            self::init();
+        }
     }
 
     public static function delete($tableName, $condition){
