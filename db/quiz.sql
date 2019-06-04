@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `answer`
+-- Table.class structure for table `answer`
 --
 
 CREATE TABLE `answer` (
@@ -425,7 +425,7 @@ INSERT INTO `answer` (`answer_id`, `question_id`, `answer`, `deleted`, `deleted_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `batch`
+-- Table.class structure for table `batch`
 --
 
 CREATE TABLE `batch` (
@@ -460,7 +460,7 @@ INSERT INTO `batch` (`batch_id`, `class_id`, `batch_name`, `deleted`, `created_a
 -- --------------------------------------------------------
 
 --
--- Table structure for table `branch`
+-- Table.class structure for table `branch`
 --
 
 CREATE TABLE `branch` (
@@ -489,7 +489,7 @@ INSERT INTO `branch` (`branch_id`, `branch`, `deleted`, `created_at`, `updated_a
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chapter`
+-- Table.class structure for table `chapter`
 --
 
 CREATE TABLE `chapter` (
@@ -533,7 +533,7 @@ INSERT INTO `chapter` (`chapter_id`, `subject_id`, `chapter_no`, `chapter_name`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `class`
+-- Table.class structure for table `class`
 --
 
 CREATE TABLE `class` (
@@ -563,7 +563,7 @@ INSERT INTO `class` (`class_id`, `branch_id`, `sem_no`, `classname`, `deleted`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `correct_question_answer`
+-- Table.class structure for table `correct_question_answer`
 --
 
 CREATE TABLE `correct_question_answer` (
@@ -784,7 +784,7 @@ INSERT INTO `correct_question_answer` (`question_id`, `answer_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hod`
+-- Table.class structure for table `hod`
 --
 
 CREATE TABLE `hod` (
@@ -800,7 +800,7 @@ CREATE TABLE `hod` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `notification`
+-- Table.class structure for table `notification`
 --
 
 CREATE TABLE `notification` (
@@ -815,7 +815,7 @@ CREATE TABLE `notification` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `parent`
+-- Table.class structure for table `parent`
 --
 
 CREATE TABLE `parent` (
@@ -828,7 +828,7 @@ CREATE TABLE `parent` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `question`
+-- Table.class structure for table `question`
 --
 
 CREATE TABLE `question` (
@@ -923,7 +923,7 @@ INSERT INTO `question` (`question_id`, `chapter_id`, `question`, `question_type`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `question_marks`
+-- Table.class structure for table `question_marks`
 --
 
 CREATE TABLE `question_marks` (
@@ -935,7 +935,7 @@ CREATE TABLE `question_marks` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `quiz`
+-- Table.class structure for table `quiz`
 --
 
 CREATE TABLE `quiz` (
@@ -976,7 +976,7 @@ INSERT INTO `quiz` (`quiz_id`, `subject_id`, `quiz_name`, `quiz_marks`, `quiz_ty
 -- --------------------------------------------------------
 
 --
--- Table structure for table `quiz_assigned_to`
+-- Table.class structure for table `quiz_assigned_to`
 --
 
 CREATE TABLE `quiz_assigned_to` (
@@ -1124,7 +1124,7 @@ INSERT INTO `quiz_assigned_to` (`quiz_id`, `id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `quiz_chapter`
+-- Table.class structure for table `quiz_chapter`
 --
 
 CREATE TABLE `quiz_chapter` (
@@ -1156,7 +1156,7 @@ INSERT INTO `quiz_chapter` (`quiz_id`, `chapter_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `quiz_difficulty`
+-- Table.class structure for table `quiz_difficulty`
 --
 
 CREATE TABLE `quiz_difficulty` (
@@ -1191,7 +1191,7 @@ INSERT INTO `quiz_difficulty` (`quiz_id`, `difficulty`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `quiz_question`
+-- Table.class structure for table `quiz_question`
 --
 
 CREATE TABLE `quiz_question` (
@@ -1329,7 +1329,7 @@ INSERT INTO `quiz_question` (`quiz_id`, `question_id`, `no_of_options`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `quiz_student_marks`
+-- Table.class structure for table `quiz_student_marks`
 --
 
 CREATE TABLE `quiz_student_marks` (
@@ -1479,7 +1479,7 @@ INSERT INTO `quiz_student_marks` (`quiz_id`, `student_id`, `marks`, `submission_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `student`
+-- Table.class structure for table `student`
 --
 
 CREATE TABLE `student` (
@@ -1681,7 +1681,7 @@ INSERT INTO `student` (`student_id`, `user_id`, `branch_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `student_details`
+-- Table.class structure for table `student_details`
 --
 
 CREATE TABLE `student_details` (
@@ -1882,7 +1882,7 @@ INSERT INTO `student_details` (`student_id`, `batch_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `student_quiz_question`
+-- Table.class structure for table `student_quiz_question`
 --
 
 CREATE TABLE `student_quiz_question` (
@@ -4524,7 +4524,7 @@ INSERT INTO `student_quiz_question` (`student_quiz_question_id`, `quiz_id`, `que
 -- --------------------------------------------------------
 
 --
--- Table structure for table `student_quiz_question_answer`
+-- Table.class structure for table `student_quiz_question_answer`
 --
 
 CREATE TABLE `student_quiz_question_answer` (
@@ -7162,7 +7162,7 @@ INSERT INTO `student_quiz_question_answer` (`student_quiz_question_id`, `answer_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `subject`
+-- Table.class structure for table `subject`
 --
 
 CREATE TABLE `subject` (
@@ -7193,7 +7193,7 @@ INSERT INTO `subject` (`subject_id`, `branch_id`, `sem_no`, `subject_name`, `cre
 -- --------------------------------------------------------
 
 --
--- Table structure for table `teacher`
+-- Table.class structure for table `teacher`
 --
 
 CREATE TABLE `teacher` (
@@ -7221,7 +7221,7 @@ INSERT INTO `teacher` (`teacher_id`, `user_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `teaches`
+-- Table.class structure for table `teaches`
 --
 
 CREATE TABLE `teaches` (
@@ -7252,7 +7252,7 @@ INSERT INTO `teaches` (`teacher_id`, `batch_id`, `subject_id`, `w.e.f`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Table.class structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -7487,7 +7487,7 @@ INSERT INTO `user` (`user_id`, `name`, `username`, `password`, `email`, `contact
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_role`
+-- Table.class structure for table `user_role`
 --
 
 CREATE TABLE `user_role` (

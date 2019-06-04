@@ -6,3 +6,21 @@
  * Time: 4:20 AM
  */
 
+require_once "db/tables/User.class.php";
+
+$rs = User::select("name, email, password", "user_id = 1");
+
+while($user = $rs->fetch()){
+    echo "<br>NAME = ".$user->name;
+    echo "<br>Email = ".$user->email;
+    echo "<br>Password = ".$user->password;
+}
+
+$tp = new User();
+$tp->name = "ABC";
+$tp->email = "ABC";
+$tp->password = "ABC";
+
+echo "<br>";
+
+$tp->insert();
