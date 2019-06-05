@@ -20,6 +20,4 @@ $tp = new User();
 $tp->name = "Harlan";
 $tp->username = "Harlan";
 
-echo "<br>";
-
-$tp->update("user_id = 2");
+$tp->insert();

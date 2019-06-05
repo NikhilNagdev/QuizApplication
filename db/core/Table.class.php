@@ -16,7 +16,8 @@ class Table
 
     public function __get($name)
     {
-        return $this->column_values[$name];
+        if(isset($name))
+            return $this->column_values[$name];
     }
 
     public function __isset($name)
@@ -27,4 +28,30 @@ class Table
     {
         unset($this->column_values[$name]);
     }
+
+    public function addCreatedAt(){
+        date_default_timezone_set('Asia/Kolkata');
+        $this->created_at = date('Y-m-d H:i:s');
+    }
+
+    public function addUpdatedAt(){
+
+    }
+
+    public function addDeletedAt(){
+
+    }
+
+    public function addCreatedBy(){
+
+    }
+
+    public function addUpdatedBy(){
+
+    }
+
+    public function addDeletedBy(){
+
+    }
+
 }

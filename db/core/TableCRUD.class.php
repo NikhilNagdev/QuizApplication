@@ -45,12 +45,15 @@ class TableCRUD
         $column_names = substr($column_names, 0, -1);
         $column_values = substr($column_values, 0, -1);
         $query = "INSERT INTO {$tableName} ({$column_names}) VALUES ({$column_values})";
+        echo "<br>$query";
         $preparedQuery = self::$pdo->prepare($query);
         for($i = 0; $i<$total; $i++){
             $preparedQuery->bindValue($i+1, $associativeArray[$keys[$i]]);
         }
-        if($preparedQuery->execute())
+        if($preparedQuery->execute()){
+            echo "true";
             return true;
+        }
         return false;
     }
 

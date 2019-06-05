@@ -7,7 +7,6 @@
  */
 
 
-
 require_once "db/core/Table.class.php";
 require_once "db/core/TableCRUD.class.php";
 
@@ -21,14 +20,15 @@ class User extends Table
     }
 
     public function insert(){
+        parent::addCreatedAt();
         TableCRUD::insert(self::$tableName, $this->column_values);
     }
 
-    public function update($condition){
+    public function update($condition=1){
         TableCRUD::update(self::$tableName, $this->column_values, $condition);
     }
 
-    public static function delete(){
-
+    public static function delete($condition){
+        TableCRUD::delete(self::$tableName, $condition);
     }
 }
