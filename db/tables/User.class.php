@@ -24,8 +24,8 @@ class User extends Table
         TableCRUD::insert(self::$tableName, $this->column_values);
     }
 
-    public static function update(){
-
+    public function update($condition){
+        TableCRUD::update(self::$tableName, $this->column_values, $condition);
     }
 
     public static function delete(){

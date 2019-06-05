@@ -17,10 +17,9 @@ while($user = $rs->fetch()){
 }
 
 $tp = new User();
-$tp->name = "ABC";
-$tp->email = "ABC";
-$tp->password = "ABC";
+$tp->name = "Harlan";
+$tp->username = "Harlan";
 
 echo "<br>";
 
-$tp->insert();
+$tp->update("user_id = 2");
