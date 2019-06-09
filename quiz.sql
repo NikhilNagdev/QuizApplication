@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2019 at 05:31 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.0
+-- Generation Time: Jun 07, 2019 at 12:55 PM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 7.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -25,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table.class structure for table `answer`
+-- Table structure for table `answer`
 --
 
 CREATE TABLE `answer` (
@@ -276,11 +274,11 @@ INSERT INTO `answer` (`answer_id`, `question_id`, `answer`, `deleted`, `deleted_
 (232, 41, 'All of the above', 0, '0000-00-00 00:00:00', 0),
 (233, 41, 'None of the above', 0, '0000-00-00 00:00:00', 0),
 (234, 41, 'Smaller instances of the same problem', 0, '0000-00-00 00:00:00', 0),
-(235, 42, 'You cannot have the \'next\' pointer point to null in a circular linked list', 0, '0000-00-00 00:00:00', 0),
+(235, 42, 'You cannot have the ''next'' pointer point to null in a circular linked list', 0, '0000-00-00 00:00:00', 0),
 (236, 42, 'It is faster to traverse the circular linked list', 0, '0000-00-00 00:00:00', 0),
 (237, 42, 'All of the above', 0, '0000-00-00 00:00:00', 0),
 (238, 42, 'None of the above', 0, '0000-00-00 00:00:00', 0),
-(239, 42, 'You may or may not have the \'next\' pointer point to null in a circular linked list', 0, '0000-00-00 00:00:00', 0),
+(239, 42, 'You may or may not have the ''next'' pointer point to null in a circular linked list', 0, '0000-00-00 00:00:00', 0),
 (240, 43, 'O(nlogn)', 0, '0000-00-00 00:00:00', 0),
 (241, 43, 'O(n2)', 0, '0000-00-00 00:00:00', 0),
 (242, 43, 'O(1)', 0, '0000-00-00 00:00:00', 0),
@@ -425,7 +423,7 @@ INSERT INTO `answer` (`answer_id`, `question_id`, `answer`, `deleted`, `deleted_
 -- --------------------------------------------------------
 
 --
--- Table.class structure for table `batch`
+-- Table structure for table `batch`
 --
 
 CREATE TABLE `batch` (
@@ -460,7 +458,7 @@ INSERT INTO `batch` (`batch_id`, `class_id`, `batch_name`, `deleted`, `created_a
 -- --------------------------------------------------------
 
 --
--- Table.class structure for table `branch`
+-- Table structure for table `branch`
 --
 
 CREATE TABLE `branch` (
@@ -489,7 +487,7 @@ INSERT INTO `branch` (`branch_id`, `branch`, `deleted`, `created_at`, `updated_a
 -- --------------------------------------------------------
 
 --
--- Table.class structure for table `chapter`
+-- Table structure for table `chapter`
 --
 
 CREATE TABLE `chapter` (
@@ -533,7 +531,7 @@ INSERT INTO `chapter` (`chapter_id`, `subject_id`, `chapter_no`, `chapter_name`,
 -- --------------------------------------------------------
 
 --
--- Table.class structure for table `class`
+-- Table structure for table `class`
 --
 
 CREATE TABLE `class` (
@@ -563,7 +561,7 @@ INSERT INTO `class` (`class_id`, `branch_id`, `sem_no`, `classname`, `deleted`, 
 -- --------------------------------------------------------
 
 --
--- Table.class structure for table `correct_question_answer`
+-- Table structure for table `correct_question_answer`
 --
 
 CREATE TABLE `correct_question_answer` (
@@ -784,7 +782,7 @@ INSERT INTO `correct_question_answer` (`question_id`, `answer_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table.class structure for table `hod`
+-- Table structure for table `hod`
 --
 
 CREATE TABLE `hod` (
@@ -800,7 +798,7 @@ CREATE TABLE `hod` (
 -- --------------------------------------------------------
 
 --
--- Table.class structure for table `notification`
+-- Table structure for table `notification`
 --
 
 CREATE TABLE `notification` (
@@ -815,7 +813,7 @@ CREATE TABLE `notification` (
 -- --------------------------------------------------------
 
 --
--- Table.class structure for table `parent`
+-- Table structure for table `parent`
 --
 
 CREATE TABLE `parent` (
@@ -828,7 +826,7 @@ CREATE TABLE `parent` (
 -- --------------------------------------------------------
 
 --
--- Table.class structure for table `question`
+-- Table structure for table `question`
 --
 
 CREATE TABLE `question` (
@@ -878,7 +876,7 @@ INSERT INTO `question` (`question_id`, `chapter_id`, `question`, `question_type`
 (26, 11, 'The data structure required for Breadth First Traversal on a graph is?', 'multiplechoicequestion', 4, 'easy ', 0, '2019-04-28 21:56:00', '0000-00-00 00:00:00', 0, 0),
 (27, 8, 'A queue is a ?', 'multiplechoicequestion', 4, 'easy ', 0, '2019-04-28 21:56:00', '0000-00-00 00:00:00', 0, 0),
 (28, 8, 'A normal queue, if implemented using an array of size MAX_SIZE, gets full when', 'multiplechoicequestion', 4, 'easy ', 0, '2019-04-28 21:56:00', '0000-00-00 00:00:00', 0, 0),
-(29, 8, 'If the elements \"A\", \"B\", \"C\" and \"D\" are placed in a queue and are deleted one at a time, in what order will they be removed?', 'multiplechoicequestion', 4, 'easy ', 0, '2019-04-28 21:56:00', '0000-00-00 00:00:00', 0, 0),
+(29, 8, 'If the elements "A", "B", "C" and "D" are placed in a queue and are deleted one at a time, in what order will they be removed?', 'multiplechoicequestion', 4, 'easy ', 0, '2019-04-28 21:56:00', '0000-00-00 00:00:00', 0, 0),
 (30, 9, 'A linear collection of data elements where the linear node is given by means of pointer is called?', 'multiplechoicequestion', 4, 'hard', 0, '2019-04-28 21:56:00', '0000-00-00 00:00:00', 0, 0),
 (31, 9, 'In linked list each node contain minimum of two fields. One field is data field to store the data second field is?', 'multiplechoicequestion', 4, 'hard', 0, '2019-04-28 21:56:00', '0000-00-00 00:00:00', 0, 0),
 (32, 9, 'Linked list is considered as an example of ___________ type of memory allocation.', 'fillintheblanks', 4, 'hard', 0, '2019-04-28 21:56:00', '0000-00-00 00:00:00', 0, 0),
@@ -923,7 +921,7 @@ INSERT INTO `question` (`question_id`, `chapter_id`, `question`, `question_type`
 -- --------------------------------------------------------
 
 --
--- Table.class structure for table `question_marks`
+-- Table structure for table `question_marks`
 --
 
 CREATE TABLE `question_marks` (
@@ -935,7 +933,7 @@ CREATE TABLE `question_marks` (
 -- --------------------------------------------------------
 
 --
--- Table.class structure for table `quiz`
+-- Table structure for table `quiz`
 --
 
 CREATE TABLE `quiz` (
@@ -976,7 +974,7 @@ INSERT INTO `quiz` (`quiz_id`, `subject_id`, `quiz_name`, `quiz_marks`, `quiz_ty
 -- --------------------------------------------------------
 
 --
--- Table.class structure for table `quiz_assigned_to`
+-- Table structure for table `quiz_assigned_to`
 --
 
 CREATE TABLE `quiz_assigned_to` (
@@ -1124,7 +1122,7 @@ INSERT INTO `quiz_assigned_to` (`quiz_id`, `id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table.class structure for table `quiz_chapter`
+-- Table structure for table `quiz_chapter`
 --
 
 CREATE TABLE `quiz_chapter` (
@@ -1156,7 +1154,7 @@ INSERT INTO `quiz_chapter` (`quiz_id`, `chapter_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table.class structure for table `quiz_difficulty`
+-- Table structure for table `quiz_difficulty`
 --
 
 CREATE TABLE `quiz_difficulty` (
@@ -1191,7 +1189,7 @@ INSERT INTO `quiz_difficulty` (`quiz_id`, `difficulty`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table.class structure for table `quiz_question`
+-- Table structure for table `quiz_question`
 --
 
 CREATE TABLE `quiz_question` (
@@ -1329,7 +1327,7 @@ INSERT INTO `quiz_question` (`quiz_id`, `question_id`, `no_of_options`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table.class structure for table `quiz_student_marks`
+-- Table structure for table `quiz_student_marks`
 --
 
 CREATE TABLE `quiz_student_marks` (
@@ -1479,7 +1477,7 @@ INSERT INTO `quiz_student_marks` (`quiz_id`, `student_id`, `marks`, `submission_
 -- --------------------------------------------------------
 
 --
--- Table.class structure for table `student`
+-- Table structure for table `student`
 --
 
 CREATE TABLE `student` (
@@ -1681,7 +1679,7 @@ INSERT INTO `student` (`student_id`, `user_id`, `branch_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table.class structure for table `student_details`
+-- Table structure for table `student_details`
 --
 
 CREATE TABLE `student_details` (
@@ -1882,7 +1880,7 @@ INSERT INTO `student_details` (`student_id`, `batch_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table.class structure for table `student_quiz_question`
+-- Table structure for table `student_quiz_question`
 --
 
 CREATE TABLE `student_quiz_question` (
@@ -4524,7 +4522,7 @@ INSERT INTO `student_quiz_question` (`student_quiz_question_id`, `quiz_id`, `que
 -- --------------------------------------------------------
 
 --
--- Table.class structure for table `student_quiz_question_answer`
+-- Table structure for table `student_quiz_question_answer`
 --
 
 CREATE TABLE `student_quiz_question_answer` (
@@ -7162,7 +7160,7 @@ INSERT INTO `student_quiz_question_answer` (`student_quiz_question_id`, `answer_
 -- --------------------------------------------------------
 
 --
--- Table.class structure for table `subject`
+-- Table structure for table `subject`
 --
 
 CREATE TABLE `subject` (
@@ -7193,7 +7191,7 @@ INSERT INTO `subject` (`subject_id`, `branch_id`, `sem_no`, `subject_name`, `cre
 -- --------------------------------------------------------
 
 --
--- Table.class structure for table `teacher`
+-- Table structure for table `teacher`
 --
 
 CREATE TABLE `teacher` (
@@ -7221,7 +7219,7 @@ INSERT INTO `teacher` (`teacher_id`, `user_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table.class structure for table `teaches`
+-- Table structure for table `teaches`
 --
 
 CREATE TABLE `teaches` (
@@ -7252,7 +7250,7 @@ INSERT INTO `teaches` (`teacher_id`, `batch_id`, `subject_id`, `w.e.f`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table.class structure for table `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -7295,7 +7293,7 @@ INSERT INTO `user` (`user_id`, `name`, `username`, `password`, `email`, `contact
 (12, 'Rebeca Greenwood', 'rebeca_greenwood', 'ASYb4aSj', 'british@gmail.com', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
 (13, 'Jordi Barajas', 'jordi_barajas', 'DzcXFXfp', 'tezbo@comcast.net', 2147483647, 'female', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3, 0, 0),
 (14, 'Ben Bautista', 'ben_bautista', 'cp4BkKGD', 'kmself@mac.com', 2147483647, 'female', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3, 0, 0),
-(15, 'Myles O\'Sullivan', 'myles_o\'sullivan', 'KR6EGg4s', 'brainless@aol.com', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
+(15, 'Myles O''Sullivan', 'myles_o''sullivan', 'KR6EGg4s', 'brainless@aol.com', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
 (16, 'Stella Wall', 'stella_wall', 'btQkRqEK', 'hstiles@live.com', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3, 0, 0),
 (17, 'Joy Armitage', 'joy_armitage', '69bM89Yj', 'flavell@msn.com', 2147483647, 'female', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
 (18, 'Zack Dean', 'zack_dean', 'kSt4MLjK', 'mpiotr@yahoo.ca', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3, 0, 0),
@@ -7307,7 +7305,7 @@ INSERT INTO `user` (`user_id`, `name`, `username`, `password`, `email`, `contact
 (24, 'Kristofer Yang', 'kristofer_yang', 'cQjBtqtn', 'gavollink@live.com', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 0, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
 (25, 'Christina Fowler', 'christina_fowler', 'hAGB7dcz', 'pgolle@yahoo.ca', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 0, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3, 0, 0),
 (26, 'Wilson Bateman', 'wilson_bateman', 'BPudk8gD', 'mthurn@aol.com', 2147483647, 'female', '0000-00-00', '0000-00-00', 0, 0, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
-(27, 'Eli O\'Quinn', 'eli_o\'quinn', 'CKZe2ZYG', 'shrapnull@hotmail.com', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 0, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
+(27, 'Eli O''Quinn', 'eli_o''quinn', 'CKZe2ZYG', 'shrapnull@hotmail.com', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 0, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
 (28, 'Ingrid Colley', 'ingrid_colley', 'hF8QmZwF', 'larry@sbcglobal.net', 2147483647, 'female', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
 (29, 'Borys Smith', 'borys_smith', 'UEFqrPuW', 'webdragon@att.net', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 0, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
 (30, 'Eliana Hines', 'eliana_hines', 'b4pNgT8b', 'aschmitz@verizon.net', 2147483647, 'female', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3, 0, 0),
@@ -7427,7 +7425,7 @@ INSERT INTO `user` (`user_id`, `name`, `username`, `password`, `email`, `contact
 (144, 'Nannie Adam', 'nannie_adam', 'ZWyN6KwN', 'bancboy@me.com', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3, 0, 0),
 (145, 'Carwyn Gillespie', 'carwyn_gillespie', 'GEFwck4w', 'birddog@optonline.net', 2147483647, 'female', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3, 0, 0),
 (146, 'Eloise Cruz', 'eloise_cruz', 'GvLTatNc', 'aegreene@verizon.net', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
-(147, 'Vikram O\'Gallagher', 'vikram_o\'gallagher', 'MQjak32b', 'ajlitt@gmail.com', 2147483647, 'female', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3, 0, 0),
+(147, 'Vikram O''Gallagher', 'vikram_o''gallagher', 'MQjak32b', 'ajlitt@gmail.com', 2147483647, 'female', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3, 0, 0),
 (148, 'Bethanie Muir', 'bethanie_muir', '5kKLnKh7', 'jorgb@outlook.com', 2147483647, 'female', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3, 0, 0),
 (149, 'Tierney Drew', 'tierney_drew', 'ctXsZNYE', 'chance@me.com', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 0, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
 (150, 'Rahma Franco', 'rahma_franco', 'bWYTp2rN', 'sjmuir@yahoo.com', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 0, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
@@ -7481,13 +7479,12 @@ INSERT INTO `user` (`user_id`, `name`, `username`, `password`, `email`, `contact
 (198, 'Muhammed Hoffman', 'muhammed_hoffman', 'Ve46M5wf', 'sokol@live.com', 2147483647, 'female', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3, 0, 0),
 (199, 'Mabel Rooney', 'mabel_rooney', 'zUcPrQvj', 'engelen@icloud.com', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3, 0, 0),
 (200, 'Gareth Smith', 'gareth_smith', 'x2r8BWce', 'grinder@yahoo.ca', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 0, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
-(201, 'Nikhil Nagdev', 'nikhil_nagdev', 'Nikhil@123', 'nnagdev@gmail.com', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
-(202, '', '', '', '', 0, '', '0000-00-00', '0000-00-00', 0, 0, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, 0);
+(201, 'Nikhil Nagdev', 'nikhil_nagdev', 'Nikhil@123', 'nnagdev@gmail.com', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table.class structure for table `user_role`
+-- Table structure for table `user_role`
 --
 
 CREATE TABLE `user_role` (
@@ -7604,80 +7601,66 @@ ALTER TABLE `user_role`
 --
 ALTER TABLE `branch`
   MODIFY `branch_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT for table `chapter`
 --
 ALTER TABLE `chapter`
   MODIFY `chapter_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
 --
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
   MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT for table `hod`
 --
 ALTER TABLE `hod`
   MODIFY `hod_id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
   MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `parent`
 --
 ALTER TABLE `parent`
   MODIFY `parent_id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
   MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
-
 --
 -- AUTO_INCREMENT for table `quiz`
 --
 ALTER TABLE `quiz`
   MODIFY `quiz_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
   MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
-
 --
 -- AUTO_INCREMENT for table `student_quiz_question`
 --
 ALTER TABLE `student_quiz_question`
   MODIFY `student_quiz_question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2621;
-
 --
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
   MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
 --
 -- AUTO_INCREMENT for table `teacher`
 --
 ALTER TABLE `teacher`
   MODIFY `teacher_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=203;
-COMMIT;
-
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=205;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
