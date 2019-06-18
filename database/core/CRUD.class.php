@@ -16,11 +16,8 @@ class CRUD
      */
     function __construct()
     {
-        if(self::$initStatus == false){
-            $this->pdo = Connection::connectToDB();
-            date_default_timezone_set('Asia/Kolkata');
-            self::$initStatus = true;
-        }
+        $this->pdo = Connection::connectToDB();
+        date_default_timezone_set('Asia/Kolkata');
     }
 
     //CRUD FUNCTIONS
@@ -58,7 +55,7 @@ class CRUD
      * @return CRUD - returns the object which called this method
      */
     public function select(...$columns){
-        $this->query = $this->createQueryString($columns, "select")." FROM ".$this->current_table." ".$this->where;
+        $this->query = $this->createQueryString($columns, "select")." FROM ".$this->current_table;
         return $this;
     }
 
@@ -82,7 +79,7 @@ class CRUD
                     $values.=",";
                 }
             }
-            if($this->pdo->query("SHOW COLUMNS FROM ".$this->current_table." LIKE 'created_at'")){
+            if($this->pdo->query("SHOW COLUMNS FROM ".$this->current_table." LIKE 'created_at'")->fetch()){
                 $field .= ",created_at";
                 $values .=  ",'".$this->getCurrentDT()."'";
             }
@@ -98,7 +95,7 @@ class CRUD
                     $field.=",";
                 }
             }
-            if($this->pdo->query("SHOW COLUMNS FROM ".$this->current_table." LIKE 'updated_at'")){
+            if($this->pdo->query("SHOW COLUMNS FROM ".$this->current_table." LIKE 'updated_at'")->fetch()){
                 $field .= ", updated_at = "."'".$this->getCurrentDT()."'";
             }
             return "UPDATE {$this->current_table} SET $field {$this->where}";
@@ -119,6 +116,7 @@ class CRUD
      * @return bool|PDOStatement object
      */
     private function getPDOdStatement($query){
+        echo $query;
         return $this->pdo->prepare($query);
     }
 
@@ -139,7 +137,22 @@ class CRUD
             $this->where = " WHERE {$column} {$operator} ?";
         }
         $this->values[$this->i++] = $value;
+
         return $this;
+    }
+
+    public function limit($limitValue){
+        $this->limit = " LIMIT ".$limitValue;
+        return $this;
+    }
+
+    public function orderBy($orderType){
+        $this->orderBy = " ORDER BY ".$orderType;
+        return $this;
+    }
+
+    private function buildQuery(){
+        $this->query.=$this->join.$this->where.$this->orderBy.$this->limit;
     }
 
     /**
@@ -147,14 +160,17 @@ class CRUD
     */
     public function get(){
         try{
+            $this->buildQuery();
             $pdoStatement = $this->getPDOdStatement($this->query);
+//            echo "<br>".($this->query);
+//            echo "<br>".print_r($this->values);
             for($i=0; $i<count($this->values); $i++){
                 $pdoStatement->bindValue($i+1, $this->values[$i]);
             }
             $status = $pdoStatement->execute();
             $this->values = array();
             $this->query = "";
-            $this->where = "WHERE 1";
+            $this->where = "";
             $this->i=0;
             if($status){
                 return $pdoStatement;
@@ -165,12 +181,6 @@ class CRUD
             die($e);
         }
 
-    }
-
-    public static function table($tableName){
-        $c=new CRUD();
-        $c->current_table=$tableName;
-        return $c;
     }
 
     public function getCurrentDT(){
@@ -190,17 +200,43 @@ class CRUD
                 return $this->where($arguments[0], $arguments[1], $arguments[2], $matches[1]);
             return $this->where($arguments[0], $arguments[1], "=", $matches[1]);
         }
+        else if(preg_match('/(.+)Join$/',$name)){
+            if ($name==="leftJoin")
+                $LRJoin = "LEFT";
+            elseif($name==="rightJoin")
+                $LRJoin = "RIGHT";
+            else
+                $LRJoin = "INNER";
+            if(isset($arguments[3]) && $arguments[3]!=="=")
+                $operator=$arguments[3];
+            else
+                $operator="=";
+            return $this->join($arguments[0],$arguments[1],$arguments[2],$operator,$LRJoin);
+        }
+    }
+
+
+    public function join($tableName,$columnName1,$columnName2,$operatorType="=",$forLeftRight="")
+    {
+        $this->join .= " ".$forLeftRight." JOIN ". $tableName . " ON " . $columnName1 ." ".$operatorType." " . $columnName2;
+        return $this;
+    }
+
+    public static function table($tableName){
+        $obj = new CRUD();
+        $obj->current_table = $tableName;
+        return $obj;
     }
 
     /*Variable declarations*/
     private $current_table;
     private $pdo;
+    private $join="";
     private $query;
-    private $where = "WHERE 1";
+    private $where = "";
     private $values = array();
     private $i = 0;
-    private static $initStatus = false;
+    private $limit = "";
+    private $orderBy = "";
     /*End of variable declarations*/
 }
-
-CRUD::table("user")->where("user_id", 1)->update(array("name"=>"nik"));
