@@ -11,3 +11,4 @@
     define("DB","quiz");
     define("USERNAME","root");
     define("PASSWORD","");
+    define("BASE_PATH", "C:\\xampp\\htdocs\\QuizApplication");
