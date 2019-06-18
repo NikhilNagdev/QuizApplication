@@ -218,6 +218,7 @@ class CRUD
 
     public function join($tableName,$columnName1,$columnName2,$operatorType="=",$forLeftRight="")
     {
+        echo "called";
         $this->join .= " ".$forLeftRight." JOIN ". $tableName . " ON " . $columnName1 ." ".$operatorType." " . $columnName2;
         return $this;
     }
