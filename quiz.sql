@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2019 at 03:57 PM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.11
+-- Generation Time: Jun 07, 2019 at 12:55 PM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 7.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -276,11 +274,11 @@ INSERT INTO `answer` (`answer_id`, `question_id`, `answer`, `deleted`, `deleted_
 (232, 41, 'All of the above', 0, '0000-00-00 00:00:00', 0),
 (233, 41, 'None of the above', 0, '0000-00-00 00:00:00', 0),
 (234, 41, 'Smaller instances of the same problem', 0, '0000-00-00 00:00:00', 0),
-(235, 42, 'You cannot have the \'next\' pointer point to null in a circular linked list', 0, '0000-00-00 00:00:00', 0),
+(235, 42, 'You cannot have the ''next'' pointer point to null in a circular linked list', 0, '0000-00-00 00:00:00', 0),
 (236, 42, 'It is faster to traverse the circular linked list', 0, '0000-00-00 00:00:00', 0),
 (237, 42, 'All of the above', 0, '0000-00-00 00:00:00', 0),
 (238, 42, 'None of the above', 0, '0000-00-00 00:00:00', 0),
-(239, 42, 'You may or may not have the \'next\' pointer point to null in a circular linked list', 0, '0000-00-00 00:00:00', 0),
+(239, 42, 'You may or may not have the ''next'' pointer point to null in a circular linked list', 0, '0000-00-00 00:00:00', 0),
 (240, 43, 'O(nlogn)', 0, '0000-00-00 00:00:00', 0),
 (241, 43, 'O(n2)', 0, '0000-00-00 00:00:00', 0),
 (242, 43, 'O(1)', 0, '0000-00-00 00:00:00', 0),
@@ -465,7 +463,7 @@ INSERT INTO `batch` (`batch_id`, `class_id`, `batch_name`, `deleted`, `created_a
 
 CREATE TABLE `branch` (
   `branch_id` int(11) NOT NULL,
-  `branch_name` varchar(255) NOT NULL,
+  `branch` varchar(255) NOT NULL,
   `deleted` int(1) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
@@ -479,7 +477,7 @@ CREATE TABLE `branch` (
 -- Dumping data for table `branch`
 --
 
-INSERT INTO `branch` (`branch_id`, `branch_name`, `deleted`, `created_at`, `updated_at`, `deleted_at`, `created_by`, `updated_by`, `deleted_by`) VALUES
+INSERT INTO `branch` (`branch_id`, `branch`, `deleted`, `created_at`, `updated_at`, `deleted_at`, `created_by`, `updated_by`, `deleted_by`) VALUES
 (1, 'information technology', 0, '2019-04-25 15:02:41', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 0, 0),
 (2, 'computers', 0, '2019-04-25 15:02:41', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 0, 0),
 (3, 'electronics', 0, '2019-04-25 15:02:41', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 0, 0),
@@ -878,7 +876,7 @@ INSERT INTO `question` (`question_id`, `chapter_id`, `question`, `question_type`
 (26, 11, 'The data structure required for Breadth First Traversal on a graph is?', 'multiplechoicequestion', 4, 'easy ', 0, '2019-04-28 21:56:00', '0000-00-00 00:00:00', 0, 0),
 (27, 8, 'A queue is a ?', 'multiplechoicequestion', 4, 'easy ', 0, '2019-04-28 21:56:00', '0000-00-00 00:00:00', 0, 0),
 (28, 8, 'A normal queue, if implemented using an array of size MAX_SIZE, gets full when', 'multiplechoicequestion', 4, 'easy ', 0, '2019-04-28 21:56:00', '0000-00-00 00:00:00', 0, 0),
-(29, 8, 'If the elements \"A\", \"B\", \"C\" and \"D\" are placed in a queue and are deleted one at a time, in what order will they be removed?', 'multiplechoicequestion', 4, 'easy ', 0, '2019-04-28 21:56:00', '0000-00-00 00:00:00', 0, 0),
+(29, 8, 'If the elements "A", "B", "C" and "D" are placed in a queue and are deleted one at a time, in what order will they be removed?', 'multiplechoicequestion', 4, 'easy ', 0, '2019-04-28 21:56:00', '0000-00-00 00:00:00', 0, 0),
 (30, 9, 'A linear collection of data elements where the linear node is given by means of pointer is called?', 'multiplechoicequestion', 4, 'hard', 0, '2019-04-28 21:56:00', '0000-00-00 00:00:00', 0, 0),
 (31, 9, 'In linked list each node contain minimum of two fields. One field is data field to store the data second field is?', 'multiplechoicequestion', 4, 'hard', 0, '2019-04-28 21:56:00', '0000-00-00 00:00:00', 0, 0),
 (32, 9, 'Linked list is considered as an example of ___________ type of memory allocation.', 'fillintheblanks', 4, 'hard', 0, '2019-04-28 21:56:00', '0000-00-00 00:00:00', 0, 0),
@@ -931,81 +929,6 @@ CREATE TABLE `question_marks` (
   `marks` int(3) NOT NULL,
   `w.e.f` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `question_marks`
---
-
-INSERT INTO `question_marks` (`question_id`, `marks`, `w.e.f`) VALUES
-(1, 2, '2019-04-28 22:56:00'),
-(2, 2, '2019-04-29 22:56:00'),
-(3, 2, '2019-04-30 22:56:00'),
-(4, 2, '2019-05-01 22:56:00'),
-(5, 2, '2019-05-02 22:56:00'),
-(6, 2, '2019-05-03 22:56:00'),
-(7, 2, '2019-05-04 22:56:00'),
-(8, 2, '2019-05-05 22:56:00'),
-(9, 2, '2019-05-06 22:56:00'),
-(10, 2, '2019-05-07 22:56:00'),
-(11, 2, '2019-05-08 22:56:00'),
-(12, 2, '2019-05-09 22:56:00'),
-(13, 2, '2019-05-10 22:56:00'),
-(14, 2, '2019-05-11 22:56:00'),
-(15, 2, '2019-05-12 22:56:00'),
-(16, 2, '2019-05-13 22:56:00'),
-(17, 2, '2019-05-14 22:56:00'),
-(18, 2, '2019-05-15 22:56:00'),
-(19, 2, '2019-05-16 22:56:00'),
-(20, 2, '2019-05-17 22:56:00'),
-(21, 2, '2019-05-18 22:56:00'),
-(22, 2, '2019-05-19 22:56:00'),
-(23, 2, '2019-05-20 22:56:00'),
-(24, 2, '2019-05-21 22:56:00'),
-(25, 2, '2019-05-22 22:56:00'),
-(26, 2, '2019-05-23 22:56:00'),
-(27, 2, '2019-05-24 22:56:00'),
-(28, 2, '2019-05-25 22:56:00'),
-(29, 2, '2019-05-26 22:56:00'),
-(30, 2, '2019-05-27 22:56:00'),
-(31, 2, '2019-05-28 22:56:00'),
-(32, 2, '2019-05-29 22:56:00'),
-(33, 2, '2019-05-30 22:56:00'),
-(34, 2, '2019-05-31 22:56:00'),
-(35, 2, '2019-06-01 22:56:00'),
-(36, 2, '2019-06-02 22:56:00'),
-(37, 2, '2019-06-03 22:56:00'),
-(38, 2, '2019-06-04 22:56:00'),
-(39, 2, '2019-06-05 22:56:00'),
-(40, 2, '2019-06-06 22:56:00'),
-(41, 2, '2019-06-07 22:56:00'),
-(42, 2, '2019-06-08 22:56:00'),
-(43, 2, '2019-06-09 22:56:00'),
-(44, 2, '2019-06-10 22:56:00'),
-(45, 2, '2019-06-11 22:56:00'),
-(46, 2, '2019-06-12 22:56:00'),
-(47, 2, '2019-06-13 22:56:00'),
-(48, 2, '2019-06-14 22:56:00'),
-(49, 2, '2019-06-15 22:56:00'),
-(50, 2, '2019-06-16 22:56:00'),
-(51, 2, '2019-06-17 22:56:00'),
-(52, 2, '2019-06-18 22:56:00'),
-(53, 2, '2019-06-19 22:56:00'),
-(54, 2, '2019-06-20 22:56:00'),
-(55, 2, '2019-06-21 22:56:00'),
-(56, 2, '2019-06-22 22:56:00'),
-(57, 2, '2019-06-23 22:56:00'),
-(58, 2, '2019-06-24 22:56:00'),
-(59, 2, '2019-06-25 22:56:00'),
-(60, 2, '2019-06-26 22:56:00'),
-(61, 2, '2019-06-27 22:56:00'),
-(62, 2, '2019-06-28 22:56:00'),
-(63, 2, '2019-06-29 22:56:00'),
-(64, 2, '2019-06-30 22:56:00'),
-(65, 2, '2019-07-01 22:56:00'),
-(66, 2, '2019-07-02 22:56:00'),
-(67, 2, '2019-07-03 22:56:00'),
-(68, 2, '2019-07-04 22:56:00'),
-(69, 2, '2019-07-05 22:56:00');
 
 -- --------------------------------------------------------
 
@@ -1769,190 +1692,190 @@ CREATE TABLE `student_details` (
 --
 
 INSERT INTO `student_details` (`student_id`, `batch_id`) VALUES
-(1, 1),
-(2, 1),
-(3, 1),
-(4, 1),
-(5, 1),
-(6, 1),
-(7, 1),
-(8, 1),
-(9, 1),
-(10, 1),
-(11, 1),
-(12, 1),
-(13, 2),
-(14, 2),
-(15, 2),
-(16, 2),
-(17, 2),
-(18, 2),
-(19, 2),
-(20, 2),
-(21, 2),
-(22, 2),
-(23, 2),
-(24, 3),
-(25, 3),
-(26, 3),
-(27, 3),
-(28, 3),
-(29, 3),
-(30, 3),
-(31, 3),
-(32, 3),
-(33, 3),
-(34, 3),
-(35, 3),
-(36, 3),
-(37, 4),
-(38, 4),
-(39, 4),
-(40, 4),
-(41, 4),
-(42, 4),
-(43, 4),
-(44, 4),
-(45, 4),
-(46, 4),
-(47, 4),
-(48, 4),
-(49, 5),
-(50, 5),
-(51, 5),
-(52, 5),
-(53, 5),
-(54, 5),
-(55, 5),
-(56, 5),
-(57, 5),
-(58, 5),
-(59, 5),
-(60, 5),
-(61, 6),
-(62, 6),
-(63, 6),
-(64, 6),
-(65, 6),
-(66, 6),
-(67, 6),
-(68, 6),
-(69, 6),
-(70, 6),
-(71, 6),
-(72, 6),
-(73, 7),
-(74, 7),
-(75, 7),
-(76, 7),
-(77, 7),
-(78, 7),
-(79, 7),
-(80, 7),
-(81, 7),
-(82, 7),
-(83, 7),
-(84, 7),
-(85, 7),
-(86, 8),
-(87, 8),
-(88, 8),
-(89, 8),
-(90, 8),
-(91, 8),
-(92, 8),
-(93, 8),
-(94, 8),
-(95, 8),
-(96, 8),
-(97, 8),
-(98, 9),
-(99, 9),
-(100, 9),
-(101, 9),
-(102, 9),
-(103, 9),
-(104, 9),
-(105, 9),
-(106, 9),
-(107, 9),
-(108, 9),
-(109, 9),
-(110, 9),
-(111, 9),
-(112, 9),
-(113, 9),
-(114, 9),
+(18, 1),
+(19, 1),
+(20, 1),
+(21, 1),
+(22, 1),
+(23, 1),
+(24, 1),
+(25, 1),
+(26, 1),
+(27, 1),
+(28, 1),
+(29, 1),
+(30, 2),
+(31, 2),
+(32, 2),
+(33, 2),
+(34, 2),
+(35, 2),
+(36, 2),
+(37, 2),
+(38, 2),
+(39, 2),
+(40, 2),
+(41, 3),
+(42, 3),
+(43, 3),
+(44, 3),
+(45, 3),
+(46, 3),
+(47, 3),
+(48, 3),
+(49, 3),
+(50, 3),
+(51, 3),
+(52, 3),
+(53, 3),
+(54, 4),
+(55, 4),
+(56, 4),
+(57, 4),
+(58, 4),
+(59, 4),
+(60, 4),
+(61, 4),
+(62, 4),
+(63, 4),
+(64, 4),
+(65, 4),
+(66, 5),
+(67, 5),
+(68, 5),
+(69, 5),
+(70, 5),
+(71, 5),
+(72, 5),
+(73, 5),
+(74, 5),
+(75, 5),
+(76, 5),
+(77, 5),
+(78, 6),
+(79, 6),
+(80, 6),
+(81, 6),
+(82, 6),
+(83, 6),
+(84, 6),
+(85, 6),
+(86, 6),
+(87, 6),
+(88, 6),
+(89, 6),
+(90, 7),
+(91, 7),
+(92, 7),
+(93, 7),
+(94, 7),
+(95, 7),
+(96, 7),
+(97, 7),
+(98, 7),
+(99, 7),
+(100, 7),
+(101, 7),
+(102, 7),
+(103, 8),
+(104, 8),
+(105, 8),
+(106, 8),
+(107, 8),
+(108, 8),
+(109, 8),
+(110, 8),
+(111, 8),
+(112, 8),
+(113, 8),
+(114, 8),
 (115, 9),
 (116, 9),
 (117, 9),
 (118, 9),
-(119, 10),
-(120, 10),
-(121, 10),
-(122, 10),
-(123, 10),
-(124, 10),
-(125, 10),
-(126, 10),
-(127, 10),
-(128, 10),
-(129, 10),
-(130, 10),
-(131, 10),
-(132, 10),
-(133, 10),
-(134, 10),
-(135, 10),
+(119, 9),
+(120, 9),
+(121, 9),
+(122, 9),
+(123, 9),
+(124, 9),
+(125, 9),
+(126, 9),
+(127, 9),
+(128, 9),
+(129, 9),
+(130, 9),
+(131, 9),
+(132, 9),
+(133, 9),
+(134, 9),
+(135, 9),
 (136, 10),
 (137, 10),
 (138, 10),
 (139, 10),
-(140, 11),
-(141, 11),
-(142, 11),
-(143, 11),
-(144, 11),
-(145, 11),
-(146, 11),
-(147, 11),
-(148, 11),
-(149, 11),
-(150, 11),
-(151, 11),
-(152, 11),
-(153, 11),
-(154, 11),
-(155, 11),
-(156, 11),
+(140, 10),
+(141, 10),
+(142, 10),
+(143, 10),
+(144, 10),
+(145, 10),
+(146, 10),
+(147, 10),
+(148, 10),
+(149, 10),
+(150, 10),
+(151, 10),
+(152, 10),
+(153, 10),
+(154, 10),
+(155, 10),
+(156, 10),
 (157, 11),
 (158, 11),
 (159, 11),
 (160, 11),
 (161, 11),
-(162, 12),
-(163, 12),
-(164, 12),
-(165, 12),
-(166, 12),
-(167, 12),
-(168, 12),
-(169, 12),
-(170, 12),
-(171, 12),
-(172, 12),
-(173, 12),
-(174, 12),
-(175, 12),
-(176, 12),
-(177, 12),
-(178, 12),
+(162, 11),
+(163, 11),
+(164, 11),
+(165, 11),
+(166, 11),
+(167, 11),
+(168, 11),
+(169, 11),
+(170, 11),
+(171, 11),
+(172, 11),
+(173, 11),
+(174, 11),
+(175, 11),
+(176, 11),
+(177, 11),
+(178, 11),
 (179, 12),
 (180, 12),
 (181, 12),
 (182, 12),
 (183, 12),
-(184, 12);
+(184, 12),
+(185, 12),
+(186, 12),
+(187, 12),
+(188, 12),
+(189, 12),
+(190, 12),
+(191, 12),
+(192, 12),
+(193, 12),
+(194, 12),
+(195, 12),
+(196, 12),
+(197, 12),
+(198, 12),
+(199, 12),
+(200, 12),
+(201, 12);
 
 -- --------------------------------------------------------
 
@@ -7246,26 +7169,24 @@ CREATE TABLE `subject` (
   `sem_no` int(2) NOT NULL,
   `subject_name` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `deleted_at` datetime NOT NULL,
-  `created_by` int(11) NOT NULL,
-  `deleted_by` int(11) NOT NULL
+  `created_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `subject`
 --
 
-INSERT INTO `subject` (`subject_id`, `branch_id`, `sem_no`, `subject_name`, `created_at`, `deleted_at`, `created_by`, `deleted_by`) VALUES
-(1, 2, 3, 'Applied Mathematics -III', '2019-04-26 17:45:00', '0000-00-00 00:00:00', 2, 0),
-(2, 2, 3, 'Digital Logic Design and Analysis', '2019-04-26 17:45:00', '0000-00-00 00:00:00', 2, 0),
-(3, 2, 3, 'Discrete Mathematics', '2019-04-26 17:45:00', '0000-00-00 00:00:00', 2, 0),
-(4, 2, 3, 'Java', '2019-04-26 17:45:00', '0000-00-00 00:00:00', 2, 0),
-(5, 2, 3, 'Data Structures', '2019-04-26 17:45:00', '0000-00-00 00:00:00', 2, 0),
-(6, 1, 4, 'Applied Mathematics -IV', '2019-04-26 17:45:00', '0000-00-00 00:00:00', 2, 0),
-(7, 1, 4, 'COA', '2019-04-26 17:45:00', '0000-00-00 00:00:00', 2, 0),
-(8, 1, 4, 'AOA', '2019-04-26 17:45:00', '0000-00-00 00:00:00', 2, 0),
-(9, 1, 4, 'OS', '2019-04-26 17:45:00', '0000-00-00 00:00:00', 2, 0),
-(10, 1, 4, 'CG', '2019-04-26 17:45:00', '0000-00-00 00:00:00', 2, 0);
+INSERT INTO `subject` (`subject_id`, `branch_id`, `sem_no`, `subject_name`, `created_at`, `created_by`) VALUES
+(1, 2, 3, 'Applied Mathematics -III', '2019-04-26 17:45:00', 2),
+(2, 2, 3, 'Digital Logic Design and Analysis', '2019-04-26 17:45:00', 2),
+(3, 2, 3, 'Discrete Mathematics', '2019-04-26 17:45:00', 2),
+(4, 2, 3, 'Java', '2019-04-26 17:45:00', 2),
+(5, 2, 3, 'Data Structures', '2019-04-26 17:45:00', 2),
+(6, 1, 4, 'Applied Mathematics -IV', '2019-04-26 17:45:00', 2),
+(7, 1, 4, 'COA', '2019-04-26 17:45:00', 2),
+(8, 1, 4, 'AOA', '2019-04-26 17:45:00', 2),
+(9, 1, 4, 'OS', '2019-04-26 17:45:00', 2),
+(10, 1, 4, 'CG', '2019-04-26 17:45:00', 2);
 
 -- --------------------------------------------------------
 
@@ -7329,24 +7250,6 @@ INSERT INTO `teaches` (`teacher_id`, `batch_id`, `subject_id`, `w.e.f`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tp`
---
-
-CREATE TABLE `tp` (
-  `tp` int(11) NOT NULL,
-  `updated_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tp`
---
-
-INSERT INTO `tp` (`tp`, `updated_at`) VALUES
-(100, '2019-06-17 05:10:27');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `user`
 --
 
@@ -7376,8 +7279,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `name`, `username`, `password`, `email`, `contact_no`, `gender`, `doj`, `dob`, `toggle_sms_noti`, `toggle_email_noti`, `deleted`, `created_at`, `updated_at`, `deleted_at`, `created_by`, `updated_by`, `deleted_by`) VALUES
-(1, 'nik', 'nikhil_nagdev', 'nikhil1234', 'nikhil@gmail.com', 2147483647, 'male', '0000-00-00', '1999-11-10', 0, 1, 0, '2019-04-25 02:32:16', '2019-06-16 04:02:32', '0000-00-00 00:00:00', 2, 0, 0),
-(2, 'Harlan', 'harlan_garcia', 'UummNMT3', 'chronos@msn.com', 2147483647, 'female', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
+(1, 'Nikhil Nagdev', 'nikhil_nagdev', 'nikhil1234', 'nikhil@gmail.com', 2147483647, 'male', '0000-00-00', '1999-11-10', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
+(2, 'Harlan Garcia', 'harlan_garcia', 'UummNMT3', 'chronos@msn.com', 2147483647, 'female', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
 (3, 'Tre Hardin', 'tre_hardin', 'BTUkpMTH', 'jimxugle@att.net', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3, 0, 0),
 (4, 'Eva Hartley', 'eva_hartley', 'RQGPNfxC', 'bockelboy@yahoo.com', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 0, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3, 0, 0),
 (5, 'Alma Lindsey', 'alma_lindsey', 'L6zsZcvC', 'comdig@icloud.com', 2147483647, 'female', '0000-00-00', '0000-00-00', 0, 0, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
@@ -7390,7 +7293,7 @@ INSERT INTO `user` (`user_id`, `name`, `username`, `password`, `email`, `contact
 (12, 'Rebeca Greenwood', 'rebeca_greenwood', 'ASYb4aSj', 'british@gmail.com', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
 (13, 'Jordi Barajas', 'jordi_barajas', 'DzcXFXfp', 'tezbo@comcast.net', 2147483647, 'female', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3, 0, 0),
 (14, 'Ben Bautista', 'ben_bautista', 'cp4BkKGD', 'kmself@mac.com', 2147483647, 'female', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3, 0, 0),
-(15, 'Myles O\'Sullivan', 'myles_o\'sullivan', 'KR6EGg4s', 'brainless@aol.com', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
+(15, 'Myles O''Sullivan', 'myles_o''sullivan', 'KR6EGg4s', 'brainless@aol.com', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
 (16, 'Stella Wall', 'stella_wall', 'btQkRqEK', 'hstiles@live.com', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3, 0, 0),
 (17, 'Joy Armitage', 'joy_armitage', '69bM89Yj', 'flavell@msn.com', 2147483647, 'female', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
 (18, 'Zack Dean', 'zack_dean', 'kSt4MLjK', 'mpiotr@yahoo.ca', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3, 0, 0),
@@ -7402,7 +7305,7 @@ INSERT INTO `user` (`user_id`, `name`, `username`, `password`, `email`, `contact
 (24, 'Kristofer Yang', 'kristofer_yang', 'cQjBtqtn', 'gavollink@live.com', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 0, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
 (25, 'Christina Fowler', 'christina_fowler', 'hAGB7dcz', 'pgolle@yahoo.ca', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 0, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3, 0, 0),
 (26, 'Wilson Bateman', 'wilson_bateman', 'BPudk8gD', 'mthurn@aol.com', 2147483647, 'female', '0000-00-00', '0000-00-00', 0, 0, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
-(27, 'Eli O\'Quinn', 'eli_o\'quinn', 'CKZe2ZYG', 'shrapnull@hotmail.com', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 0, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
+(27, 'Eli O''Quinn', 'eli_o''quinn', 'CKZe2ZYG', 'shrapnull@hotmail.com', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 0, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
 (28, 'Ingrid Colley', 'ingrid_colley', 'hF8QmZwF', 'larry@sbcglobal.net', 2147483647, 'female', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
 (29, 'Borys Smith', 'borys_smith', 'UEFqrPuW', 'webdragon@att.net', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 0, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
 (30, 'Eliana Hines', 'eliana_hines', 'b4pNgT8b', 'aschmitz@verizon.net', 2147483647, 'female', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3, 0, 0),
@@ -7522,7 +7425,7 @@ INSERT INTO `user` (`user_id`, `name`, `username`, `password`, `email`, `contact
 (144, 'Nannie Adam', 'nannie_adam', 'ZWyN6KwN', 'bancboy@me.com', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3, 0, 0),
 (145, 'Carwyn Gillespie', 'carwyn_gillespie', 'GEFwck4w', 'birddog@optonline.net', 2147483647, 'female', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3, 0, 0),
 (146, 'Eloise Cruz', 'eloise_cruz', 'GvLTatNc', 'aegreene@verizon.net', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
-(147, 'Vikram O\'Gallagher', 'vikram_o\'gallagher', 'MQjak32b', 'ajlitt@gmail.com', 2147483647, 'female', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3, 0, 0),
+(147, 'Vikram O''Gallagher', 'vikram_o''gallagher', 'MQjak32b', 'ajlitt@gmail.com', 2147483647, 'female', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3, 0, 0),
 (148, 'Bethanie Muir', 'bethanie_muir', '5kKLnKh7', 'jorgb@outlook.com', 2147483647, 'female', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3, 0, 0),
 (149, 'Tierney Drew', 'tierney_drew', 'ctXsZNYE', 'chance@me.com', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 0, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
 (150, 'Rahma Franco', 'rahma_franco', 'bWYTp2rN', 'sjmuir@yahoo.com', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 0, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
@@ -7576,8 +7479,7 @@ INSERT INTO `user` (`user_id`, `name`, `username`, `password`, `email`, `contact
 (198, 'Muhammed Hoffman', 'muhammed_hoffman', 'Ve46M5wf', 'sokol@live.com', 2147483647, 'female', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3, 0, 0),
 (199, 'Mabel Rooney', 'mabel_rooney', 'zUcPrQvj', 'engelen@icloud.com', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3, 0, 0),
 (200, 'Gareth Smith', 'gareth_smith', 'x2r8BWce', 'grinder@yahoo.ca', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 0, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
-(201, 'Nikhil Nagdev', 'nikhil_nagdev', 'Nikhil@123', 'nnagdev@gmail.com', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0),
-(202, 'ABC', '', 'ABC', 'ABC', 0, '', '0000-00-00', '0000-00-00', 0, 0, 0, '2019-06-04 17:33:27', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, 0);
+(201, 'Nikhil Nagdev', 'nikhil_nagdev', 'Nikhil@123', 'nnagdev@gmail.com', 2147483647, 'male', '0000-00-00', '0000-00-00', 0, 1, 0, '2019-04-25 02:32:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -7699,80 +7601,66 @@ ALTER TABLE `user_role`
 --
 ALTER TABLE `branch`
   MODIFY `branch_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT for table `chapter`
 --
 ALTER TABLE `chapter`
   MODIFY `chapter_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
 --
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
   MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT for table `hod`
 --
 ALTER TABLE `hod`
   MODIFY `hod_id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
   MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `parent`
 --
 ALTER TABLE `parent`
   MODIFY `parent_id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
   MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
-
 --
 -- AUTO_INCREMENT for table `quiz`
 --
 ALTER TABLE `quiz`
   MODIFY `quiz_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
   MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
-
 --
 -- AUTO_INCREMENT for table `student_quiz_question`
 --
 ALTER TABLE `student_quiz_question`
   MODIFY `student_quiz_question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2621;
-
 --
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
   MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
 --
 -- AUTO_INCREMENT for table `teacher`
 --
 ALTER TABLE `teacher`
   MODIFY `teacher_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=203;
-COMMIT;
-
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=205;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

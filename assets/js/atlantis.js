@@ -339,7 +339,7 @@ function showPassword(button) {
 	}
 }
 
-$('.show-password').on('click', function(){
+ $('.show-password').on('click', function(){
 	showPassword(this);
 })
 

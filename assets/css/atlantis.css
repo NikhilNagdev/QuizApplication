@@ -287,7 +287,7 @@ body {
   background: #ffffff;
   min-height: 60px;
   width: 100%;
-  position: fixed;
+  position:fixed;
   z-index: 1001;
   box-shadow: 0px 0px 5px rgba(18, 23, 39, 0.5); }
   .main-header .navbar-header {
@@ -8927,7 +8927,9 @@ body {
 .bg-dark-gradient {
   background: #1f283e !important;
   background: -webkit-linear-gradient(legacy-direction(-45deg), #0A0B11, #1f283e) !important;
-  background: linear-gradient(-45deg, #0A0B11, #1f283e) !important; }
+  /*background: linear-gradient(-45deg, #0A0B11, #1f283e) !important;*/
+  background-image: linear-gradient(to right, #727787, #5c6274, #474e61, #333a4f, #1f283e);
+}
 
 .bg-primary-gradient {
   background: #1572E8 !important;
@@ -8960,3 +8962,4 @@ body {
   background: linear-gradient(-45deg, #E80A15, #F25961) !important; }
 
 /*# sourceMappingURL=atlantis.css.map */
+
