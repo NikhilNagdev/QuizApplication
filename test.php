@@ -13,7 +13,9 @@ $question = new Question();
 print_r($question->getRandomQuestionsByChapterNo(2, "java", 1));
 
 $answer = new Answer();
-while ($ans = $answer->generateOptions(1, 1)->fetchAll()){
-    echo "<br>".$ans->question_id;
-    echo "<br>".$ans->no_of_options;
+$ans = $answer->generateOptions(1, 1)->fetchAll();
+foreach ($ans as $a){
+    echo "<br>".$a->question_id;
+    echo "  ".$a->no_of_options;
+    echo "  ".$a->count;
 }

@@ -152,7 +152,7 @@ class CRUD
     }
 
     private function buildQuery(){
-        $this->query.=$this->join.$this->where.$this->orderBy.$this->limit;
+        $this->query.=$this->join.$this->where.$this->groupBy.$this->orderBy.$this->limit;
     }
 
     /**
@@ -223,6 +223,11 @@ class CRUD
         return $this;
     }
 
+    public function groupBy($column){
+        $this->groupBy = "GROUP BY $column";
+        return $this;
+    }
+
     public static function table($tableName){
         $obj = new CRUD();
         $obj->current_table = $tableName;
@@ -231,7 +236,7 @@ class CRUD
 
     /*Variable declarations*/
     private $current_table;
-    private $pdo;
+    public $pdo;
     private $join="";
     private $query;
     private $where = "";
@@ -239,5 +244,6 @@ class CRUD
     private $i = 0;
     private $limit = "";
     private $orderBy = "";
+    private $groupBy = "";
     /*End of variable declarations*/
 }
