@@ -1,0 +1,10 @@
+<section id="password">
+            <div class="enter-password">
+                <form action="">
+                    <label for="">Enter Password</label><br>
+                    <input type="text" name="passowrd" value="Enter Password"><br>
+
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </section>
