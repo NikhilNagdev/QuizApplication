@@ -116,7 +116,6 @@ class CRUD
      * @return bool|PDOStatement object
      */
     private function getPDOdStatement($query){
-        echo $query;
         return $this->pdo->prepare($query);
     }
 
@@ -218,7 +217,6 @@ class CRUD
 
     public function join($tableName,$columnName1,$columnName2,$operatorType="=",$forLeftRight="")
     {
-        echo "called";
         $this->join .= " ".$forLeftRight." JOIN ". $tableName . " ON " . $columnName1 ." ".$operatorType." " . $columnName2;
         return $this;
     }

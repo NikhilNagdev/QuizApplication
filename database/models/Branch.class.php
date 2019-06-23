@@ -6,7 +6,7 @@
  * Time: 5:22 AM
  */
 
-require_once "database/core/CRUD.class.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/database/core/CRUD.class.php";
 
 class Branch{
 

@@ -27,6 +27,68 @@ class Answer{
 
     }
 
+    public function generate(){
+        return $this->answer->pdo->query("SELECT * FROM (SELECT
+    question_id,
+    question,
+    answer_id,
+    answer
+FROM
+(
+    SELECT
+        quiz_question.question_id,
+        question.question,
+        answer.answer,
+        answer.answer_id,
+        @rn := IF(
+@prev = quiz_question.question_id,
+            @rn + 1,
+            1
+        ) AS rn,
+        @prev := quiz_question.question_id
+    FROM
+        quiz_question
+    INNER JOIN question ON quiz_question.quiz_id = 1 AND quiz_question.question_id = question.question_id
+    INNER JOIN(
+    SELECT
+    *
+    FROM
+            answer
+        WHERE
+            answer.answer_id NOT IN(
+    SELECT
+                answer_id
+            FROM
+                correct_question_answer
+        )
+    ) AS answer
+ON
+    answer.question_id = quiz_question.question_id
+JOIN(
+    SELECT
+    @prev := NULL,
+    @rn := 0
+) AS vars
+) AS final
+WHERE
+rn <= 3
+UNION ALL
+SELECT
+	question.question_id,
+    question.question,
+	answer.answer_id,
+    answer.answer
+FROM
+    correct_question_answer
+JOIN quiz_question ON quiz_question.question_id = correct_question_answer.question_id
+JOIN question ON question.question_id = quiz_question.question_id
+JOIN answer ON correct_question_answer.answer_id = answer.answer_id
+WHERE
+    quiz_question.quiz_id = 1
+GROUP BY
+    answer.answer_id)AS tp ORDER by tp.question_id");
+    }
+
 //select count(*), quiz_question.question_id, no_of_options from answer JOIN quiz_question ON quiz_question.question_id = answer.question_id WHERE quiZ_id=1 GROUP BY quiz_question.question_id
 
     private $answer;
@@ -105,3 +167,63 @@ class Answer{
 //    quiz_question.quiz_id = 1
 //GROUP BY
 //    quiz_question.question_id
+
+//SELECT * FROM (SELECT
+//    question_id,
+//    question,
+//    answer_id,
+//    answer
+//FROM
+//(
+//    SELECT
+//        quiz_question.question_id,
+//        question.question,
+//        answer.answer,
+//        answer.answer_id,
+//        @rn := IF(
+//@prev = quiz_question.question_id,
+//            @rn + 1,
+//            1
+//        ) AS rn,
+//        @prev := quiz_question.question_id
+//    FROM
+//        quiz_question
+//    INNER JOIN question ON quiz_question.quiz_id = 1 AND quiz_question.question_id = question.question_id
+//    INNER JOIN(
+//    SELECT
+//    *
+//    FROM
+//            answer
+//        WHERE
+//            answer.answer_id NOT IN(
+//    SELECT
+//                answer_id
+//            FROM
+//                correct_question_answer
+//        )
+//    ) AS answer
+//ON
+//    answer.question_id = quiz_question.question_id
+//JOIN(
+//    SELECT
+//    @prev := NULL,
+//    @rn := 0
+//) AS vars
+//) AS final
+//WHERE
+//rn <= 3
+//UNION ALL
+//SELECT
+//	question.question_id,
+//    question.question,
+//	answer.answer_id,
+//    answer.answer
+//FROM
+//    correct_question_answer
+//JOIN quiz_question ON quiz_question.question_id = correct_question_answer.question_id
+//JOIN question ON question.question_id = quiz_question.question_id
+//JOIN answer ON correct_question_answer.answer_id = answer.answer_id
+//WHERE
+//    quiz_question.quiz_id = 1
+//GROUP BY
+//    answer.answer_id)AS tp ORDER by tp.question_id

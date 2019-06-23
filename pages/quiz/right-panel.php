@@ -14,9 +14,7 @@
         <p>Time Remaining </p>
     </div>
 
-    <div class="counter">
 
-    </div>
 </div>
 
 <?php

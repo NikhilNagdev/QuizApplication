@@ -6,8 +6,8 @@
  * Time: 4:39 AM
  */
 
-require_once "database/core/CRUD.class.php";
-require_once "database/models/Branch.class.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/database/core/CRUD.class.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/database/models/Branch.class.php";
 
 class Subject{
 
@@ -37,6 +37,28 @@ class Subject{
                                 ->andWhere("branch", $branch->getBranchID($branch_name))
                                 ->select("subject_id")
                                 ->get();
+
+    }
+
+    public function getSubjectsBySemAndBranch($semNo, $branch_id){
+
+        return $this->subjectObj->select("subject_name")
+            ->join("branch", "subject.branch_id", "branch.branch_id")
+            ->where("subject.branch_id", $branch_id)
+            ->andWhere("subject.sem_no", $semNo)
+            ->get()
+            ->fetchAll();
+
+
+//        SELECT
+//    subject_name
+//FROM
+//    `subject`
+//JOIN branch ON
+//    subject.branch_id = branch.branch_id
+//WHERE
+//    subject.branch_id = 1 AND SUBJECT.sem_no = 4
+
 
     }
 

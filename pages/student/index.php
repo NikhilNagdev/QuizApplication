@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
+require_once "../../document_root.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/database/models/Subject.class.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/database/models/Quiz.class.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/helper/Helper.class.php";
+$helper = new Helper();
+$quiz = new Quiz();
+$subject = new Subject();
+
 include_once("../includes/header.php");
 ?>
 <body>
@@ -22,11 +30,11 @@ include_once("../includes/header.php");
     <?php
     include_once ("includes/sidebar.php");
     ?>
-       <!-- End Sidebar -->
+    <!-- End Sidebar -->
 
     <div class="main-panel">
         <div class="content">
-            <div class="panel-header bg-primary-gradient">
+            <div class="panel-header bg-dark-gradient">
                 <div class="page-inner py-5">
                     <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
                         <div>
@@ -36,20 +44,19 @@ include_once("../includes/header.php");
                 </div>
             </div>
 
-
-            <div class="page-inner mt--5">
-
-                <!--DASHBOARD VALUES-->
-                <?php
-                include_once ("includes/dashboard.php");
-                ?>
-            </div>
+            <!--DASHBOARD VALUES-->
+            <?php
+            include_once ("includes/dashboard.php");
+            ?>
         </div>
     </div>
+
+
+</div>
+<!--   Core JS Files   -->
 <!--   Core JS Files   -->
 <?php
 include_once("../includes/core-scripts.php");
 ?>
-
 </body>
 </html>
