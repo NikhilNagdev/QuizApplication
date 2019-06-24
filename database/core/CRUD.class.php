@@ -21,6 +21,7 @@ class CRUD
     }
 
     //CRUD FUNCTIONS
+
     /**
      * This method is used to insert values in database tables
      * @param $fieldValue It is an array which will contain the column name and it's value that is
@@ -29,8 +30,8 @@ class CRUD
     public function insert($fieldValue)
     {
         $preparedStatement = $this->getPDOdStatement($this->createQueryString($fieldValue, "insert"));
-        if(!($preparedStatement->execute(array_values($fieldValue)))){
-            echo "<br>".$preparedStatement->errorInfo()[2];
+        if (!($preparedStatement->execute(array_values($fieldValue)))) {
+            echo "<br>" . $preparedStatement->errorInfo()[2];
         }
     }
 
@@ -40,10 +41,11 @@ class CRUD
      * @return bool returns true if values were successfully updated and false if
      * values were not updated
      */
-    public function update($fieldValue){
+    public function update($fieldValue)
+    {
         $this->query = $this->createQueryString($fieldValue, "update");
         $arrayValues = array_values($fieldValue);
-        for($i=0; $i<count($arrayValues); $i++){
+        for ($i = 0; $i < count($arrayValues); $i++) {
             array_unshift($this->values, $arrayValues[$i]);
         }
         return $this->get();
@@ -54,58 +56,61 @@ class CRUD
      * @param array $columns It is an array of columns to be selected
      * @return CRUD - returns the object which called this method
      */
-    public function select(...$columns){
-        $this->query = $this->createQueryString($columns, "select")." FROM ".$this->current_table;
+    public function select(...$columns)
+    {
+        $this->query = $this->createQueryString($columns, "select") . " FROM " . $this->current_table;
+        echo $this->query;
         return $this;
     }
 
     //HELPER FUNCTIONS
+
     /**
      * This method is used to create the query string which is to be executed for DB operation
      * @param $fieldValue It is an array which will contain the column name and it's value
      * @param $queryType It will specify for which query type the string is to be created
      * @return string the created string
      */
-    public function createQueryString($fieldValue, $queryType){
-        if(strcasecmp($queryType, "insert") == 0){
-            $values=""; $field = "";
-            $count=0;
-            foreach ($fieldValue as $key=>$value){
-                $field.=$key;
-                $values.="?";
-                $count++;
-                if($count != count($fieldValue)){
-                    $field.=",";
-                    $values.=",";
-                }
-            }
-            if($this->pdo->query("SHOW COLUMNS FROM ".$this->current_table." LIKE 'created_at'")->fetch()){
-                $field .= ",created_at";
-                $values .=  ",'".$this->getCurrentDT()."'";
-            }
-            return "INSERT INTO {$this->current_table} (".$field.") VALUES "."(".$values.")";
-        }
-        else if(strcasecmp($queryType, "update") == 0){
+    public function createQueryString($fieldValue, $queryType)
+    {
+        if (strcasecmp($queryType, "insert") == 0) {
+            $values = "";
             $field = "";
-            $count=0;
-            foreach ($fieldValue as $key=>$value){
-                $field.=$key."="."?";
+            $count = 0;
+            foreach ($fieldValue as $key => $value) {
+                $field .= $key;
+                $values .= "?";
                 $count++;
-                if($count != count($fieldValue)){
-                    $field.=",";
+                if ($count != count($fieldValue)) {
+                    $field .= ",";
+                    $values .= ",";
                 }
             }
-            if($this->pdo->query("SHOW COLUMNS FROM ".$this->current_table." LIKE 'updated_at'")->fetch()){
-                $field .= ", updated_at = "."'".$this->getCurrentDT()."'";
+            if ($this->pdo->query("SHOW COLUMNS FROM " . $this->current_table . " LIKE 'created_at'")->fetch()) {
+                $field .= ",created_at";
+                $values .= ",'" . $this->getCurrentDT() . "'";
+            }
+            return "INSERT INTO {$this->current_table} (" . $field . ") VALUES " . "(" . $values . ")";
+        } else if (strcasecmp($queryType, "update") == 0) {
+            $field = "";
+            $count = 0;
+            foreach ($fieldValue as $key => $value) {
+                $field .= $key . "=" . "?";
+                $count++;
+                if ($count != count($fieldValue)) {
+                    $field .= ",";
+                }
+            }
+            if ($this->pdo->query("SHOW COLUMNS FROM " . $this->current_table . " LIKE 'updated_at'")->fetch()) {
+                $field .= ", updated_at = " . "'" . $this->getCurrentDT() . "'";
             }
             return "UPDATE {$this->current_table} SET $field {$this->where}";
-        }
-        else if(strcasecmp($queryType, "select") == 0){
+        } else if (strcasecmp($queryType, "select") == 0) {
             $query = "SELECT ";
-            foreach ($fieldValue as $column){
-                $query .= $column.", ";
+            foreach ($fieldValue as $column) {
+                $query .= $column . ", ";
             }
-                   //this is used to remove the last "," and " " that was added
+            //this is used to remove the last "," and " " that was added
             return substr($query, 0, -2);
         }
     }
@@ -115,8 +120,8 @@ class CRUD
      * @param $query query for which PDOStatement object is to returned
      * @return bool|PDOStatement object
      */
-    private function getPDOdStatement($query){
-        echo $query;
+    private function getPDOdStatement($query)
+    {
         return $this->pdo->prepare($query);
     }
 
@@ -130,60 +135,80 @@ class CRUD
      * it contains "and" when andWhere is called and "or" when orWhere is called
      * @return CRUD
      */
-    public function where($column, $value, $operator = "=", $conditionalOperator=""){
-        if(strlen($conditionalOperator) != 0){
+    public function where($column, $value, $operator = "=", $conditionalOperator = "")
+    {
+//        echo $value;
+        if (strlen($conditionalOperator) != 0) {
             $this->where .= " $conditionalOperator {$column} {$operator} ?";
-        }else{
-            $this->where = " WHERE {$column} {$operator} ?";
+            $this->values[$this->i] = $value;
+
+        } else {
+            if ($this->flag === 0) {
+                $this->where = " WHERE {$column} {$operator} ?";
+                $this->values[$this->i] = $value;
+//                print_r($this->values);
+            } else {
+                $this->where = " WHERE {$column} {$operator} {$value}";
+//                print_r($this->values);
+            }
         }
-        $this->values[$this->i++] = $value;
 
+        print_r($this->values);
         return $this;
     }
 
-    public function limit($limitValue){
-        $this->limit = " LIMIT ".$limitValue;
+    public function limit($limitValue)
+    {
+        $this->limit = " LIMIT " . $limitValue;
         return $this;
     }
 
-    public function orderBy($orderType){
-        $this->orderBy = " ORDER BY ".$orderType;
+    public function orderBy($orderType)
+    {
+        $this->orderBy = " ORDER BY " . $orderType;
         return $this;
     }
 
-    private function buildQuery(){
-        $this->query.=$this->join.$this->where.$this->orderBy.$this->limit;
+    private function buildQuery()
+    {
+        $this->query .= $this->join . $this->where . $this->orderBy . $this->limit;
     }
 
     /**
      * This method executes the query and returns the result when query is executed
-    */
-    public function get(){
-        try{
+     */
+    public function get()
+    {
+        try {
             $this->buildQuery();
+            echo $this->query;
             $pdoStatement = $this->getPDOdStatement($this->query);
 //            echo "<br>".($this->query);
-//            echo "<br>".print_r($this->values);
-            for($i=0; $i<count($this->values); $i++){
-                $pdoStatement->bindValue($i+1, $this->values[$i]);
+//
+            for ($i = 0; $i < count($this->values); $i++) {
+                $pdoStatement->bindValue($i + 1, $this->values[$i]);
             }
+//            echo "<br>".print_r($this->values);
             $status = $pdoStatement->execute();
             $this->values = array();
             $this->query = "";
             $this->where = "";
-            $this->i=0;
-            if($status){
+            $this->join = "";
+            $this->inner_query = "";
+            $this->i = 0;
+            if ($status) {
                 return $pdoStatement;
-            }else{
-                echo "<br>".($pdoStatement->errorInfo()[2]);
+            } else {
+                echo "<br>" . ($pdoStatement->errorInfo()[2]);
             }
-        }catch(PDOException $e){
+        } catch (PDOException $e) {
             die($e);
         }
 
     }
 
-    public function getCurrentDT(){
+    public function getCurrentDT()
+    {
 
         return date('Y-m-d H:i:s');
     }
@@ -193,49 +218,85 @@ class CRUD
     /**
      * This method is used to create andWhere and orWhere method when user calls these functions
      */
-    public function __call($name, $arguments){
+    public function __call($name, $arguments)
+    {
         //checking if andWhere was called or orWhere was called
-        if(preg_match('/(.+)Where$/', $name,$matches)){
-            if(isset($arguments[2]))//to check if any comparision operator was passes
+        if (preg_match('/(.+)Where$/', $name, $matches)) {
+            if (isset($arguments[2]))//to check if any comparision operator was passes
                 return $this->where($arguments[0], $arguments[1], $arguments[2], $matches[1]);
             return $this->where($arguments[0], $arguments[1], "=", $matches[1]);
-        }
-        else if(preg_match('/(.+)Join$/',$name)){
-            if ($name==="leftJoin")
+        } else if (preg_match('/(.+)Join$/', $name)) {
+            if ($name === "leftJoin")
                 $LRJoin = "LEFT";
-            elseif($name==="rightJoin")
+            elseif ($name === "rightJoin")
                 $LRJoin = "RIGHT";
             else
                 $LRJoin = "INNER";
-            if(isset($arguments[3]) && $arguments[3]!=="=")
-                $operator=$arguments[3];
+            if (isset($arguments[3]) && $arguments[3] !== "=")
+                $operator = $arguments[3];
             else
-                $operator="=";
-            return $this->join($arguments[0],$arguments[1],$arguments[2],$operator,$LRJoin);
+                $operator = "=";
+            return $this->join($arguments[0], $arguments[1], $arguments[2], $operator, $LRJoin);
         }
     }
 
 
-    public function join($tableName,$columnName1,$columnName2,$operatorType="=",$forLeftRight="")
+    public function join($tableName, $columnName1, $columnName2, $operatorType = "=", $forLeftRight = "")
     {
-        $this->join .= " ".$forLeftRight." JOIN ". $tableName . " ON " . $columnName1 ." ".$operatorType." " . $columnName2;
+        echo "called";
+        $this->join .= " " . $forLeftRight . " JOIN " . $tableName . " ON " . $columnName1 . " " . $operatorType . " " . $columnName2;
         return $this;
     }
 
-    public static function table($tableName){
+    public static function table($tableName)
+    {
         $obj = new CRUD();
         $obj->current_table = $tableName;
         return $obj;
     }
 
+    public function __toString()
+    {
+        // TODO: Implement __toString() method.
+
+        return $this->query . $this->where;
+    }
+    public function innerQuery($table, $condition, $outercolumn,$selectingColumn,$outeroperator = "=", $operator = "=", $conditionaloperator = "")
+    {
+        $this->flag = 1;
+        $this->inner_query = " (";
+        if($condition == ""){
+            $a = CRUD::table($table)->select($selectingColumn);
+        }
+        elseif ((count($condition)and count($value)) == 1) {
+            $a = CRUD::table($table)->where($condition, $value, $operator, $conditionaloperator)->select($selectingColumn);
+        }
+        elseif(count($condition)and count($value) > 1 and $conditionaloperator = "and"){
+            $a = CRUD::table($table)->andWhere($condition,$value);
+        }
+//        elseif(count($condition,$value)>1 and $conditionaloperator = "or"){
+//            $a = CRUD::table($table)->orWhere($condition,$value);
+//        }
+
+        $this->values = $a->values;
+        $this->i = count($a->values);
+        $this->inner_query .= $a;
+        $this->inner_query .= ")";
+        $this->where($outercolumn, $this->inner_query, $outeroperator);
+        $this->flag = 0;
+        return $this;
+    }
+
     /*Variable declarations*/
     private $current_table;
     private $pdo;
-    private $join="";
+    private $join = "";
     private $query;
     private $where = "";
+    private $inner_query = "";
     private $values = array();
     private $i = 0;
+    private $flag = 0;
     private $limit = "";
     private $orderBy = "";
     /*End of variable declarations*/
