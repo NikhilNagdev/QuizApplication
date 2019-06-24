@@ -18,7 +18,7 @@
 </script>
 
 <!-- jQuery UI -->
-<script src="https://localhost/quizapplication/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<!--<script src="https://localhost/quizapplication/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>-->
 <script src="https://localhost/quizapplication/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
 
 <!-- jQuery Scrollbar -->
@@ -51,8 +51,8 @@
 <script src="https://localhost/quizapplication/assets/js/atlantis.min.js"></script>
 
 <!-- Atlantis DEMO methods, don't include it in your project! -->
-<script src="https://localhost/quizapplication/assets/js/setting-demo.js"></script>
-<script src="https://localhost/quizapplication/assets/js/demo.js"></script>
+<!--<script src="https://localhost/quizapplication/assets/js/setting-demo.js"></script>-->
+<!--<script src="https://localhost/quizapplication/assets/js/demo.js"></script>-->
 <script>
     // Circles.create({
     //     id:'circles-1',
@@ -147,3 +147,7 @@
         fillColor: 'rgba(255, 165, 52, .14)'
     });
 </script>
+<?php
+if(isset($additionalScripts)){
+    echo $additionalScripts;
+}

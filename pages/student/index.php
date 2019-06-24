@@ -53,9 +53,9 @@ include_once("../includes/header.php");
 
 
 </div>
-<!--   Core JS Files   -->
-<!--   Core JS Files   -->
 <?php
+include_once "includes/practice-modal.php";
+//   Core JS Files
 include_once("../includes/core-scripts.php");
 ?>
 </body>

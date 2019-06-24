@@ -10,6 +10,7 @@
                     <div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
 
                         <?php
+                            $additionalScripts="";
                             $quizzes = $quiz->getLatestQuiz(3, 1);
                             $i = 1;
                             foreach ($quizzes as $quiz){
@@ -19,19 +20,10 @@
                                     <h6 class="fw-bold mt-3 mb-0">$quiz->quiz_name</h6>
                                 </div>
 QUIZ;
-$helper->createCircles($i, $quiz->quiz_marks, $quiz->marks, $quiz->passing_marks_percentage);
+$additionalScripts .= $helper->createCircles($i, $quiz->quiz_marks, $quiz->marks, $quiz->passing_marks_percentage);
                                 $i++;
                             }
                         ?>
-
-                        <!--                        <div class="px-2 pb-2 pb-md-0 text-center">-->
-<!--                            <div id="circles-2"></div>-->
-<!--                            <h6 class="fw-bold mt-3 mb-0">Quiz 2</h6>-->
-<!--                        </div>-->
-<!--                        <div class="px-2 pb-2 pb-md-0 text-center">-->
-<!--                            <div id="circles-3"></div>-->
-<!--                            <h6 class="fw-bold mt-3 mb-0">Quiz 3</h6>-->
-<!--                        </div>-->
                     </div>
                 </div>
             </div>

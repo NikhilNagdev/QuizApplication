@@ -17,9 +17,11 @@
     </script>
 
     <!-- CSS Files -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css">
     <link rel="stylesheet" href="https://localhost/quizapplication/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://localhost/quizapplication/assets/css/atlantis.min.css">
     <link rel="stylesheet" href="https://localhost/quizapplication/assets/css/style.css">
+
 
 </head>
 

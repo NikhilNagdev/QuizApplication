@@ -42,7 +42,7 @@ class Subject{
 
     public function getSubjectsBySemAndBranch($semNo, $branch_id){
 
-        return $this->subjectObj->select("subject_name")
+        return $this->subjectObj->select("subject_name", "subject_id")
             ->join("branch", "subject.branch_id", "branch.branch_id")
             ->where("subject.branch_id", $branch_id)
             ->andWhere("subject.sem_no", $semNo)

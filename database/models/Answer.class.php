@@ -227,3 +227,46 @@ GROUP BY
 //    quiz_question.quiz_id = 1
 //GROUP BY
 //    answer.answer_id)AS tp ORDER by tp.question_id
+
+//SELECT * FROM (SELECT
+//    *,
+//    @rownum := IF(@prev = question_id, @rownum + 1, 1) AS rownum,
+//    @prev := question_id
+//FROM
+//    question_marks,
+//    (
+//    SELECT
+//    @rownum := 0,
+//    @prev := 0
+//) AS t
+//ORDER BY
+//    question_id ASC, `w.e.f` DESC) AS tp
+//WHERE tp.rownum = 1
+
+
+//SELECT *, @markss:= IF(@markss!=20, @markss + marks, @status := 'f')  FROM(SELECT
+//    *
+//    FROM
+//    (
+//        SELECT
+//        *,
+//        @rownum := IF(
+//@prev = question_id,
+//            @rownum + 1,
+//            1
+//        ) AS rownum,
+//        @prev := question_id
+//    FROM
+//        question_marks,
+//        (
+//        SELECT
+//        @rownum := 0,
+//        @prev := 0
+//    ) AS t
+//ORDER BY
+//    question_id ASC,
+//    `w.e.f`
+//DESC
+//) AS tp
+//WHERE
+//    tp.rownum = 1) as n, (SELECT @markss := 0, @status:= 't') as m
