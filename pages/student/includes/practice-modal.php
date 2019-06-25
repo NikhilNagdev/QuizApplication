@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="hello.php" method="post" class="form-group">
+                <form action="../quiz/quiz.php" method="post" class="form-group">
                     <label for="pillSelect">Select Subject </label>
                     <select class="form-control input-pill" id="pillSelect" name="subject_name">
                         <option value="" selected disabled hidden>Select Subject Here</option>

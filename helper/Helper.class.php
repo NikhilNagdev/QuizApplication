@@ -30,4 +30,10 @@ class Helper
 CIRCLE;
     }
 
+    public function getHeadingName($sourceString){
+        if(strcasecmp($sourceString, "view-all-quizzes.php" == 0)){
+            return "All Quizzes";
+        }
+    }
+
 }

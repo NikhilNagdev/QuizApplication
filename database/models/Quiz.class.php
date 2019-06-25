@@ -39,6 +39,17 @@ class Quiz{
             ->fetchAll();
     }
 
+    public function getAllAttemptedQuiz($student_id){
+//        SELECT subject_name, quiz_name, quiz_marks, student_quiz_marks.marks, quiz_type, student_quiz_marks.submission_dt FROM `quiz` JOIN student_quiz_marks ON quiz.quiz_id = student_quiz_marks.quiz_id JOIN subject ON subject.subject_id = quiz.subject_id WHERE student_id = 1
+
+        return $this->quiz->select("quiz.quiz_id","subject_name", "quiz_name", "quiz_marks", "student_quiz_marks.marks", "quiz_type", "student_quiz_marks.submission_dt")
+            ->join("student_quiz_marks", "quiz.quiz_id", "student_quiz_marks.quiz_id")
+            ->join("subject", "subject.subject_id", "quiz.subject_id")
+            ->where("student_id", $student_id)
+            ->get()
+            ->fetchAll();
+    }
+
     private $quiz;
 
 }

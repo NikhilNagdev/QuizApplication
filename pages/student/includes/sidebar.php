@@ -83,7 +83,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="components/avatars.html">
+                                <a href="index.php?src=view-all-quizzes.php">
                                     <span class="sub-item">View all Quizzes</span>
                                 </a>
                             </li>

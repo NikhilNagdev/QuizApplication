@@ -1,6 +1,6 @@
-<div class="page-inner mt--5">
 
-    <div class="row mt--2">
+
+
         <!--OVERALL STATISTICS-->
         <div class="col-md-6">
             <div class="card full-height">
@@ -397,6 +397,3 @@ $additionalScripts .= $helper->createCircles($i, $quiz->quiz_marks, $quiz->marks
                 </div>
             </div>
         </div>
-    </div>
-
-</div>

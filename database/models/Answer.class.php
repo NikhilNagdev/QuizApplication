@@ -270,3 +270,33 @@ GROUP BY
 //) AS tp
 //WHERE
 //    tp.rownum = 1) as n, (SELECT @markss := 0, @status:= 't') as m
+
+//SELECT * FROM (SELECT *, @markss:= IF(@markss <= 30, @markss + marks, 31) as mark  FROM(SELECT
+//    *
+//    FROM
+//    (
+//        SELECT
+//        *,
+//        @rownum := IF(
+//@prev = question_id,
+//            @rownum + 1,
+//            1
+//        ) AS rownum,
+//        @prev := question_id
+//    FROM
+//        question_marks,
+//        (
+//        SELECT
+//        @rownum := 0,
+//        @prev := 0
+//    ) AS t
+//ORDER BY
+//    question_id ASC,
+//    `w.e.f`
+//DESC
+//) AS tp
+//WHERE
+//    tp.rownum = 1 ORDER BY RAND()) as n, (SELECT @markss := 0, @status:= 't') as m)as a HAVING mark <=30
+
+
+

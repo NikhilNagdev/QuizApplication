@@ -2,9 +2,9 @@
 <html lang="en">
 <?php
 require_once "../../document_root.php";
-include_once $_SERVER['DOCUMENT_ROOT']."/database/models/Subject.class.php";
-include_once $_SERVER['DOCUMENT_ROOT']."/database/models/Quiz.class.php";
-include_once $_SERVER['DOCUMENT_ROOT']."/helper/Helper.class.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/database/models/Subject.class.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/database/models/Quiz.class.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/helper/Helper.class.php";
 $helper = new Helper();
 $quiz = new Quiz();
 $subject = new Subject();
@@ -16,7 +16,7 @@ include_once("../includes/header.php");
     <div class="main-header">
         <!-- Logo Header -->
         <?php
-        include_once ("../includes/logo-header.php");
+        include_once("../includes/logo-header.php");
         ?>
         <!-- End Logo Header -->
 
@@ -28,7 +28,7 @@ include_once("../includes/header.php");
 
     <!-- Sidebar -->
     <?php
-    include_once ("includes/sidebar.php");
+    include_once("includes/sidebar.php");
     ?>
     <!-- End Sidebar -->
 
@@ -38,16 +38,38 @@ include_once("../includes/header.php");
                 <div class="page-inner py-5">
                     <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
                         <div>
-                            <h2 class="text-white pb-2 fw-bold">Dashboard</h2>
+                            <?php
+                            if(isset($_GET['src']))
+                                $heading = $helper->getHeadingName($_GET['src']);
+                            else
+                                $heading = "Dashboard";
+                            echo<<<END
+<h2 class="text-white pb-2 fw-bold">{$heading}</h2>
+END;
+                            ?>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!--DASHBOARD VALUES-->
+            <div class="page-inner mt--5">
+                <div class="row mt--2">
             <?php
-            include_once ("includes/dashboard.php");
+
+            if(isset($_GET['src'])){
+                $source = $_GET['src'];
+
+                switch($source){
+                    case "view-all-quizzes.php":
+                        include_once "includes/pages/quiz/view-all-quizzes.php";
+                }
+
+            }else{
+                include_once("includes/dashboard.php");
+            }
             ?>
+                </div>
+            </div>
         </div>
     </div>
 
