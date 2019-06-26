@@ -179,7 +179,10 @@ class CRUD
         }catch(PDOException $e){
             die($e);
         }
+    }
 
+    public function executeQuery($query, ...$values){
+        return $this->pdo->query($query)->fetchAll();
     }
 
     public function getCurrentDT(){

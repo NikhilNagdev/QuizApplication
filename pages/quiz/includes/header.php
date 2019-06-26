@@ -19,7 +19,10 @@
     <!--BOOTSTRAP-->
     <link rel="stylesheet" href="../../user-assets/plugin/bootstrap/css/bootstrap.min.css">
 
+
+
     <!--CSS-->
+    <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="stylesheet" href="../../user-assets/css/style.css">
 
 </head>
