@@ -18,7 +18,7 @@
 </script>
 
 <!-- jQuery UI -->
-<script src="https://localhost/quizapplication/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<!--<script src="https://localhost/quizapplication/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>-->
 <script src="https://localhost/quizapplication/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
 
 <!-- jQuery Scrollbar -->
@@ -50,54 +50,14 @@
 <!-- Atlantis JS -->
 <script src="https://localhost/quizapplication/assets/js/atlantis.min.js"></script>
 
+<!-- OUR SCRIPT-->
+<script src="https://localhost/quizapplication/assets/js/script.js"></script>
+
 <!-- Atlantis DEMO methods, don't include it in your project! -->
-<script src="https://localhost/quizapplication/assets/js/setting-demo.js"></script>
-<script src="https://localhost/quizapplication/assets/js/demo.js"></script>
+<!--<script src="https://localhost/quizapplication/assets/js/setting-demo.js"></script>-->
+<!--<script src="https://localhost/quizapplication/assets/js/demo.js"></script>-->
 <script>
-    Circles.create({
-        id:'circles-1',
-        radius:45,
-        value:60,
-        maxValue:100,
-        width:7,
-        text: 5,
-        colors:['#f1f1f1', '#FF9E27'],
-        duration:400,
-        wrpClass:'circles-wrp',
-        textClass:'circles-text',
-        styleWrapper:true,
-        styleText:true
-    })
 
-    Circles.create({
-        id:'circles-2',
-        radius:45,
-        value:70,
-        maxValue:100,
-        width:7,
-        text: 36,
-        colors:['#f1f1f1', '#2BB930'],
-        duration:400,
-        wrpClass:'circles-wrp',
-        textClass:'circles-text',
-        styleWrapper:true,
-        styleText:true
-    })
-
-    Circles.create({
-        id:'circles-3',
-        radius:45,
-        value:40,
-        maxValue:100,
-        width:7,
-        text: 12,
-        colors:['#f1f1f1', '#F25961'],
-        duration:400,
-        wrpClass:'circles-wrp',
-        textClass:'circles-text',
-        styleWrapper:true,
-        styleText:true
-    })
 
     var totalIncomeChart = document.getElementById('totalIncomeChart').getContext('2d');
 
@@ -146,4 +106,10 @@
         lineColor: '#ffa534',
         fillColor: 'rgba(255, 165, 52, .14)'
     });
+
+
 </script>
+<?php
+if(isset($additionalScripts)){
+    echo $additionalScripts;
+}

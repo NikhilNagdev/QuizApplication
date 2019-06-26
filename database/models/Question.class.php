@@ -5,8 +5,8 @@
  * Date: 6/17/2019
  * Time: 3:53 AM
  */
-require_once "database/core/CRUD.class.php";
-require_once "database/models/Chapter.class.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/database/core/CRUD.class.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/database/models/Chapter.class.php";
 
 class Question{
 
@@ -70,6 +70,12 @@ class Question{
         foreach ($questions as $question)
             $returnArray[$i++] = $question->question;
         return $returnArray;
+    }
+
+    public function getQuestions(){
+//        SELECT a.question_id, question, mark FROM (SELECT *, @markss:= IF(@markss <= 20, @markss + marks, 31) as mark FROM(SELECT * FROM ( SELECT *, @rownum := IF( @prev = question_id, @rownum + 1, 1 ) AS rownum, @prev := question_id FROM question_marks, ( SELECT @rownum := 0, @prev := 0 ) AS t ORDER BY question_id ASC, `w.e.f` DESC ) AS tp WHERE tp.rownum = 1 ORDER BY RAND()) as n, (SELECT @markss := 0, @status:= 't') as m)as a JOIN question ON question.question_id = a.question_id HAVING mark <=20
+
+        return $this->questionObj->executeQuery(" SELECT a.question_id, question, mark, marks, question_type FROM (SELECT *, @markss:= IF(@markss <= 20, @markss + marks, 31) as mark FROM(SELECT * FROM ( SELECT *, @rownum := IF( @prev = question_id, @rownum + 1, 1 ) AS rownum, @prev := question_id FROM question_marks, ( SELECT @rownum := 0, @prev := 0 ) AS t ORDER BY question_id ASC, `w.e.f` DESC ) AS tp WHERE tp.rownum = 1 ORDER BY RAND()) as n, (SELECT @markss := 0, @status:= 't') as m)as a JOIN question ON question.question_id = a.question_id HAVING mark <=20");
     }
 
     public function __call($name, $arguments){

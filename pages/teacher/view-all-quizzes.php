@@ -45,9 +45,6 @@ include_once ("includes/header.php");
                 <div class="card-header">
                     <div class="d-flex align-items-center">
                         <h4 class="card-title">Quiz Details</h4>
-<!--                        <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#addRowModal">-->
-<!--                            <i class="fa fa-plus"></i>-->
-<!--                            Create Quiz-->
                         </button>
                     </div>
                 </div>
@@ -558,8 +555,7 @@ include_once ("includes/header.php");
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#basic-datatables').DataTable({
-            });
+            $('#basic-datatables').DataTable({});
 
             $('#multi-filter-select').DataTable( {
                 "pageLength": 5,
