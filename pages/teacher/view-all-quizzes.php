@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-include_once ("includes/header.php");
+include_once("includes/header.php");
 ?>
 <body>
 <div class="wrapper">
     <div class="main-header">
         <!-- Logo Header -->
         <?php
-        include_once ("includes/logo-header.php");
+        include_once("includes/logo-header.php");
         ?>
         <!-- End Logo Header -->
 
         <?php
-        include_once ("includes/navbar.php");
+        include_once("includes/navbar.php");
         ?>
         <!-- End Navbar -->
     </div>
@@ -603,7 +603,7 @@ include_once ("includes/header.php");
 
 
 <?php
-include_once ("includes/core-scripts.php");
+include_once("includes/core-scripts.php");
 ?>
 </body>
 </html>
