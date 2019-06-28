@@ -21,9 +21,9 @@ $(window).on("load", function() {
         });
 
 
-        $("div[left-question]").on("click", function () {
-                alert($("a.question-text").text());
-                $("p.question-header").html($("a.question-text").text());
+        $("div[class='left-question']").click(function(){
+                alert($(this).find("a.question-text").text());
+                $("p.question-header").html($(this).find("a.question-text").text());
         });
 
         $(function () {
@@ -33,9 +33,3 @@ $(window).on("load", function() {
         });
 
 });
-
-$(document).ready(function(){
-
-
-});
-

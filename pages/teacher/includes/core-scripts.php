@@ -44,7 +44,7 @@
 <script src="https://localhost/quizapplication/assets/js/plugin/jqvmap/jquery.vmap.min.js"></script>
 <script src="https://localhost/quizapplication/assets/js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
 
-<!--<script src="https://localhost/quizapplication/assets/js/plugin/selectize/selectize.min.js"></script>-->
+<script src="https://localhost/quizapplication/assets/js/plugin/selectize/selectize.min.js"></script>
 
 <!-- Sweet Alert -->
 <script src="https://localhost/quizapplication/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
@@ -53,7 +53,6 @@
 <script src="https://localhost/quizapplication/assets/js/atlantis.min.js"></script>
 
 <!-- OUR SCRIPT-->
-<script src="https://localhost/quizapplication/assets/js/script.js"></script>
 <script src="https://localhost/quizapplication/assets/js/teacher-script.js"></script>
 
 <!-- Atlantis DEMO methods, don't include it in your project! -->

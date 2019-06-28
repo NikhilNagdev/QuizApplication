@@ -58,7 +58,18 @@ class Subject{
 //    subject.branch_id = branch.branch_id
 //WHERE
 //    subject.branch_id = 1 AND SUBJECT.sem_no = 4
+    }
 
+    public function getSubjectIdByTeacher($teacher_id){
+//        SELECT * FROM subject JOIN teaches ON teaches.subject_id = subject.subject_id WHERE teaches.teacher_id = 2 AND teaches.is_teaching = 0 GROUP BY subject.subject_id
+
+        return $this->subjectObj->select("subject.subject_id", "subject.subject_name")
+            ->join("teaches", "teaches.subject_id", "subject.subject_id")
+            ->where("teaches.teacher_id", $teacher_id)
+            ->andWhere("teaches.is_teaching", 0)
+            ->grouupBy("subject.subject_id")
+            ->get()
+            ->fetchAll();
 
     }
 

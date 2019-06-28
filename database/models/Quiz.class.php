@@ -50,6 +50,10 @@ class Quiz{
             ->fetchAll();
     }
 
+    public function insert($values){
+
+    }
+
     private $quiz;
 
 }

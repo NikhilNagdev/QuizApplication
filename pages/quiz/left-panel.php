@@ -16,7 +16,7 @@ $questions = $questionObj->getQuestions();
         foreach ($questions as $question){
             $i++;
             echo<<<QUESTION
-                <div id="question" class="left-question">
+                <div id="question" class="left-question" id="{$i}">
                     <p class="question-no">Q{$i}</p>
                     <i class="fa fa-square-o"></i>
                     <a class="question-text gist" href="">{$question->question}</a>

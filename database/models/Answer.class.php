@@ -180,6 +180,7 @@ GROUP BY
 //        question.question,
 //        answer.answer,
 //        answer.answer_id,
+//    	no_of_options,
 //        @rn := IF(
 //@prev = quiz_question.question_id,
 //            @rn + 1,
@@ -209,7 +210,7 @@ GROUP BY
 //    @prev := NULL,
 //    @rn := 0
 //) AS vars
-//) AS final
+//WHERE no_of_options = 3) AS final
 //WHERE
 //rn <= 3
 //UNION ALL

@@ -1,7 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-include_once("../includes/header.php");
+include_once "../includes/header.php";
+require_once "../../document_root.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/database/models/Quiz.class.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/database/models/Class.class.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/database/models/Batch.class.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/database/models/Subject.class.php";
+
+$quiz = new Quiz();
+$classObj = new ClassTable();
+$batchObj = new Batch();
+$subjectObj = new Subject();
 ?>
 <body>
 <div class="wrapper">
@@ -26,7 +36,7 @@ include_once("../includes/header.php");
 
     <div class="main-panel">
         <div class="content">
-            <div class="panel-header bg-primary-gradient">
+            <div class="panel-header bg-dark-gradient">
                 <div class="page-inner py-5">
                     <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
                         <div>
@@ -35,14 +45,22 @@ include_once("../includes/header.php");
                     </div>
                 </div>
             </div>
-
-
             <div class="page-inner mt--5">
 
-                <!--DASHBOARD VALUES-->
                 <?php
-                include_once ("includes/dashboard.php");
+
+                    if(isset($_GET['src'])){
+                        $source = $_GET['src'];
+                        switch($source){
+                            case "create-quiz.php":
+                                include_once "includes/quiz/create-quiz.php";
+                        }
+
+                    }else{
+                        include_once("includes/dashboard.php");
+                    }
                 ?>
+
             </div>
         </div>
     </div>
