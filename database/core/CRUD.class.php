@@ -163,7 +163,7 @@ class CRUD
             echo($this->query);
             $pdoStatement = $this->getPDOdStatement($this->query);
 //            echo "<br>".($this->query);
-//            echo "<br>".print_r($this->values);
+            echo "<br>".print_r($this->values);
             for($i=0; $i<count($this->values); $i++){
                 $pdoStatement->bindValue($i+1, $this->values[$i]);
             }

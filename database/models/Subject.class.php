@@ -67,10 +67,25 @@ class Subject{
             ->join("teaches", "teaches.subject_id", "subject.subject_id")
             ->where("teaches.teacher_id", $teacher_id)
             ->andWhere("teaches.is_teaching", 0)
-            ->grouupBy("subject.subject_id")
+            ->groupBy("subject.subject_id")
             ->get()
             ->fetchAll();
 
+    }
+
+    public function getSubjectByTeacherAndBatch($teacher_id, $batch_id){
+        //SELECT * FROM subject JOIN teaches ON teaches.subject_id = subject.subject_id JOIN batch ON batch.batch_id = teaches.batch_id JOIN class ON batch.class_id = class.class_id  WHERE teaches.teacher_id = 2 AND batch.batch_id = 3 AND teaches.is_teaching = 0 GROUP BY subject.subject_id
+
+        return $this->subjectObj->select("subject.subject_id", "subject.subject_name")
+            ->join("teaches", "teaches.subject_id", "subject.subject_id")
+            ->join("batch", "batch.batch_id", "teaches.batch_id")
+            ->join("class", "batch.class_id", "class.class_id")
+            ->where("teaches.teacher_id", $teacher_id)
+            ->andWhere("batch.batch_id", $batch_id)
+            ->andWhere("teaches.is_teaching", 0)
+            ->groupBy("subject.subject_id")
+            ->get()
+            ->fetchAll();
     }
 
     private $subjectObj;

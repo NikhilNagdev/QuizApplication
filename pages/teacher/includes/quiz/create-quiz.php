@@ -55,7 +55,7 @@ if (isset($_POST['submit'])) {
                 <div class="row">
                     <div class="col-md-6">
                         <label for="quiz-class">Class</label>
-                        <select name="quiz-class" id="quiz-class" class="form-control" multiple="multiple">
+                        <select class="quiz-class form-control" name="quiz-class" id="quiz-class" multiple="multiple">
                         <?php
                             $classes = $classObj->getClassByTeacher(2);
                             foreach ($classes as $classRS){
@@ -69,9 +69,9 @@ CLASS;
                     </div>
                     <div class="col-md-6">
                         <label for="batch">Batch</label>
-                        <select name="quiz-batch" id="quiz-batch" class="class form-control" multiple="multiple">
+                        <select class="quiz-batch form-control" name="quiz-batch" id="quiz-batch" multiple="multiple">
                             <?php
-                            $batches = $batchObj->getBatchByTeacher(2, 2);;
+                            $batches = $batchObj->getBatchByTeacher(2);
                             foreach ($batches as $batch){
                                 echo<<<CLASS
                                 <option value="{$batch->batch_id}">{$batch->batch_name}</option>
@@ -90,10 +90,15 @@ CLASS;
                 <div class="row">
                     <div class="col-md-6">
                         <label for="quiz-subject">Subject</label>
-                        <select name="quiz-subject" id="quiz-subject" class="batch form-control">
-                            <option value="1">OS</option>
-                            <option value="2">Java</option>
-                            <option value="3">Data Structures</option>
+                        <select class="quiz-subject form-control" name="quiz-subject" id="quiz-subject">
+                            <?php
+                            $subjects = $subjectObj->getSubjectIdByTeacher(2);
+                            foreach ($subjects as $subject){
+                                echo<<<SUBJECT
+                                <option value="{$subject->subject_id}">{$subject->subject_name}</option>
+SUBJECT;
+                            }
+                            ?>
                         </select>
                     </div>
                     <div class="col-md-6">
