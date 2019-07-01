@@ -160,10 +160,10 @@ class CRUD
     public function get(){
         try{
             $this->buildQuery();
-            echo($this->query);
+//            echo($this->count++."".$this->query);
             $pdoStatement = $this->getPDOdStatement($this->query);
 //            echo "<br>".($this->query);
-            echo "<br>".print_r($this->values);
+//            echo "<br>".print_r($this->values);
             for($i=0; $i<count($this->values); $i++){
                 $pdoStatement->bindValue($i+1, $this->values[$i]);
             }
@@ -171,6 +171,10 @@ class CRUD
             $this->values = array();
             $this->query = "";
             $this->where = "";
+            $this->join = "";
+            $this->groupBy = "";
+            $this->orderBy = "";
+            $this->limit = "";
             $this->i=0;
             if($status){
                 return $pdoStatement;
@@ -247,5 +251,6 @@ class CRUD
     private $limit = "";
     private $orderBy = "";
     private $groupBy = "";
+    private $count = 0;
     /*End of variable declarations*/
 }

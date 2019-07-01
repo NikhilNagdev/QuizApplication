@@ -29,22 +29,34 @@ if (isset($_POST['submit'])) {
 //updated_by
 //deleted_by
 
-    $quiz->insert(array("subject" => $subject_id, "quiz_name" => $quiz_name, "quiz_marks" => $quiz_marks, "$quiz_type" => $quiz_type, "group_type" => $group_type, "duration" => $duration, "start_dt" => $start_dt, "passing_marks_percentage" => $passing_marks_percentage, "retest_ref_id" => $retest_ref_id, "status" => status, "negative_marks" => negative_marks));
+    $subject_id = $_POST['quiz-subject'];
+    $quiz_name = $_POST['quiz-title'];
+    $quiz_marks = $_POST['quiz-marks'];
+    $quiz_type = $_POST['quiz-type'];
+    $group_type = $_POST['group-type'];
+    $duration = $_POST['duration'];
+    $start_dt = $_POST['start_dt'];
+    $status = "draft";
+    $passing_marks = $_POST['passing-marks'];
+    $negative_marks = $_POST['negative-marks'];
+
+
+
+    $quiz->insert(array("subject" => $subject_id, "quiz_name" => $quiz_name, "quiz_marks" => $quiz_marks, "$quiz_type" => $quiz_type, "group_type" => $group_type, "duration" => $duration, "start_dt" => $start_dt, "passing_marks_percentage" => $passing_marks, "retest_ref_id" => $retest_ref_id, "status" => $status, "negative_marks" => $negative_marks));
 
 
 }
 
 ?>
-
 <div class="card">
     <div class="card-body">
-        <form>
+        <form action="#" class="gray-form" method="post">
             <div class="form-group">
                 <h3>Quiz Title</h3>
                 <hr>
                 <div class="row">
                     <div class="col-md-12">
-                        <input type="text" id="quiz-title" class="form-control">
+                        <input type="text" id="quiz-title" class="form-control" name="quiz-title">
                     </div>
                 </div>
             </div>
@@ -65,6 +77,7 @@ if (isset($_POST['submit'])) {
 CLASS;
                             }
                         ?>
+                            <option value="2">2</option>
                         </select>
                     </div>
                     <div class="col-md-6">
@@ -79,6 +92,12 @@ CLASS;
                             }
                             ?>
                         </select>
+                    </div>
+                    <br>
+                    <div class="col-md-6">
+                        <button class="add-students form-control" type="button">
+                            Add students here
+                        </button>
                     </div>
                 </div>
             </div>
@@ -119,7 +138,7 @@ SUBJECT;
                 <hr>
                 <div class="row">
                     <div class="col-md-6 ">
-                        <label for="quiz-difficulty-level">Difficulty Level</label>
+                        <label for="quiz-difficulty">Difficulty Level</label>
                         <select name="quiz-difficulty" id="quiz-difficulty" class="form-control">
                             <option value="1">Easy</option>
                             <option value="2">Medium</option>
@@ -140,13 +159,11 @@ SUBJECT;
                 <div class="row">
                     <div class="col-md-6">
                         <label for="date-time">Start Date and Time</label>
-                        <input id="date" type="date" value="" class="form-control">
-                        <input type="time" name="time" class="form-control">
+                        <input class="datetime form-control" type='text' name="start_dt"/>
                     </div>
                     <div class="col-md-6">
-                        <label for="date-time">End Date and Time</label>
-                        <input id="date" type="date" value="" class="form-control">
-                        <input type="time" name="usr_time" class="form-control">
+                        <label for="duration">Duration</label>
+                        <input class="duration form-control" type="text" name="duration">
                     </div>
                 </div>
             </div>
@@ -154,12 +171,8 @@ SUBJECT;
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="total-time">Total Time</label>
-                        <input type="time" name="usr_time" class="form-control">
-                    </div>
-                    <div class="col-md-6">
                         <label for="neg-marks">Enter marks</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="quiz-marks">
                     </div>
                 </div>
             </div>
@@ -168,19 +181,20 @@ SUBJECT;
                 <div class="row">
                     <div class="col-md-6">
                         <label for="neg-marks">Enter passing marks %</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="passing-marks">
                     </div>
                     <div class="col-md-6">
                         <label for="total-time">Enter negative marks %</label>
-                        <input type="text" name="usr_time" class="form-control">
+                        <input type="text" class="form-control" name="negative-marks">
                     </div>
                 </div>
             </div>
 
             <div class="form-group start-adding-question" align="center">
-                <button type="button" class="btn btn-secondary">Save Changes</button>
-                <button type="button" class="btn btn-primary">Start Adding Questions</button>
+                <button type="submit" class="btn btn-secondary" name="submit">Create</button>
+<!--                <button type="submit" class="btn btn-primary">Start Adding Questions</button>-->
             </div>
         </form>
     </div>
 </div>
+

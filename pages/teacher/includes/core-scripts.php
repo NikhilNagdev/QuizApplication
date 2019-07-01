@@ -5,17 +5,7 @@
 
 <script src="https://localhost/quizapplication/assets/js/core/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#quiz-class-checkbox > option').prop("selected",true);
-        $("#quiz-subject").prop("selectedIndex", -1);
-        $("#quiz-difficulty").prop("selectedIndex", -1);
-        $("#quiz-type").prop("selectedIndex", -1);
-        $('.quiz-chapter').select2();
-        $('#quiz-batch').select2();
-        $('#quiz-class').select2();
-    });
-</script>
+
 
 <!-- jQuery UI -->
 <!--<script src="https://localhost/quizapplication/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>-->
@@ -37,12 +27,13 @@
 <!-- Datatables -->
 <script src="https://localhost/quizapplication/assets/js/plugin/datatables/datatables.min.js"></script>
 
+<!--DATE AND TIMEPICKER-->
+<script src="https://localhost/quizapplication/assets/js/plugin/bootstrap-datetimepicker/moment.min.js" type="text/javascript"></script>
+<script src="https://localhost/quizapplication/assets/js/plugin/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+
 <!-- Bootstrap Notify -->
 <!--<script src="../../assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>-->
 
-<!-- jQuery Vector Maps -->
-<script src="https://localhost/quizapplication/assets/js/plugin/jqvmap/jquery.vmap.min.js"></script>
-<script src="https://localhost/quizapplication/assets/js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
 
 <script src="https://localhost/quizapplication/assets/js/plugin/selectize/selectize.min.js"></script>
 
@@ -110,6 +101,10 @@
     });
 
 
+</script>
 
+<script>
+    $(document).ready(function() {
 
+    });
 </script>

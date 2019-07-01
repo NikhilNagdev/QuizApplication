@@ -30,4 +30,6 @@
 //
 //require_once $_SERVER['DOCUMENT_ROOT']."/database/models/Subject.class.php";
 
-echo "Welocome to ajax";
+require_once $_SERVER['DOCUMENT_ROOT']."/quizapplication/helper/ajax/AjaxHelper.php";
+
+echo (AjaxHelper::getStudentsByClass(1));

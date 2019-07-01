@@ -7,11 +7,15 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/database/models/Quiz.class.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/database/models/Class.class.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/database/models/Batch.class.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/database/models/Subject.class.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/database/models/Student.class.php";
 
 $quiz = new Quiz();
 $classObj = new ClassTable();
 $batchObj = new Batch();
 $subjectObj = new Subject();
+$studentObj = new Student();
+
+
 ?>
 <body>
 <div class="wrapper">
@@ -52,8 +56,11 @@ $subjectObj = new Subject();
                     if(isset($_GET['src'])){
                         $source = $_GET['src'];
                         switch($source){
-                            case "create-quiz.php":
+                            case "create-quiz":
                                 include_once "includes/quiz/create-quiz.php";
+                                break;
+                            case "view-all-quizzes":
+                                include_once "includes/quiz/view-all-quizzes.php";
                         }
 
                     }else{
@@ -61,12 +68,15 @@ $subjectObj = new Subject();
                     }
                 ?>
 
+
             </div>
         </div>
     </div>
-<!--   Core JS Files   -->
+</div>
+
 <?php
-include_once("../includes/core-scripts.php");
+include_once "includes/add-students-modal.php";
+include_once("includes/core-scripts.php");//JS FILES
 ?>
 
 </body>
