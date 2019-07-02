@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
+ob_start();
 include_once "../includes/header.php";
 require_once "../../document_root.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/database/models/Quiz.class.php";
@@ -8,12 +9,14 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/database/models/Class.class.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/database/models/Batch.class.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/database/models/Subject.class.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/database/models/Student.class.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/helper/Helper.class.php";
 
 $quiz = new Quiz();
 $classObj = new ClassTable();
 $batchObj = new Batch();
 $subjectObj = new Subject();
 $studentObj = new Student();
+$helper = new Helper();
 
 
 ?>
@@ -61,6 +64,8 @@ $studentObj = new Student();
                                 break;
                             case "view-all-quizzes":
                                 include_once "includes/quiz/view-all-quizzes.php";
+                            case "add-students":
+                                include_once "includes/quiz/add-students.php";
                         }
 
                     }else{
@@ -75,7 +80,8 @@ $studentObj = new Student();
 </div>
 
 <?php
-include_once "includes/add-students-modal.php";
+include_once "includes/modals/add-students-modal.php";
+include_once "includes/modals/retest-ref-modal.php";
 include_once("includes/core-scripts.php");//JS FILES
 ?>
 

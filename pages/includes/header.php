@@ -17,14 +17,14 @@
     </script>
 
     <!-- CSS Files -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css">
+    <link rel="stylesheet" href="https://localhost/quizapplication/assets/css/selectize.bootstarp3.css">
+    <link rel="stylesheet" href="https://localhost/quizapplication/assets/css/selectize.css">
     <link rel="stylesheet" href="https://localhost/quizapplication/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://localhost/quizapplication/assets/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="https://localhost/quizapplication/assets/css/atlantis.min.css">
     <link rel="stylesheet" href="https://localhost/quizapplication/assets/css/teacher-style.css">
-<!--    <link rel="stylesheet" href=https://localhost/quizapplication/assets/css/selectize.bootstarp3.css">-->
-<!--    <link rel="stylesheet" href=https://localhost/quizapplication/assets/css/selectize.css">-->
+
 
 </head>
 

@@ -65,11 +65,22 @@ class AjaxHelper
         $chapter = new Chapter();
         $chapters = $chapter->getChapters($subject_id);
 //        $options = "<option value=\"\" selected disabled hidden>Select Chapter Here</option>";
-        $options = "";
+        $options = "[";
+        $data = array();
         foreach ($chapters as $chapter) {
-            $options .= "<option value=$chapter->chapter_id>{$chapter->chapter_no}: {$chapter->chapter_name}</option>";
+            $data[] = array(
+              "value"=>$chapter->chapter_id,
+              "text"=>$chapter->chapter_name
+            );
+            $options .= "{";
+            $options .= "value: $chapter->chapter_id, text: '$chapter->chapter_name'";
+            $options .= "},";
         }
+        $options = substr($options, 0, -1)."]";
+        return json_encode($data);
         return $options;
+
+        return "{value: 1, text: 'Intro to java'}";
     }
 
     public static function getStudentsByClass($class_id)
@@ -148,7 +159,7 @@ if (isset($_GET['call'])) {
     elseif (strcasecmp("getChapters()", $_GET['call']) == 0) {
 
         if (isset($_POST['subject_id'])) {
-            echo AjaxHelper::getChapters($_POST['subject_id'][0]);
+            echo ( AjaxHelper::getChapters($_POST['subject_id'][0]));
         }
 
     }

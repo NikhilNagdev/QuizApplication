@@ -21,16 +21,22 @@ class CRUD
     }
 
     //CRUD FUNCTIONS
+
     /**
      * This method is used to insert values in database tables
      * @param $fieldValue It is an array which will contain the column name and it's value that is
      * to be inserted in the table
+     * @return bool
      */
     public function insert($fieldValue)
     {
         $preparedStatement = $this->getPDOdStatement($this->createQueryString($fieldValue, "insert"));
-        if(!($preparedStatement->execute(array_values($fieldValue)))){
+        $status = $preparedStatement->execute(array_values($fieldValue));
+        if(!$status){
+            echo $this->createQueryString($fieldValue, "insert");
             echo "<br>".$preparedStatement->errorInfo()[2];
+        }else{
+            return $status;
         }
     }
 

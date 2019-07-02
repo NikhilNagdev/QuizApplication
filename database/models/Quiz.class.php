@@ -51,7 +51,41 @@ class Quiz{
     }
 
     public function insert($values){
+        return $this->quiz->insert($values);
+    }
 
+    public function getPublishedQuiz($teacher_id){
+//        SELECT quiz.quiz_id, quiz.quiz_name, status FROM quiz WHERE created_by = 1 AND status='published'
+        return $this->quiz->select("quiz.quiz_id as id", "quiz.quiz_name as name")
+            ->where("created_by", $teacher_id)
+            ->andWhere("status", "published")
+            ->andWhere("deleted", 0)
+            ->get()
+            ->fetchAll();
+    }
+
+    public function getLatestConductedQuiz($teacher_id){
+        //SELECT * FROM `quiz` WHERE created_by =  ORDER BY created_at DESC
+        return $this->quiz->select("quiz_id")
+            ->where("created_by", $teacher_id)
+            ->orderBy("created_at DESC")
+            ->limit(1)
+            ->get()
+            ->fetch();
+    }
+
+    public function insertQuizChapters($quiz_id, $chapters){
+        $quizChapter = CRUD::table("quiz_chapter");
+        foreach ($chapters as $chapter){
+            echo $quizChapter->insert(array("quiz_id"=>$quiz_id, "chapter_id"=>$chapter));
+        }
+    }
+
+    public function insertQuizDifficulty($quiz_id, $difficulty){
+        $quizDifficulty = CRUD::table("quiz_difficulty");
+        foreach ($difficulty as $str){
+            echo $quizDifficulty->insert(array("quiz_id"=>$quiz_id, "difficulty"=>$str));
+        }
     }
 
     private $quiz;

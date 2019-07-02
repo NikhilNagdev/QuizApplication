@@ -36,5 +36,14 @@ CIRCLE;
         }
     }
 
+    public function getOptions($rs){
+        $options = "";
+        foreach ($rs as $row){
+            $options .= "<option value=\"$row->id\">$row->name</option>";
+        }
+        return $options;
+    }
+
 
 }
+

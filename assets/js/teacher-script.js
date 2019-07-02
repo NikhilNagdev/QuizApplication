@@ -1,14 +1,19 @@
+
 $(document).ready(function () {
 
-    $('#quiz-class-checkbox > option').prop("selected",true);
-    $("#quiz-subject").prop("selectedIndex", -1);
-    $("#quiz-difficulty").prop("selectedIndex", -1);
-    $("#quiz-type").prop("selectedIndex", -1);
-    $('.quiz-chapter').select2();
-    $('#quiz-batch').select2();
-    $('#quiz-class').select2();
+
+
+    var modalBtn = $('button.add-students');
+    var modal = $('#myModal');
+    var wrapper = $('.wrapper');
+
+    $('select#quiz-subject').selectize();
+    $('select#quiz-difficulty').selectize();
+    $('select#quiz-type').selectize();
+    $('select#group-type').selectize();
     $('input.datetime').datetimepicker({
         widgetPositioning: {horizontal:"auto",vertical:"bottom"},
+        format: 'YYYY-MM-DD HH:mm:ss',
     });
     $('input.time').datetimepicker({
         widgetPositioning: {horizontal:"auto",vertical:"bottom"},
@@ -41,22 +46,58 @@ $(document).ready(function () {
         });
     });
 
-    $('select.quiz-subject').on('change',function() {
+    var $select = $('select#quiz-chapter').selectize();
+    var selectize = $select[0].selectize;
+
+    $('select#quiz-subject').on('change',function() {
         var id = $(this).val();
         $('select.quiz-chapter').removeAttr("disabled");
         $.ajax({
             method: 'POST',
             url: '../../helper/ajax/AjaxHelper.php?call=getChapters()',
             data: {'subject_id': id},
-            success: function (data) {
-                $('select.quiz-chapter').html(data);
+            success: function (dataobj) {
+                selectize.clearOptions();
+                selectize.addOption(JSON.parse(dataobj));
             }
         });
     });
 
-    var modalBtn = $('button.add-students');
-    var modal = $('#myModal');
-    var wrapper = $('.wrapper');
+
+    var retestModal = $('#retest-ref-modal');
+    $('#quiz-type').on('change', function(){
+        var id = $(this).val();
+        if(parseInt(id)===2){
+            // $('div.retest-red-id').html("<a href=\"\">Add retest reference ID</a>");
+            retestModal = $('#retest-ref-modal');
+            retestModal.addClass("bounceIn");
+            retestModal.modal({backdrop: true});
+            wrapper.addClass("blur");
+
+        }
+        else if(parseInt(id)===1){
+            $('div.retest-red-id').html("");
+        }
+    });
+
+    retestModal.on('show.bs.modal', function () {
+        var closeModalBtns = retestModal.find('button[data-custom-dismiss="modal"]');
+        closeModalBtns.on('click', function () {
+            retestModal.on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function (evt) {
+                retestModal.modal('hide');
+                wrapper.removeClass("blur");
+            });
+            retestModal.removeClass("bounceIn").addClass("bounceOut");
+        })
+    });
+
+    retestModal.on('hidden.bs.modal', function (evt) {
+        wrapper.removeClass("blur");
+        var closeModalBtns = retestModal.find('button[data-custom-dismiss="modal"]');
+        retestModal.removeClass("bounceOut");
+        retestModal.off('webkitAnimationEnd oanimationend msAnimationEnd animationend')
+        closeModalBtns.off('click');
+    });
 
     modalBtn.on('click', function () {
         modal.addClass("bounceIn");
@@ -126,9 +167,6 @@ $(document).ready(function () {
     });
 
 
-
-
-
     modal.on('show.bs.modal', function () {
         var closeModalBtns = modal.find('button[data-custom-dismiss="modal"]');
         closeModalBtns.on('click', function () {
@@ -150,5 +188,13 @@ $(document).ready(function () {
 
 
     $('table.view-all-quizzes').dataTable({});
+
+    $('#submit-retest-modal').click(function () {
+        var quizSelected = $('#retest-ref-id-value').val();
+
+        alert();
+        $("div.retest-ref-id input").val(quizSelected);
+        $("div.retest-ref-id").append("Your retest reference quiz is " + $('option[value=\''+quizSelected + '\']').text());
+    });
 
 });

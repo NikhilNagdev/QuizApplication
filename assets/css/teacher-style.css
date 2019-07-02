@@ -22,6 +22,10 @@
     border-radius: 25px;
 }
 
+.selectize-input{
+    background-color: #f5f6f7!important;
+}
+
 .loader-wrapper {
     position: fixed;
     z-index: 9999;
@@ -100,11 +104,13 @@ select.form-control{
 .modal-dialog{
     overflow-y: initial !important
 }
-.modal-body{
+.modal-student-body{
     height: 70vh;
     overflow-y: auto;
 }
-
+.modal-content{
+    border-radius: 20px!important;
+}
 table.view-all-students{
     width: 100%!important;
 }
