@@ -25,17 +25,16 @@ if (isset($_POST['submit'])) {
 }
 
 ?>
-<ul class="nav nav-tabs" role="tablist">
-    <li class="nav-item">
-        <a class="nav-link active" href="#batch-tab" role="tab" data-toggle="tab"><h2>By Batch</h2></a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#student-tab" role="tab" data-toggle="tab"><h2>By Students</h2></a>
-    </li>
-</ul>
 <div class="card">
     <div class="card-body">
-
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" href="#batch-tab" role="tab" data-toggle="tab"><h2>By Batch</h2></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#student-tab" role="tab" data-toggle="tab"><h2>By Students</h2></a>
+            </li>
+        </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
@@ -60,21 +59,21 @@ if (isset($_POST['submit'])) {
                                             </th>
                                         </tr>
                                         </thead>
-                                        <tbody class="student-data">
+                                        <tbody class="questions">
                                         <?php
-                                        $batches = $batchObj->getBatchBySubjectAndClass(4, 1);
-                                        $index = 0;
-                                        foreach ($batches as $batch) {
-                                            $index++;
-                                            echo <<<STUDENT
-                            <tr>
-                                <td>$index</td>
-                                <td>$batch->class_name</td>
-                                <td>$batch->batch_name</td>
-                                <td><label for="batch[]" class="pr-3">Check here</label><input id="" name="batch[]" type="checkbox" class="select-batch-id"value="$batch->batch_id"></td>
-                            </tr>
-STUDENT;
-                                        }
+//                                        $batches = $batchObj->getBatchBySubjectAndClass(4, 1);
+//                                        $index = 0;
+//                                        foreach ($batches as $batch) {
+//                                            $index++;
+//                                            echo <<<STUDENT
+//                            <tr>
+//                                <td>$index</td>
+//                                <td>$batch->class_name</td>
+//                                <td>$batch->batch_name</td>
+//                                <td><label for="batch[]" class="pr-3">Check here</label><input id="" name="batch[]" type="checkbox" class="select-batch-id"value="$batch->batch_id"></td>
+//                            </tr>
+//STUDENT;
+//                                        }
                                         ?>
                                         </tbody>
                                     </table>
@@ -110,21 +109,21 @@ STUDENT;
                                             <th>Add</th>
                                         </tr>
                                         </thead>
-                                        <tbody class="student-data">
+                                        <tbody class="questions">
                                         <?php
-                                        $students = $studentObj->getStudentsByClass(2);
-                                        foreach ($students as $student){
-                                            echo <<<STUDENT
-                                            <tr>
-                                                <td>$student->student_id</td>
-                                                <td>$student->name</td>
-                                                <td>$student->class_name</td>
-                                                <td>$student->batch_name</td>
-                                                <td><label for="student[]" class="pr-3">Check here</label><input id="" name="student[]" type="checkbox" class="select-student-id"value="$student->student_id"></td>
-                                            </tr>
-STUDENT;
-
-                                        }
+//                                        $students = $studentObj->getStudentsByClass(2);
+//                                        foreach ($students as $student){
+//                                            echo <<<STUDENT
+//                                            <tr>
+//                                                <td>$student->student_id</td>
+//                                                <td>$student->name</td>
+//                                                <td>$student->class_name</td>
+//                                                <td>$student->batch_name</td>
+//                                                <td><label for="student[]" class="pr-3">Check here</label><input id="" name="student[]" type="checkbox" class="select-student-id"value="$student->student_id"></td>
+//                                            </tr>
+//STUDENT;
+//
+//                                        }
                                         ?>
                                         </tbody>
                                     </table>
@@ -145,6 +144,6 @@ STUDENT;
                 </form></div>
 
         </div>
-        </div>
+    </div>
 </div>
 

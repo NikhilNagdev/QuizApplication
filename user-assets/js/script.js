@@ -12,7 +12,7 @@ $(window).on("load", function() {
                 $.ajax({
                         method: "GET",
                         url: "includes/multi-choice.php",
-                        data: { name: "John", location: "Boston" },
+                        data: {  },
                         dataType: "json",
                         success: function (){
                                 alert("etrt");

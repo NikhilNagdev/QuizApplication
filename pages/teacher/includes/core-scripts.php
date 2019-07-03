@@ -32,7 +32,7 @@
 <script src="https://localhost/quizapplication/assets/js/plugin/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
 
 <!-- Bootstrap Notify -->
-<!--<script src="../../assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>-->
+<script src="https://localhost/quizapplication/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
 
 
 <script src="https://localhost/quizapplication/assets/js/plugin/selectize/selectize.min.js"></script>
@@ -101,10 +101,20 @@
     });
 
 
+
+
 </script>
 
 <script>
     $(document).ready(function() {
-
+        $.notify({
+            // options
+            icon: 'flaticon-alarm-1',
+            title: 'Bootstrap notify',
+            message: 'Hello World'
+        },{
+            // settings
+            type: "info",
+        });
     });
 </script>

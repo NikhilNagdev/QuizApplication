@@ -1,67 +1,33 @@
 
 $(document).ready(function () {
 
+    $(".loader-wrapper").fadeOut("slow");
 
+    $('table.view-all-students').dataTable({
+        "columnDefs": [
+            { "orderable": false, "targets": 4 }
+        ]
+    });
+
+    $('table.view-all-batches').dataTable({
+        "columnDefs": [
+            { "orderable": false, "targets": 3 }
+        ]
+    });
+
+
+    $("input.select-all-batch-ids").change(function() {
+        if(this.checked) {
+            $('input.select-batch-id').prop('checked', true);
+        }else{
+            $('input.select-batch-id').prop('checked', false);
+        }
+    });
 
     var modalBtn = $('button.add-students');
     var modal = $('#myModal');
     var wrapper = $('.wrapper');
 
-    $('select#quiz-subject').selectize();
-    $('select#quiz-difficulty').selectize();
-    $('select#quiz-type').selectize();
-    $('select#group-type').selectize();
-    $('input.datetime').datetimepicker({
-        widgetPositioning: {horizontal:"auto",vertical:"bottom"},
-        format: 'YYYY-MM-DD HH:mm:ss',
-    });
-    $('input.time').datetimepicker({
-        widgetPositioning: {horizontal:"auto",vertical:"bottom"},
-        format: 'LT',
-    });
-
-    $('select.quiz-class').on('change',function() {
-        var id = $(this).val();
-        $.ajax({
-            method: 'POST',
-            url: '../../helper/ajax/AjaxHelper.php?call=getBatches()',
-            data: {'class_id': id},
-            success: function (data) {
-                $('select.quiz-batch').html(data);
-            }
-        });
-    });
-
-
-    $('select.quiz-batch').on('change',function() {
-        var id = $(this).val();
-        $.ajax({
-            method: 'POST',
-            url: '../../helper/ajax/AjaxHelper.php?call=getSubjects()',
-            data: {'batch_id': id},
-            success: function (data) {
-                $('label>input[type=search]').val("hello");
-                $('select.quiz-subject').html(data);
-            }
-        });
-    });
-
-    var $select = $('select#quiz-chapter').selectize();
-    var selectize = $select[0].selectize;
-
-    $('select#quiz-subject').on('change',function() {
-        var id = $(this).val();
-        $('select.quiz-chapter').removeAttr("disabled");
-        $.ajax({
-            method: 'POST',
-            url: '../../helper/ajax/AjaxHelper.php?call=getChapters()',
-            data: {'subject_id': id},
-            success: function (dataobj) {
-                selectize.clearOptions();
-                selectize.addOption(JSON.parse(dataobj));
-            }
-        });
-    });
 
 
     var retestModal = $('#retest-ref-modal');
@@ -125,27 +91,27 @@ $(document).ready(function () {
         //     }
         // });
 
-        var studentDT = $('#view-all-students').DataTable({
-            // "processing": true,
-            // "serverSide":true,
-            // retrieve: true,
-            "destroy": true,
-            "ajax":{
-                url:"../../helper/ajax/AjaxHelper.php?call=getStudents()",
-                data: {classIds},
-                type:"post",
-            },
-            columns: [
-                { data: 'student_id' },
-                { data: 'name' },
-                { data: 'class_name' },
-                { data: 'batch_name' },
-                { data: 'add' },
-            ],
-            "columnDefs": [
-                { "orderable": false, "targets": 4 }
-            ],
-        });
+        // var studentDT = $('#view-all-students').DataTable({
+        //     // "processing": true,
+        //     // "serverSide":true,
+        //     // retrieve: true,
+        //     "destroy": true,
+        //     "ajax":{
+        //         url:"../../helper/ajax/AjaxHelper.php?call=getStudents()",
+        //         data: {classIds},
+        //         type:"post",
+        //     },
+        //     columns: [
+        //         { data: 'student_id' },
+        //         { data: 'name' },
+        //         { data: 'class_name' },
+        //         { data: 'batch_name' },
+        //         { data: 'add' },
+        //     ],
+        //     "columnDefs": [
+        //         { "orderable": false, "targets": 4 }
+        //     ],
+        // });
         studentDT.on("click", "button", function(){
             // var row = $(this).parents('tr');
             // // alert(studentDT.fnGetData(this));
@@ -196,5 +162,64 @@ $(document).ready(function () {
         $("div.retest-ref-id input").val(quizSelected);
         $("div.retest-ref-id").append("Your retest reference quiz is " + $('option[value=\''+quizSelected + '\']').text());
     });
+
+    $('select#quiz-subject').selectize();
+    $('select#quiz-difficulty').selectize();
+    $('select#quiz-type').selectize();
+    $('select#group-type').selectize();
+    $('input.datetime').datetimepicker({
+        widgetPositioning: {horizontal:"auto",vertical:"bottom"},
+        format: 'YYYY-MM-DD HH:mm:ss',
+    });
+    $('input.time').datetimepicker({
+        widgetPositioning: {horizontal:"auto",vertical:"bottom"},
+        format: 'LT',
+    });
+
+    $('select.quiz-class').on('change',function() {
+        var id = $(this).val();
+        $.ajax({
+            method: 'POST',
+            url: '../../helper/ajax/AjaxHelper.php?call=getBatches()',
+            data: {'class_id': id},
+            success: function (data) {
+                $('select.quiz-batch').html(data);
+            }
+        });
+    });
+
+
+    $('select.quiz-batch').on('change',function() {
+        var id = $(this).val();
+        $.ajax({
+            method: 'POST',
+            url: '../../helper/ajax/AjaxHelper.php?call=getSubjects()',
+            data: {'batch_id': id},
+            success: function (data) {
+                $('label>input[type=search]').val("hello");
+                $('select.quiz-subject').html(data);
+            }
+        });
+    });
+
+    var $select = $('select#quiz-chapter').selectize();
+    var selectize = $select[0].selectize;
+
+    $('select#quiz-subject').on('change',function() {
+        var id = $(this).val();
+        $('select.quiz-chapter').removeAttr("disabled");
+        $.ajax({
+            method: 'POST',
+            url: '../../helper/ajax/AjaxHelper.php?call=getChapters()',
+            data: {'subject_id': id},
+            success: function (dataobj) {
+                selectize.clearOptions();
+                selectize.addOption(JSON.parse(dataobj));
+            }
+        });
+    });
+
+
+
 
 });

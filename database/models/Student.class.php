@@ -26,7 +26,7 @@ class Student{
             ->where("class.class_id", $class_id)
 //            ->groupBy("student.student_id")
             ->get()
-            ->fetchAll(PDO::FETCH_ASSOC);
+            ->fetchAll();
 
     }
 

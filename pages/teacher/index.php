@@ -21,6 +21,10 @@ $helper = new Helper();
 
 ?>
 <body>
+<div class="loader-wrapper">
+    <span class="loader-box"><span class="loader-inner"></span></span>
+    <p class="loader-content">Please wait while loading!!!</p>
+</div>
 <div class="wrapper">
     <div class="main-header">
         <!-- Logo Header -->
@@ -60,10 +64,11 @@ $helper = new Helper();
                         $source = $_GET['src'];
                         switch($source){
                             case "create-quiz":
-                                include_once "includes/quiz/create-quiz.php";
+                                include_once "includes/quiz/add-students.php";
                                 break;
                             case "view-all-quizzes":
                                 include_once "includes/quiz/view-all-quizzes.php";
+                                break;
                             case "add-students":
                                 include_once "includes/quiz/add-students.php";
                         }

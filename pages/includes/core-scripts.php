@@ -38,7 +38,7 @@
 <script src="https://localhost/quizapplication/assets/js/plugin/datatables/datatables.min.js"></script>
 
 <!-- Bootstrap Notify -->
-<!--<script src="../../assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>-->
+<script src="https://localhost/quizapplication/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
 
 <!-- jQuery Vector Maps -->
 <script src="https://localhost/quizapplication/assets/js/plugin/jqvmap/jquery.vmap.min.js"></script>

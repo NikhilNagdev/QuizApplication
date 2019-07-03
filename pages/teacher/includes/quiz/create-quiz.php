@@ -88,7 +88,7 @@ if (isset($_POST['submit'])) {
                     <div class="col-md-6 ">
                         <label for="quiz-difficulty">Difficulty Level</label>
                         <select name="quiz-difficulty[]" id="quiz-difficulty" class="" multiple="multiple">
-                            <option value="1">Select difficulty here</option>
+                            <option value="" selected disabled>Select difficulty here</option>
                             <option value="1">Easy</option>
                             <option value="2">Medium</option>
                             <option value="3">Hard</option>
