@@ -193,7 +193,17 @@ class CRUD
     }
 
     public function executeQuery($query, ...$values){
-        return $this->pdo->query($query)->fetchAll();
+        $pdoStatement = $this->getPDOdStatement($query);
+        for($i=0; $i<count($values); $i++){
+            $pdoStatement->bindValue($i+1, $values[$i]);
+        }
+        $status = $pdoStatement->execute();
+        if($status){
+            return $pdoStatement;
+        }else{
+            echo "<br>".($pdoStatement->errorInfo()[2]);
+            return null;
+        }
     }
 
     public function getCurrentDT(){

@@ -12,7 +12,7 @@
 
                 <select name="" id="retest-ref-id-value">
                     <?php
-                        $quizzes  = $quiz->getPublishedQuiz(1);
+                        $quizzes  = $quizObj->getPublishedQuiz(1);
                         echo "<option value=\"\" selected disabled>Select here</option>";
                         echo $helper->getOptions($quizzes);
                     ?>

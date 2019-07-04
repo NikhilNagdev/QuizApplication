@@ -6,74 +6,67 @@
  * Time: 5:26 AM
  */
 
-if (isset($_POST['submit'])) {
+$quiz_id = "";
+if (isset($_POST['select-quiz-submit'])) {
+    $quiz_id = $_POST['quiz_id'];
+}
+if (isset($_POST['add-question-submit'])) {
 
-
-    $quiz_id = $quiz->getLatestConductedQuiz(2)->quiz_id;
-
-
-    if($_POST['batch']){
-        $batches = $_POST['batch'];
-        $quiz->insertStudentsForQuizByBatch($batches, $quiz_id);
-    }elseif($_POST['student']){
-        $students = $_POST['students'];
-        $quiz->insertStudentsForQuizByStudents($students, $quiz_id);
-    }
-
-//    header("Location: index.php?view-all-quizzes");
-
+    var_dump($_POST['questionIds']);
+//    $quizObj->insertQuizQestions($_POST['questions']);
 }
 
 ?>
 <div class="card">
     <div class="card-body">
         <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" href="#batch-tab" role="tab" data-toggle="tab"><h2>By Batch</h2></a>
+            <li class="nav-item pull-right">
+                <a class="nav-link active" href="#batch-tab" role="tab" data-toggle="tab"><h2>Manually</h2></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#student-tab" role="tab" data-toggle="tab"><h2>By Students</h2></a>
-            </li>
+                <a class="nav-link" href="#student-tab" role="tab" data-toggle="tab"><h2>Randomly</h2></a></li>
         </ul>
+
 
         <!-- Tab panes -->
         <div class="tab-content">
+
             <div role="tabpanel" class="tab-pane animated fadeIn active" id="batch-tab">
                 <form action="#" class="gray-form" method="post">
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="table-responsive">
-                                    <table id="" class="view-all-batches display table table-striped table-hover"
+                                    <table id="view-all-questions"
+                                           class="view-all-questions display table table-striped table-hover"
                                            style="width: 100%">
                                         <thead>
                                         <tr>
                                             <th>Sr no</th>
-                                            <th>Class</th>
-                                            <th>Batch</th>
+                                            <th>Question</th>
+                                            <th>Chapter</th>
+                                            <th>Marks</th>
                                             <th>Add
-                                                <div class="pull-right">
-                                                    <label for="">Select all</label>
-                                                    <input class="select-all-batch-ids" type="checkbox">
-                                                </div>
                                             </th>
                                         </tr>
                                         </thead>
                                         <tbody class="questions">
                                         <?php
-//                                        $batches = $batchObj->getBatchBySubjectAndClass(4, 1);
-//                                        $index = 0;
-//                                        foreach ($batches as $batch) {
-//                                            $index++;
-//                                            echo <<<STUDENT
-//                            <tr>
-//                                <td>$index</td>
-//                                <td>$batch->class_name</td>
-//                                <td>$batch->batch_name</td>
-//                                <td><label for="batch[]" class="pr-3">Check here</label><input id="" name="batch[]" type="checkbox" class="select-batch-id"value="$batch->batch_id"></td>
-//                            </tr>
-//STUDENT;
-//                                        }
+                                        $questions = $questionObj->getQuestionsByQuiz($quiz_id);
+                                        $index = 0;
+                                        foreach ($questions as $question) {
+                                            $index++;
+                                            echo <<<STUDENT
+                                                <tr>
+                                                    <td>$index</td>
+                                                    <td>$question->question</td>
+                                                    <td>$question->chapter_name</td>
+                                                    <td>$question->marks</td>
+                                                    <td><label for="questions[]" class="pr-3">Check here</label><input id="select-question-id" name="questions[]" type="checkbox" class="select-question-id" value="$question->question_id"></td>
+                                                </tr>
+<input type="checkbox" name="questionIds[]" value="$question->question_id" hidden>
+STUDENT;
+                                        }
                                         ?>
                                         </tbody>
                                     </table>
@@ -82,48 +75,52 @@ if (isset($_POST['submit'])) {
                         </div>
                     </div>
 
-
                     <div class="form-group">
-                        <div class="form-group start-adding-question" align="center">
-                            <button type="submit" class="btn btn-secondary" name="submit">Add Students</button>
+                        <div class="form-group" align="center">
+                            <button name="add-question-submit" type="submit" class="btn btn-secondary" name="submit">Add
+                                Questions
+                            </button>
                         </div>
                     </div>
-                    <form>
-
-                    </form>
                 </form>
             </div>
-            <div role="tabpanel" class="tab-pane animated fadeIn" id="student-tab"><form action="#" class="gray-form" method="post">
+
+            <div role="tabpanel" class="tab-pane animated fadeIn" id="student-tab">
+                <form action="#" class="gray-form" method="post">
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="table-responsive">
-                                    <table id="" class="view-all-students display table table-striped table-hover"
+                                    <table id="view-all-questions"
+                                           class="view-all-questions display table table-striped table-hover"
                                            style="width: 100%">
                                         <thead>
                                         <tr>
-                                            <th>Student ID</th>
-                                            <th>Student Name</th>
-                                            <th>Class Name</th>
-                                            <th>Batch Name</th>
-                                            <th>Add</th>
+                                            <th>Sr no</th>
+                                            <th>Question</th>
+                                            <th>Chapter</th>
+                                            <th>Marks</th>
+                                            <th>Add
+                                            </th>
                                         </tr>
                                         </thead>
                                         <tbody class="questions">
                                         <?php
-//                                        $students = $studentObj->getStudentsByClass(2);
-//                                        foreach ($students as $student){
-//                                            echo <<<STUDENT
-//                                            <tr>
-//                                                <td>$student->student_id</td>
-//                                                <td>$student->name</td>
-//                                                <td>$student->class_name</td>
-//                                                <td>$student->batch_name</td>
-//                                                <td><label for="student[]" class="pr-3">Check here</label><input id="" name="student[]" type="checkbox" class="select-student-id"value="$student->student_id"></td>
-//                                            </tr>
-//STUDENT;
-//
-//                                        }
+                                        $questions = $questionObj->getQuestionsByQuiz($quiz_id);
+                                        $index = 0;
+                                        foreach ($questions as $question) {
+                                            $index++;
+                                            echo <<<STUDENT
+                                                <tr>
+                                                    <td>$index</td>
+                                                    <td>$question->question</td>
+                                                    <td>$question->chapter_name</td>
+                                                    <td>$question->marks</td>
+                                                    <td><label for="questions[]" class="pr-3">Check here</label><input id="select-question-id" name="questions[]" type="checkbox" class="select-question-id" value="$question->question_id"></td>
+                                                </tr>
+<input type="checkbox" name="questionIds[]" value="$question->question_id" hidden>
+STUDENT;
+                                        }
                                         ?>
                                         </tbody>
                                     </table>
@@ -132,16 +129,15 @@ if (isset($_POST['submit'])) {
                         </div>
                     </div>
 
-
                     <div class="form-group">
-                        <div class="form-group start-adding-question" align="center">
-                            <button type="submit" class="btn btn-secondary" name="submit">Add Students</button>
+                        <div class="form-group" align="center">
+                            <button name="add-question-submit" type="submit" class="btn btn-secondary" name="submit">Add
+                                Questions
+                            </button>
                         </div>
                     </div>
-                    <form>
-
-                    </form>
-                </form></div>
+                </form>
+            </div>
 
         </div>
     </div>

@@ -14,17 +14,9 @@ class Question{
         $this->questionObj = CRUD::table("question");
     }
 
-    /*public function getQuestion($subject, $chapterNo, $difficulty){
+    public function getQuestion($subject, $chapterNo, $difficulty){
         $chapter = new Chapter();
-        return $this->questionObj->where("chapter_id", $chapter
-            ->getChapterID($subject, $chapterNo))
-            ->andWhere("marks", $marks)->andWhere("difficulty", $difficulty)
-            ->orderBy("RAND()")
-            ->limit("1")
-            ->select("question")
-            ->get()
-            ->fetch()->question;
-    }*/
+    }
 
     public function getRandomQuestions($noOfQuestions, $subject, $chapterNo="", $difficulty=""){
         $chapter = new Chapter();
@@ -92,9 +84,14 @@ class Question{
         }
     }
 
+    public function getQuestionsByQuiz($quiz_id){
+        return $this->questionObj->executeQuery("SELECT question.question_id, question.question, tp.marks, tp.`w.e.f`, chapter.chapter_name, chapter.chapter_no FROM (SELECT *, @rownum := IF( @prev = question_id,@rownum + 1,1) AS rownum, @prev := question_id FROM question_marks, (SELECT @rownum := 0, @prev := 0) AS t ORDER BY question_id ASC, `w.e.f` DESC) AS tp JOIN question ON tp.question_id = question.question_id JOIN chapter ON question.chapter_id = chapter.chapter_id JOIN quiz_chapter ON quiz_chapter.chapter_id = chapter.chapter_id JOIN subject ON chapter.subject_id = subject.subject_id WHERE tp.rownum = 1 AND question.deleted = 0 AND chapter.deleted = 0 AND subject.deleted = 0 AND quiz_chapter.quiz_id = ?", $quiz_id)->fetchAll();
+    }
+
     private $questionObj;
 }
 
 
 //select DISTINCT question.question_id, question.question from question JOIN question_marks ON question_marks.question_id = question.question_id WHERE question_marks.marks = 2 ORDER BY RAND() limit 2
 
+//SELECT question.question_id, question.question, tp.marks, tp.`w.e.f`, chapter.chapter_name, chapter.chapter_no FROM (SELECT *, @rownum := IF( @prev = question_id,@rownum + 1,1) AS rownum, @prev := question_id FROM question_marks, (SELECT @rownum := 0, @prev := 0) AS t ORDER BY question_id ASC, `w.e.f` DESC) AS tp JOIN question ON tp.question_id = question.question_id JOIN chapter ON question.chapter_id = chapter.chapter_id JOIN quiz_chapter ON quiz_chapter.chapter_id = chapter.chapter_id JOIN subject ON chapter.subject_id = subject.subject_id WHERE tp.rownum = 1 AND question.deleted = 0 AND chapter.deleted = 0 AND subject.deleted = 0 AND quiz_chapter.quiz_id = 3

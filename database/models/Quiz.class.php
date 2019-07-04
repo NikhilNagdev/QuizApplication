@@ -56,10 +56,6 @@ class Quiz
             ->fetchAll();
     }
 
-    public function insert($values)
-    {
-        return $this->quiz->insert($values);
-    }
 
     public function getPublishedQuiz($teacher_id)
     {
@@ -68,6 +64,17 @@ class Quiz
             ->where("created_by", $teacher_id)
             ->andWhere("status", "published")
             ->andWhere("deleted", 0)
+            ->get()
+            ->fetchAll();
+    }
+
+    public function getDraftedQuizzes($teacher_id){
+        //       SELECT quiz.quiz_id, quiz.quiz_name, subject.subject_name, quiz.created_at, status FROM quiz JOIN subject ON subject.subject_id = quiz.subject_id WHERE quiz.created_by = 1 AND status='draft' AND quiz.deleted = 0
+        return $this->quiz->select("quiz.quiz_id as id", "quiz.quiz_name as name", "subject.subject_name", "quiz.created_at")
+            ->join("subject", "subject.subject_id", "quiz.subject_id")
+            ->where("quiz.created_by", $teacher_id)
+            ->andWhere("status", "draft")
+            ->andWhere("quiz.deleted", 0)
             ->get()
             ->fetchAll();
     }
@@ -83,6 +90,9 @@ class Quiz
             ->fetch();
     }
 
+    /**********************************************************************/
+    //INSERTING FUNCTIONS
+    /************************************************************************/
     public function insertQuizChapters($quiz_id, $chapters)
     {
         $quizChapter = CRUD::table("quiz_chapter");
@@ -118,6 +128,16 @@ class Quiz
             $quiz_assigned_to->insert(array("quiz_id" => $quiz_id, "id" => $student->student_id));
         }
     }
+
+    public function insertQuizQuestions($quiz_id, $questions)
+    {
+        $quiz_question = CRUD::table("quiz_question");
+        foreach ($questions as $question)
+            $quiz_question->insert(array("quiz_id"=>$quiz_id, "question_id"=>$question));
+    }
+    /**********************************************************************/
+    //ENDING OF INSERTING FUNCTIONS
+    /************************************************************************/
 
     private $quiz;
 

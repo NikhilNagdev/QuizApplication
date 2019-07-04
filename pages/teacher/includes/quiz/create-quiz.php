@@ -25,17 +25,17 @@ if (isset($_POST['submit'])) {
 
     echo $start_dt;
 
-//    if($quiz->insert(array("subject_id" => $subject_id, "quiz_name" => $quiz_name, "quiz_marks" => $quiz_marks, "quiz_type" => $quiz_type, "group_type" => $group_type, "duration" => $duration, "start_dt" => $start_dt, "passing_marks_percentage" => $passing_marks, "retest_ref_id" => $retest_ref_id, "status" => $status, "negative_marks" => $negative_marks))){
+    if($quizObj->insert(array("subject_id" => $subject_id, "quiz_name" => $quiz_name, "quiz_marks" => $quiz_marks, "quiz_type" => $quiz_type, "group_type" => $group_type, "duration" => $duration, "start_dt" => $start_dt, "passing_marks_percentage" => $passing_marks, "retest_ref_id" => $retest_ref_id, "status" => $status, "negative_marks" => $negative_marks, "created_by"=>1))){
 
-        $quiz_id = $quiz->getLatestConductedQuiz(2)->quiz_id;
-        $quiz->insertQuizChapters($quiz_id, $_POST['quiz-chapter']);
-        $quiz->insertQuizDifficulty($quiz_id, $_POST['quiz-difficulty']);
+        $quiz_id = $quizObj->getLatestConductedQuiz(1)->quiz_id;
+        $quizObj->insertQuizChapters($quiz_id, $_POST['quiz-chapter']);
+        $quizObj->insertQuizDifficulty($quiz_id, $_POST['quiz-difficulty']);
 
         header("location: index.php?src=add-students");
 
-//    }else{
-//
-//    }
+    }else{
+
+    }
 
 
 }

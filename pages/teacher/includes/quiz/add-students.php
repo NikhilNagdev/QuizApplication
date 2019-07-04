@@ -9,18 +9,20 @@
 if (isset($_POST['submit'])) {
 
 
-    $quiz_id = $quiz->getLatestConductedQuiz(2)->quiz_id;
+    $quiz_id = $quizObj->getLatestConductedQuiz(1)->quiz_id;
 
 
     if($_POST['batch']){
         $batches = $_POST['batch'];
-        $quiz->insertStudentsForQuizByBatch($batches, $quiz_id);
+        $quizObj->insertStudentsForQuizByBatch($batches, $quiz_id);
     }elseif($_POST['student']){
         $students = $_POST['students'];
-        $quiz->insertStudentsForQuizByStudents($students, $quiz_id);
+        $quizObj->insertStudentsForQuizByStudents($students, $quiz_id);
     }
 
 //    header("Location: index.php?view-all-quizzes");
+
+//    tabbed pane card ke piche se aan chaiye jab hover kiya
 
 }
 
@@ -34,9 +36,10 @@ if (isset($_POST['submit'])) {
     </li>
 </ul>
 <div class="card">
+<!--    <div class="card-header">-->
+
+<!--    </div>-->
     <div class="card-body">
-
-
         <!-- Tab panes -->
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane animated fadeIn active" id="batch-tab">

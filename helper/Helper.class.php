@@ -31,8 +31,13 @@ CIRCLE;
     }
 
     public function getHeadingName($sourceString){
-        if(strcasecmp($sourceString, "view-all-quizzes.php" == 0)){
+        if(strcasecmp($sourceString, "view-all-quizzes.php") == 0){
             return "All Quizzes";
+        }
+        elseif(strcasecmp($sourceString, "create-quiz") == 0){
+            return "Create a quiz";
+        }elseif(strcasecmp($sourceString, "add-quiz-question") == 0){
+            return "Add Questions For Quiz";
         }
     }
 

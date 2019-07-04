@@ -61,20 +61,20 @@ END;
 
             <div class="page-inner mt--5">
                 <div class="row mt--2">
-            <?php
+                    <?php
 
-            if(isset($_GET['src'])){
-                $source = $_GET['src'];
+                    if(isset($_GET['src'])){
+                        $source = $_GET['src'];
 
-                switch($source){
-                    case "view-all-quizzes.php":
-                        include_once "includes/pages/quiz/view-all-quizzes.php";
-                }
+                        switch($source){
+                            case "view-all-quizzes.php":
+                                include_once "includes/pages/quiz/view-all-quizzes.php";
+                        }
 
-            }else{
-                include_once("includes/dashboard.php");
-            }
-            ?>
+                    }else{
+                        include_once("includes/dashboard.php");
+                    }
+                    ?>
                 </div>
             </div>
         </div>

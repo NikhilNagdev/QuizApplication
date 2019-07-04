@@ -298,6 +298,6 @@ GROUP BY
 //) AS tp
 //WHERE
 //    tp.rownum = 1 ORDER BY RAND()) as n, (SELECT @markss := 0, @status:= 't') as m)as a HAVING mark <=30
-
-
+//
+//
 

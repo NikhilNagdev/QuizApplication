@@ -3,6 +3,9 @@ $(document).ready(function () {
 
     $(".loader-wrapper").fadeOut("slow");
 
+    var wrapper = $('.wrapper');
+    var marks = 0;
+
     $('table.view-all-students').dataTable({
         "columnDefs": [
             { "orderable": false, "targets": 4 }
@@ -23,6 +26,106 @@ $(document).ready(function () {
             $('input.select-batch-id').prop('checked', false);
         }
     });
+
+    /*********************************************************************/
+    //*********************ADD QUESTION MODAL*****************************
+    /*********************************************************************/
+    var question_modal = $('#add-questions-modal');
+    $('a#add-questions').on('click', function () {
+
+        question_modal.addClass("bounceIn");
+        question_modal.modal({backdrop: true});
+        wrapper.addClass("blur");
+
+    });
+
+    question_modal.on('show.bs.modal', function () {
+        var closeModalBtns = question_modal.find('button[data-custom-dismiss="modal"]');
+        closeModalBtns.on('click', function () {
+            question_modal.on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function (evt) {
+                question_modal.modal('hide');
+                wrapper.removeClass("blur");
+            });
+            question_modal.removeClass("bounceIn").addClass("bounceOut");
+        })
+    });
+
+    question_modal.on('hidden.bs.modal', function (evt) {
+        wrapper.removeClass("blur");
+        var closeModalBtns = question_modal.find('button[data-custom-dismiss="modal"]');
+        question_modal.removeClass("bounceOut");
+        question_modal.off('webkitAnimationEnd oanimationend msAnimationEnd animationend')
+        closeModalBtns.off('click');
+    });
+
+    $('#view-all-drafted-quizzes').dataTable({
+        columnDefs: [
+                { "orderable": false, "targets": 4 }
+            ],
+    });
+
+    $("input#select-quiz-id").change(function() {
+        if(this.checked) {
+            $('input#select-quiz-id').prop('checked', false);
+            $(this).prop('checked', true);
+        }
+    });
+
+    $('button#select-quiz-submit').on('click', function(e){
+        if(!($('input#select-quiz-id').is(':checked'))){
+            e.preventDefault();
+            swal("Please select a quiz first", {
+                icon : "warning",
+                buttons: {
+                    confirm: {
+                        className : 'btn btn-warning'
+                    }
+                },
+            });
+        }
+    });
+
+
+    /*********************************************************************/
+    //*********************END OF ADD QUESTION MODAL***********************
+    /*********************************************************************/
+
+
+    /*********************************************************************/
+    //*********************ADD QUESTION************************************
+    /*********************************************************************/
+    var questionsTable = $('table.view-all-questions').DataTable({});
+    $('#view-all-questions tbody').on( 'click', 'tr', function () {
+
+        var rowMarks = parseInt($(this).find('td').eq(3).text());
+        if($(this).find('input').prop('checked') == true){
+            $(this).find('input').prop('checked', false);
+            setCheckbox($(this).find('input').val(), false);
+            if(marks-rowMarks>=0)
+                marks = marks-rowMarks;
+            $('span.marks-text').html(marks);
+        }else{
+            $(this).find('input').prop('checked', true);
+            // alert($(this).find('input').val());
+            setCheckbox($(this).find('input').val(), true);
+            if(marks+rowMarks>=0)
+                marks = marks+rowMarks;
+            $('span.marks-text').html(marks);
+        }
+        console.log(marks);
+    });
+
+    function setCheckbox(value, status){
+        alert( value);
+        $("input[value="+value+"]").prop('checked', status);
+    }
+
+
+
+    /*********************************************************************/
+    //*********************END OF ADD QUESTION******************************
+    /*********************************************************************/
+
 
     var modalBtn = $('button.add-students');
     var modal = $('#myModal');

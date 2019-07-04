@@ -75,14 +75,6 @@
                             <th style="width: 10%">Action</th>
                         </tr>
                         </thead>
-<!--                        <tfoot>-->
-<!--                        <tr>-->
-<!--                        <th>Name</th>-->
-<!--                        <th>Position</th>-->
-<!--                        <th>Office</th>-->
-<!--                        <th>Action</th>-->
-<!--                        </tr>-->
-<!--                        </tfoot>-->
                         <tbody>
 
                         <tr>
