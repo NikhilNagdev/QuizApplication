@@ -50,44 +50,91 @@
 <!--<script src="https://localhost/quizapplication/assets/js/setting-demo.js"></script>-->
 <!--<script src="https://localhost/quizapplication/assets/js/demo.js"></script>-->
 <script>
+//
+//
+   var totalIncomeChart = document.getElementById('statisticsChart').getContext('2d');
 
+   var mytotalIncomeChart = new Chart(totalIncomeChart, {
+       type: 'bar',
+       data: {
+           labels: ["Subject 1", "Subject 1", "Subject 1", "Subject 1", "Subject 1"],
+           datasets : [{
+               label: "Total Generated Quiz",
+               backgroundColor: '#ff9e27',
+               borderColor: 'rgb(23, 125, 255)',
+               data: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10],
+           }],
+       },
+       options: {
+           responsive: true,
+           maintainAspectRatio: false,
+           legend: {
+               display: false,
+           },
+           scales: {
+               yAxes: [{
+                   ticks: {
+                       display: true //this will remove only the label
+                   },
+                   gridLines : {
+                       drawBorder: false,
+                       display : true
+                   }
+               }],
+               xAxes : [ {
+                   gridLines : {
+                       drawBorder: false,
+                       display : false
+                   }
+               }]
+           },
+       }
+   });
 
-    var totalIncomeChart = document.getElementById('totalIncomeChart').getContext('2d');
+    var lineChart = document.getElementById('totalIncomeChart').getContext('2d');
 
-    var mytotalIncomeChart = new Chart(totalIncomeChart, {
-        type: 'bar',
+    var myLineChart = new Chart(lineChart, {
+        type: 'line',
         data: {
-            labels: ["S", "M", "T", "W", "T", "F", "S", "S", "M", "T"],
-            datasets : [{
-                label: "Total Income",
-                backgroundColor: '#ff9e27',
-                borderColor: 'rgb(23, 125, 255)',
-                data: [6, 4, 9, 5, 4, 6, 4, 3, 8, 10],
-            }],
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            datasets: [{
+                label: "Quiz Created",
+                borderColor: "#1d7af3",
+                pointBorderColor: "#FFF",
+                pointBackgroundColor: "#1d7af3",
+                pointBorderWidth: 2,
+                pointHoverRadius: 4,
+                pointHoverBorderWidth: 1,
+                pointRadius: 4,
+                backgroundColor: 'transparent',
+                fill: true,
+                borderWidth: 2,
+                data: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10]
+            }]
         },
-        options: {
+        options : {
             responsive: true,
             maintainAspectRatio: false,
             legend: {
-                display: false,
+                // position: 'bottom',
+                // labels : {
+                //     padding: 10,
+                //     fontColor: '#1d7af3',
+                // }
+                display: false
             },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        display: false //this will remove only the label
-                    },
-                    gridLines : {
-                        drawBorder: false,
-                        display : false
-                    }
-                }],
-                xAxes : [ {
-                    gridLines : {
-                        drawBorder: false,
-                        display : false
-                    }
-                }]
+            tooltips: {
+                bodySpacing: 4,
+                mode:"nearest",
+                intersect: 0,
+                position:"nearest",
+                xPadding:10,
+                yPadding:10,
+                caretPadding:10
             },
+            layout:{
+                padding:{left:15,right:15,top:15,bottom:15}
+            }
         }
     });
 

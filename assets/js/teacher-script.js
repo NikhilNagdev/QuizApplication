@@ -1,31 +1,32 @@
-
 $(document).ready(function () {
 
+    /**********************************************/
+    //*****************LOADER****************************
+    /**********************************************/
+
     $(".loader-wrapper").fadeOut("slow");
+
+    /**********************************************/
+    //*****************LOADER****************************
+    /**********************************************/
+
+
 
     var wrapper = $('.wrapper');
     var marks = 0;
 
-    $('table.view-all-students').dataTable({
+    var stuudentTable = $('table.view-all-students').dataTable({
         "columnDefs": [
-            { "orderable": false, "targets": 4 }
+            {"orderable": false, "targets": 4}
         ]
     });
 
-    $('table.view-all-batches').dataTable({
+    var batchTable = $('table.view-all-batches').dataTable({
         "columnDefs": [
-            { "orderable": false, "targets": 3 }
+            {"orderable": false, "targets": 3}
         ]
     });
 
-
-    $("input.select-all-batch-ids").change(function() {
-        if(this.checked) {
-            $('input.select-batch-id').prop('checked', true);
-        }else{
-            $('input.select-batch-id').prop('checked', false);
-        }
-    });
 
     /*********************************************************************/
     //*********************ADD QUESTION MODAL*****************************
@@ -54,37 +55,36 @@ $(document).ready(function () {
         wrapper.removeClass("blur");
         var closeModalBtns = question_modal.find('button[data-custom-dismiss="modal"]');
         question_modal.removeClass("bounceOut");
-        question_modal.off('webkitAnimationEnd oanimationend msAnimationEnd animationend')
+        question_modal.off('webkitAnimationEnd oanimationend msAnimationEnd animationend');
         closeModalBtns.off('click');
     });
 
     $('#view-all-drafted-quizzes').dataTable({
         columnDefs: [
-                { "orderable": false, "targets": 4 }
-            ],
+            {"orderable": false, "targets": 4}
+        ],
     });
 
-    $("input#select-quiz-id").change(function() {
-        if(this.checked) {
+    $("input#select-quiz-id").change(function () {
+        if (this.checked) {
             $('input#select-quiz-id').prop('checked', false);
             $(this).prop('checked', true);
         }
     });
 
-    $('button#select-quiz-submit').on('click', function(e){
-        if(!($('input#select-quiz-id').is(':checked'))){
+    $('button#select-quiz-submit').on('click', function (e) {
+        if (!($('input#select-quiz-id').is(':checked'))) {
             e.preventDefault();
             swal("Please select a quiz first", {
-                icon : "warning",
+                icon: "warning",
                 buttons: {
                     confirm: {
-                        className : 'btn btn-warning'
+                        className: 'btn btn-warning'
                     }
                 },
             });
         }
     });
-
 
     /*********************************************************************/
     //*********************END OF ADD QUESTION MODAL***********************
@@ -94,30 +94,61 @@ $(document).ready(function () {
     /*********************************************************************/
     //*********************ADD QUESTION************************************
     /*********************************************************************/
-    var questionsTable = $('table.view-all-questions').DataTable({});
-    $('#view-all-questions tbody').on( 'click', 'tr', function () {
+    var questionsTable = $('table.view-all-manual-questions').DataTable({
+        columnDefs: [
+            {"orderable": false, "targets": 4}
+        ],
+    });
+
+
+    $('table.view-all-manual-questions tbody').on('click', 'tr', function () {
 
         var rowMarks = parseInt($(this).find('td').eq(3).text());
-        if($(this).find('input').prop('checked') == true){
+        if ($(this).find('input').prop('checked') == true) {
             $(this).find('input').prop('checked', false);
             setCheckbox($(this).find('input').val(), false);
-            if(marks-rowMarks>=0)
-                marks = marks-rowMarks;
+            if (marks - rowMarks >= 0)
+                marks = marks - rowMarks;
             $('span.marks-text').html(marks);
-        }else{
+        } else {
             $(this).find('input').prop('checked', true);
             // alert($(this).find('input').val());
             setCheckbox($(this).find('input').val(), true);
-            if(marks+rowMarks>=0)
-                marks = marks+rowMarks;
+            if (marks + rowMarks >= 0)
+                marks = marks + rowMarks;
             $('span.marks-text').html(marks);
         }
         console.log(marks);
+
     });
 
-    function setCheckbox(value, status){
-        alert( value);
-        $("input[value="+value+"]").prop('checked', status);
+    $('input.select-all-question-ids').on('change', function () {
+
+        if (this.checked) {
+            // alert();
+            questionsTable.rows().every(function(rowIdx) {
+                var col = questionsTable.cell( rowIdx, 4).data().slice(0,-1) + " checked=true>";
+                alert(col);
+                questionsTable.cell( rowIdx, 4).data(col).draw();
+            });
+
+            $('input.select-all-question-id').prop("checked", true);
+
+
+            $('span.marks-text').html($('input#total-question-marks').val());
+            marks = parseInt($('input#total-question-marks').val());
+        } else {
+            $('input.select-all-question-id').prop("checked", false);
+            $('input.select-question-id').prop("checked", false);
+            $('span.marks-text').html(0);
+            marks = 0;
+        }
+
+    });
+
+    function setCheckbox(value, status) {
+        alert(value);
+        $("input[value=" + value + "]").prop('checked', status);
     }
 
 
@@ -127,24 +158,18 @@ $(document).ready(function () {
     /*********************************************************************/
 
 
-    var modalBtn = $('button.add-students');
-    var modal = $('#myModal');
-    var wrapper = $('.wrapper');
-
-
-
+    var retestId = 0;
     var retestModal = $('#retest-ref-modal');
-    $('#quiz-type').on('change', function(){
+    $('#quiz-type').on('change', function () {
         var id = $(this).val();
-        if(parseInt(id)===2){
+        if (parseInt(id) === 2) {
             // $('div.retest-red-id').html("<a href=\"\">Add retest reference ID</a>");
             retestModal = $('#retest-ref-modal');
             retestModal.addClass("bounceIn");
             retestModal.modal({backdrop: true});
             wrapper.addClass("blur");
 
-        }
-        else if(parseInt(id)===1){
+        } else if (parseInt(id) === 1) {
             $('div.retest-red-id').html("");
         }
     });
@@ -167,6 +192,123 @@ $(document).ready(function () {
         retestModal.off('webkitAnimationEnd oanimationend msAnimationEnd animationend')
         closeModalBtns.off('click');
     });
+
+    var modalBtn = $('button.add-students');
+    var modal = $('#myModal');
+    var wrapper = $('.wrapper');
+
+    /*********************************************************************/
+    //*********************RETEST REF MODAL******************************
+    /*********************************************************************/
+
+    $('#submit-retest-modal').click(function () {
+
+
+        var quizSelected = $('#retest-ref-id-value').val();
+        retestId = quizSelected;
+
+        if(null == retestId){
+            alert("Please select a quiz first");
+        }else{
+            $("div.retest-ref-id input").val(quizSelected);
+            $("div.retest-ref-id").append("Your retest reference quiz is " + $('option[value=\'' + quizSelected + '\']').text());
+        }
+
+    });
+
+    /*********************************************************************/
+    //*********************END OF RETEST REF MODAL******************************
+    /*********************************************************************/
+
+    /*********************************************************************/
+    //*********************QUIZ REPORTS******************************
+    /*********************************************************************/
+
+    $('a#quiz-reports').on('click', function () {
+        alert();
+        $('#quiz-reports-modal').modal({backdrop: true});
+
+    });
+
+    /*********************************************************************/
+    //*********************END OF QUIZ REPORTS******************************
+    /*********************************************************************/
+
+    /********************************************************************/
+    //JS CHART FUNCTIONS
+    /********************************************************************/
+    function addCircle(circleNo, maxValue, marks, color) {
+        alert("helllo");
+        console.log("fgdfgfdg");
+        Circles.create({
+            id: 'circles-' + circleNo,
+            radius: 45,
+            value: marks,
+            maxValue: maxValue,
+            width: 7,
+            text: marks + "/" + maxValue,
+            colors: ['#F1F1F1', color],
+            duration: 400,
+            wrpClass: 'circles-wrp',
+            textClass: 'circles-text',
+            styleWrapper: true,
+            styleText: true,
+            fontSize: 1,
+        });
+        window.alert("hekki");
+    }
+
+    function addLineChart(quizCreated){
+        alert("helllo");
+        var lineChart = document.getElementById('totalIncomeChart').getContext('2d');
+        var myLineChart = new Chart(lineChart, {
+            type: 'line',
+            data: {
+                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                datasets: [{
+                    label: "Quiz Created",
+                    borderColor: "#1d7af3",
+                    pointBorderColor: "#FFF",
+                    pointBackgroundColor: "#1d7af3",
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 4,
+                    pointHoverBorderWidth: 1,
+                    pointRadius: 4,
+                    backgroundColor: 'transparent',
+                    fill: true,
+                    borderWidth: 2,
+                    data: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10]
+                }]
+            },
+            options : {
+                responsive: true,
+                maintainAspectRatio: false,
+                legend: {
+                    // position: 'bottom',
+                    // labels : {
+                    //     padding: 10,
+                    //     fontColor: '#1d7af3',
+                    // }
+                    display: false
+                },
+                tooltips: {
+                    bodySpacing: 4,
+                    mode:"nearest",
+                    intersect: 0,
+                    position:"nearest",
+                    xPadding:10,
+                    yPadding:10,
+                    caretPadding:10
+                },
+                layout:{
+                    padding:{left:15,right:15,top:15,bottom:15}
+                }
+            }
+        });
+    }
+    /********************************************************************/
+    //END OF JS CHART FUNCTIONS
+    /********************************************************************/
 
     modalBtn.on('click', function () {
         modal.addClass("bounceIn");
@@ -215,7 +357,7 @@ $(document).ready(function () {
         //         { "orderable": false, "targets": 4 }
         //     ],
         // });
-        studentDT.on("click", "button", function(){
+        studentDT.on("click", "button", function () {
             // var row = $(this).parents('tr');
             // // alert(studentDT.fnGetData(this));
             // var add = $(this).parents('tr');
@@ -225,16 +367,14 @@ $(document).ready(function () {
 
         });
 
-        $("button.proceed").click(function(){
+        $("button.proceed").click(function () {
             var studentId = [];
-            $.each($("input[name='student_id']:checked"), function(){
+            $.each($("input[name='student_id']:checked"), function () {
                 studentId.push($(this).val());
             });
             alert(studentId);
-
         });
     });
-
 
     modal.on('show.bs.modal', function () {
         var closeModalBtns = modal.find('button[data-custom-dismiss="modal"]');
@@ -251,35 +391,31 @@ $(document).ready(function () {
         wrapper.removeClass("blur");
         var closeModalBtns = modal.find('button[data-custom-dismiss="modal"]');
         modal.removeClass("bounceOut");
-        modal.off('webkitAnimationEnd oanimationend msAnimationEnd animationend')
+        modal.off('webkitAnimationEnd oanimationend msAnimationEnd animationend');
         closeModalBtns.off('click');
     });
 
 
     $('table.view-all-quizzes').dataTable({});
 
-    $('#submit-retest-modal').click(function () {
-        var quizSelected = $('#retest-ref-id-value').val();
 
-        alert();
-        $("div.retest-ref-id input").val(quizSelected);
-        $("div.retest-ref-id").append("Your retest reference quiz is " + $('option[value=\''+quizSelected + '\']').text());
-    });
 
     $('select#quiz-subject').selectize();
+    // $('select#quiz-subject')[0].selectize.disable();
+//     $('select#quiz-subject')[0].selectize.enable();
     $('select#quiz-difficulty').selectize();
     $('select#quiz-type').selectize();
     $('select#group-type').selectize();
     $('input.datetime').datetimepicker({
-        widgetPositioning: {horizontal:"auto",vertical:"bottom"},
+        widgetPositioning: {horizontal: "auto", vertical: "bottom"},
         format: 'YYYY-MM-DD HH:mm:ss',
     });
     $('input.time').datetimepicker({
-        widgetPositioning: {horizontal:"auto",vertical:"bottom"},
+        widgetPositioning: {horizontal: "auto", vertical: "bottom"},
         format: 'LT',
     });
 
-    $('select.quiz-class').on('change',function() {
+    $('select.quiz-class').on('change', function () {
         var id = $(this).val();
         $.ajax({
             method: 'POST',
@@ -292,23 +428,23 @@ $(document).ready(function () {
     });
 
 
-    $('select.quiz-batch').on('change',function() {
+    $('select.quiz-batch').on('change', function () {
         var id = $(this).val();
         $.ajax({
             method: 'POST',
             url: '../../helper/ajax/AjaxHelper.php?call=getSubjects()',
             data: {'batch_id': id},
             success: function (data) {
-                $('label>input[type=search]').val("hello");
                 $('select.quiz-subject').html(data);
             }
         });
     });
 
     var $select = $('select#quiz-chapter').selectize();
+    $('select#quiz-chapter')[0].selectize.disable();
     var selectize = $select[0].selectize;
 
-    $('select#quiz-subject').on('change',function() {
+    $('select#quiz-subject').on('change', function () {
         var id = $(this).val();
         $('select.quiz-chapter').removeAttr("disabled");
         $.ajax({
@@ -318,6 +454,7 @@ $(document).ready(function () {
             success: function (dataobj) {
                 selectize.clearOptions();
                 selectize.addOption(JSON.parse(dataobj));
+                $('select#quiz-chapter')[0].selectize.enable();
             }
         });
     });
@@ -326,3 +463,20 @@ $(document).ready(function () {
 
 
 });
+//
+// $('table.view-all-manual-questions').DataTable({
+//
+// });
+//
+// $('input.select-all-question-ids').on('change', function () {
+//     alert();
+//     //Get the table
+//     var table = $('table.view-all-manual-questions').DataTable();
+//     //Iterate over selected rows
+//     var rowData = table.rows().every(function(rowIdx) {
+//         var colIdx = 4; // startDate is the fifth column, or "4" from 0-base  (0,1,2,3,4...)
+//         table.cell( rowIdx, colIdx).data('01/01/2017').draw();
+//     });
+//     //Re-draw the table
+//     //table.draw();
+// });

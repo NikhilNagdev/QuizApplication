@@ -59,8 +59,8 @@ class Quiz
 
     public function getPublishedQuiz($teacher_id)
     {
-//        SELECT quiz.quiz_id, quiz.quiz_name, status FROM quiz WHERE created_by = 1 AND status='published'
-        return $this->quiz->select("quiz.quiz_id as id", "quiz.quiz_name as name")
+//        SELECT * FROM quiz WHERE created_by = 1 AND status='published'
+        return $this->quiz->select("*")
             ->where("created_by", $teacher_id)
             ->andWhere("status", "published")
             ->andWhere("deleted", 0)
@@ -88,6 +88,15 @@ class Quiz
             ->limit(1)
             ->get()
             ->fetch();
+    }
+
+    public function getQuizDifficulty($quiz_id){
+
+        return CRUD::table("quiz_difficulty")
+            ->select("difficulty")
+            ->where("quiz_id", $quiz_id)
+            ->get()
+            ->fetchAll();
     }
 
     /**********************************************************************/
@@ -134,6 +143,11 @@ class Quiz
         $quiz_question = CRUD::table("quiz_question");
         foreach ($questions as $question)
             $quiz_question->insert(array("quiz_id"=>$quiz_id, "question_id"=>$question));
+    }
+
+    public function insert($values)
+    {
+        return $this->quiz->insert($values);
     }
     /**********************************************************************/
     //ENDING OF INSERTING FUNCTIONS

@@ -109,6 +109,11 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="index.php?src=view-all-quizzes" id="quiz-reports" onclick="return false;">
+                                    <span class="sub-item">Show quiz reports</span>
+                                </a>
+                            </li>
+                            <li>
                                 <a href="index.php?src=view-all-quizzes">
                                     <span class="sub-item">All Quizzes</span>
                                 </a>

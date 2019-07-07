@@ -1,4 +1,7 @@
 
+*.disabled{
+    cursor: not-allowed!important;
+}
 
 
 .start-adding-question button{

@@ -9,6 +9,28 @@
 class Helper
 {
 
+    public function getHeadingName($sourceString){
+        if(strcasecmp($sourceString, "view-all-quizzes.php") == 0){
+            return "All Quizzes";
+        }
+        elseif(strcasecmp($sourceString, "create-quiz") == 0){
+            return "Create a quiz";
+        }elseif(strcasecmp($sourceString, "add-quiz-question") == 0){
+            return "Add Questions For Quiz";
+        }
+    }
+
+    public function getOptions($rs){
+        $options = "";
+        foreach ($rs as $row){
+            $options .= "<option value=\"$row->id\">$row->name</option>";
+        }
+        return $options;
+    }
+
+    /**********************************************************************/
+    //CHART FUNCTIONS
+    /**********************************************************************/
     public function createCircles($circleNo, $maxValue, $marks, $passingValue)
     {
         $circleNo = (int)$circleNo;
@@ -30,23 +52,9 @@ class Helper
 CIRCLE;
     }
 
-    public function getHeadingName($sourceString){
-        if(strcasecmp($sourceString, "view-all-quizzes.php") == 0){
-            return "All Quizzes";
-        }
-        elseif(strcasecmp($sourceString, "create-quiz") == 0){
-            return "Create a quiz";
-        }elseif(strcasecmp($sourceString, "add-quiz-question") == 0){
-            return "Add Questions For Quiz";
-        }
-    }
+    public function createMonthlyQuizStats($teacher_id){
 
-    public function getOptions($rs){
-        $options = "";
-        foreach ($rs as $row){
-            $options .= "<option value=\"$row->id\">$row->name</option>";
-        }
-        return $options;
+
     }
 
 

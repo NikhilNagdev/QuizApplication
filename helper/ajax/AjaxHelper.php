@@ -70,17 +70,14 @@ class AjaxHelper
         foreach ($chapters as $chapter) {
             $data[] = array(
               "value"=>$chapter->chapter_id,
-              "text"=>$chapter->chapter_name
+              "text"=>$chapter->chapter_no.".".$chapter->chapter_name
             );
-            $options .= "{";
-            $options .= "value: $chapter->chapter_id, text: '$chapter->chapter_name'";
-            $options .= "},";
+//            $options .= "{";
+//            $options .= "value: $chapter->chapter_id, text: '$chapter->chapter_name'";
+//            $options .= "},";
         }
-        $options = substr($options, 0, -1)."]";
+//        $options = substr($options, 0, -1)."]";
         return json_encode($data);
-        return $options;
-
-        return "{value: 1, text: 'Intro to java'}";
     }
 
     public static function getStudentsByClass($class_id)

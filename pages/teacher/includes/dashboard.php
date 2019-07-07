@@ -110,22 +110,13 @@
     <div class="col-md-6">
         <div class="card full-height">
             <div class="card-body">
-                <div class="card-title">Total income & spend statistics</div>
+                <div class="card-title">Quiz generated per month</div>
                 <div class="row py-3">
-                    <div class="col-md-4 d-flex flex-column justify-content-around">
-                        <div>
-                            <h6 class="fw-bold text-uppercase text-success op-8">Total Income</h6>
-                            <h3 class="fw-bold">$9.782</h3>
-                        </div>
-                        <div>
-                            <h6 class="fw-bold text-uppercase text-danger op-8">Total Spend</h6>
-                            <h3 class="fw-bold">$1,248</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div id="chart-container">
                             <canvas id="totalIncomeChart"></canvas>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -134,6 +125,68 @@
     <!--END OF TOTAL INCOME AND SPEND STATISTICS-->
 
 </div>
+
+
+<!--USER STATISTICS-->
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-head-row">
+                    <div class="card-title">User Statistics</div>
+                    <div class="card-tools">
+                        <a href="#" class="btn btn-info btn-border btn-round btn-sm mr-2">
+												<span class="btn-label">
+													<i class="fa fa-pencil"></i>
+												</span>
+                            Export
+                        </a>
+                        <a href="#" class="btn btn-info btn-border btn-round btn-sm">
+												<span class="btn-label">
+													<i class="fa fa-print"></i>
+												</span>
+                            Print
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="chart-container" style="min-height: 375px">
+                    <canvas id="statisticsChart"></canvas>
+                </div>
+                <div id="myChartLegend"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-primary">
+            <div class="card-header">
+                <div class="card-title">Daily Sales</div>
+                <div class="card-category">March 25 - April 02</div>
+            </div>
+            <div class="card-body pb-0">
+                <div class="mb-4 mt-2">
+                    <h1>$4,578.58</h1>
+                </div>
+                <div class="pull-in">
+                    <canvas id="dailySalesChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body pb-0">
+                <div class="h1 fw-bold float-right text-warning">+7%</div>
+                <h2 class="mb-2">213</h2>
+                <p class="text-muted">Transactions</p>
+                <div class="pull-in sparkline-fix">
+                    <div id="lineChart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END OF USER STATISTICS-->
+
 
 <div class="row">
     <div class="col-md-6">
@@ -286,66 +339,6 @@
     <!--</div>-->
 
 </div>
-
-<!--USER STATISTICS-->
-<div class="row">
-    <div class="col-md-8">
-        <div class="card">
-            <div class="card-header">
-                <div class="card-head-row">
-                    <div class="card-title">User Statistics</div>
-                    <div class="card-tools">
-                        <a href="#" class="btn btn-info btn-border btn-round btn-sm mr-2">
-												<span class="btn-label">
-													<i class="fa fa-pencil"></i>
-												</span>
-                            Export
-                        </a>
-                        <a href="#" class="btn btn-info btn-border btn-round btn-sm">
-												<span class="btn-label">
-													<i class="fa fa-print"></i>
-												</span>
-                            Print
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="chart-container" style="min-height: 375px">
-                    <canvas id="statisticsChart"></canvas>
-                </div>
-                <div id="myChartLegend"></div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card card-primary">
-            <div class="card-header">
-                <div class="card-title">Daily Sales</div>
-                <div class="card-category">March 25 - April 02</div>
-            </div>
-            <div class="card-body pb-0">
-                <div class="mb-4 mt-2">
-                    <h1>$4,578.58</h1>
-                </div>
-                <div class="pull-in">
-                    <canvas id="dailySalesChart"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body pb-0">
-                <div class="h1 fw-bold float-right text-warning">+7%</div>
-                <h2 class="mb-2">213</h2>
-                <p class="text-muted">Transactions</p>
-                <div class="pull-in sparkline-fix">
-                    <div id="lineChart"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--END OF USER STATISTICS-->
 
 
 

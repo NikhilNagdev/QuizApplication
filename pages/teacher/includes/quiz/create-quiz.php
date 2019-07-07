@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
 
     echo $start_dt;
 
-    if($quizObj->insert(array("subject_id" => $subject_id, "quiz_name" => $quiz_name, "quiz_marks" => $quiz_marks, "quiz_type" => $quiz_type, "group_type" => $group_type, "duration" => $duration, "start_dt" => $start_dt, "passing_marks_percentage" => $passing_marks, "retest_ref_id" => $retest_ref_id, "status" => $status, "negative_marks" => $negative_marks, "created_by"=>1))){
+    if ($quizObj->insert(array("subject_id" => $subject_id, "quiz_name" => $quiz_name, "quiz_marks" => $quiz_marks, "quiz_type" => $quiz_type, "group_type" => $group_type, "duration" => $duration, "start_dt" => $start_dt, "passing_marks_percentage" => $passing_marks, "retest_ref_id" => $retest_ref_id, "status" => $status, "negative_marks" => $negative_marks, "created_by" => 1))) {
 
         $quiz_id = $quizObj->getLatestConductedQuiz(1)->quiz_id;
         $quizObj->insertQuizChapters($quiz_id, $_POST['quiz-chapter']);
@@ -33,7 +33,7 @@ if (isset($_POST['submit'])) {
 
         header("location: index.php?src=add-students");
 
-    }else{
+    } else {
 
     }
 
@@ -63,7 +63,7 @@ if (isset($_POST['submit'])) {
                     <div class="col-md-6">
                         <label for="quiz-subject">Subject</label>
                         <select class="" name="quiz-subject" id="quiz-subject" required>
-                            <option value="" selected disabled></option>
+                            <option value="" selected disabled>Select Subject Here</option>
                             <?php
                             $subjects = $subjectObj->getSubjectIdByTeacher(2);
                             echo $helper->getOptions($subjects);
@@ -73,8 +73,9 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="col-md-6">
                         <label for="quiz-chapter">Chapter</label>
-                        <select name="quiz-chapter[]" id="quiz-chapter" multiple="multiple" >
-
+                        <select name="quiz-chapter[]" id="quiz-chapter" multiple="multiple" class="
+" disabled ">
+                        <option value="" selected disabled>Please Select Subject First</option>
                         </select>
                     </div>
                 </div>
@@ -89,18 +90,18 @@ if (isset($_POST['submit'])) {
                         <label for="quiz-difficulty">Difficulty Level</label>
                         <select name="quiz-difficulty[]" id="quiz-difficulty" class="" multiple="multiple">
                             <option value="" selected disabled>Select difficulty here</option>
-                            <option value="1">Easy</option>
-                            <option value="2">Medium</option>
-                            <option value="3">Hard</option>
+                            <option value="easy">Easy</option>
+                            <option value="medium">Medium</option>
+                            <option value="hard">Hard</option>
                         </select>
                     </div>
 
                     <div class="col-md-6">
                         <label for="quiz-type">Quiz Type</label>
                         <select name="quiz-type" id="quiz-type" class="" required>
-                            <option value="" selected disabled></option>
-                            <option value="1">Quiz</option>
-                            <option value="2">Retest Quiz</option>
+                            <option value="" selected disabled>Select Quiz Type Here</option>
+                            <option value="quiz">Quiz</option>
+                            <option value="retest_quiz">Retest Quiz</option>
                         </select>
                         <div class="retest-ref-id">
                             <input type="hidden" name="retest-ref-id">
@@ -110,49 +111,71 @@ if (isset($_POST['submit'])) {
                 </div>
             </div>
 
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="date-time">Start Date and Time</label>
-                            <input class="datetime form-control" type='text' name="start_dt" required/>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="duration">Duration</label>
-                            <input class="duration form-control" type="text" name="duration" required>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="date-time">Start Date and Time</label>
+                        <input class="datetime form-control" type='text' name="start_dt" required placeholder=""/>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="duration">Duration</label>
+                        <div class="input-group-append">
+                        <input class="duration form-control" type="text" name="duration" required>
+                            <div class="input-group-append">
+                                <span class="input-icon-addon input-group-text">
+			                       mins
+		                        </span>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="neg-marks">Enter marks</label>
-                            <input type="text" class="form-control" name="quiz-marks" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="neg-marks">Select group type</label>
-                            <select name="group-type" id="group-type" class="" required>
-                                <option value="" selected disabled></option>
-                                <option value="1">Class</option>
-                                <option value="2">Batch</option>
-                                <option value="3">Student</option>
-                            </select>
-                        </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="neg-marks">Enter marks</label>
+                        <input type="text" class="form-control" name="quiz-marks" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="neg-marks">Select group type</label>
+                        <select name="group-type" id="group-type" class="" required>
+                            <option value="" selected disabled></option>
+                            <option value="1">Class</option>
+                            <option value="2">Batch</option>
+                            <option value="3">Student</option>
+                        </select>
                     </div>
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="neg-marks">Enter passing marks %</label>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="neg-marks">Enter passing marks %</label>
+                        <div class="input-group-append">
                             <input type="text" class="form-control" name="passing-marks" required>
+                            <div class="input-group-append">
+                                <span class="input-icon-addon input-group-text">
+			                        <i class="fa fa-percent"></i>
+		                        </span>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <label for="total-time">Enter negative marks %</label>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="total-time">Enter negative marks</label>
+                        <div class="input-group-append">
                             <input type="text" class="form-control" name="negative-marks" required>
+                            <div class="input-group-append">
+                                <span class="input-icon-addon input-group-text">
+			                        <i class="fa fa-percent"></i>
+		                        </span>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
             <div class="form-group start-adding-question" align="center">
                 <button type="submit" class="btn btn-secondary" name="submit">Create</button>

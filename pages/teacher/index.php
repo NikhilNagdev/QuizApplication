@@ -53,10 +53,10 @@ $questionObj = new Question();
                     <div class="d-flex flex-column flex-md-row">
                         <div>
                             <?php
-                                $source = "";
-                                if (isset($_GET['src'])){
-                                    $source = $_GET['src'];
-                                    echo "<h2 class=\"text-white pb-2 fw-bold\">{$helper->getHeadingName($_GET['src'])}</h2><h2 class=\"pull-right\"></h2>";}
+                            $source = "";
+                            if (isset($_GET['src'])){
+                                $source = $_GET['src'];
+                                echo "<h2 class=\"text-white pb-2 fw-bold\">{$helper->getHeadingName($_GET['src'])}</h2><h2 class=\"pull-right\"></h2>";}
                             ?>
                         </div>
                         <div class="text-white total-marks " style="margin-left: auto">
@@ -66,25 +66,25 @@ $questionObj = new Question();
                 </div>
             </div>
             <div class="page-inner mt--5">
-                    <?php
-                            switch ($source) {
-                                case "create-quiz":
-                                    include_once "includes/quiz/create-quiz.php";
-                                    break;
-                                case "view-all-quizzes":
-                                    include_once "includes/quiz/view-all-quizzes.php";
-                                    break;
-                                case "add-students":
-                                    include_once "includes/quiz/add-students.php";
-                                    break;
-                                case "add-quiz-question":
-                                    include_once "includes/quiz/add-quiz-questions.php";
-                                    break;
-                                default:
-                                    include_once("includes/dashboard.php");
+                <?php
+                switch ($source) {
+                    case "create-quiz":
+                        include_once "includes/quiz/create-quiz.php";
+                        break;
+                    case "view-all-quizzes":
+                        include_once "includes/quiz/view-all-quizzes.php";
+                        break;
+                    case "add-students":
+                        include_once "includes/quiz/add-students.php";
+                        break;
+                    case "add-quiz-question":
+                        include_once "includes/quiz/add-quiz-questions.php";
+                        break;
+                    default:
+                        include_once("includes/dashboard.php");
 
-                            }
-                    ?>
+                }
+                ?>
             </div>
         </div>
     </div>
@@ -93,6 +93,7 @@ $questionObj = new Question();
 <?php
 include_once "includes/modals/add-questions-modal.php";
 include_once "includes/modals/retest-ref-modal.php";
+include_once "includes/modals/quiz-reports-modal.php";
 include_once("includes/core-scripts.php");//JS FILES
 ?>
 

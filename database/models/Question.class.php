@@ -84,8 +84,25 @@ class Question{
         }
     }
 
-    public function getQuestionsByQuiz($quiz_id){
+    public function getQuestionsByQuiz($quiz_id, $difficulties){
+
+        $count = count($difficulties);
+        $diff = array();
+        $i = 0;
+        foreach ($difficulties as $difficulty){
+            $diff[$i++] = $difficulty->difficulty;
+        }
+        var_dump($diff);
+        if($count === 3){
+            return $this->questionObj->executeQuery("SELECT question.question_id, question.question, tp.marks, tp.`w.e.f`, chapter.chapter_name, chapter.chapter_no FROM (SELECT *, @rownum := IF( @prev = question_id,@rownum + 1,1) AS rownum, @prev := question_id FROM question_marks, (SELECT @rownum := 0, @prev := 0) AS t ORDER BY question_id ASC, `w.e.f` DESC) AS tp JOIN question ON tp.question_id = question.question_id JOIN chapter ON question.chapter_id = chapter.chapter_id JOIN quiz_chapter ON quiz_chapter.chapter_id = chapter.chapter_id JOIN subject ON chapter.subject_id = subject.subject_id WHERE tp.rownum = 1 AND question.deleted = 0 AND chapter.deleted = 0 AND subject.deleted = 0 AND quiz_chapter.quiz_id = ? AND( question.difficulty = ? OR question.difficulty = ? OR question.difficulty = ?)", $quiz_id, $diff[0], $diff[1], $diff[2])->fetchAll();
+        }elseif ($count === 2){
+            return $this->questionObj->executeQuery("SELECT question.question_id, question.question, tp.marks, tp.`w.e.f`, chapter.chapter_name, chapter.chapter_no FROM (SELECT *, @rownum := IF( @prev = question_id,@rownum + 1,1) AS rownum, @prev := question_id FROM question_marks, (SELECT @rownum := 0, @prev := 0) AS t ORDER BY question_id ASC, `w.e.f` DESC) AS tp JOIN question ON tp.question_id = question.question_id JOIN chapter ON question.chapter_id = chapter.chapter_id JOIN quiz_chapter ON quiz_chapter.chapter_id = chapter.chapter_id JOIN subject ON chapter.subject_id = subject.subject_id WHERE tp.rownum = 1 AND question.deleted = 0 AND chapter.deleted = 0 AND subject.deleted = 0 AND quiz_chapter.quiz_id = ? AND question.difficulty = ? OR question.difficulty = ?", $quiz_id, $diff[0], $diff[1])->fetchAll();
+        }elseif ($count === 1){
+            return $this->questionObj->executeQuery("SELECT question.question_id, question.question, tp.marks, tp.`w.e.f`, chapter.chapter_name, chapter.chapter_no FROM (SELECT *, @rownum := IF( @prev = question_id,@rownum + 1,1) AS rownum, @prev := question_id FROM question_marks, (SELECT @rownum := 0, @prev := 0) AS t ORDER BY question_id ASC, `w.e.f` DESC) AS tp JOIN question ON tp.question_id = question.question_id JOIN chapter ON question.chapter_id = chapter.chapter_id JOIN quiz_chapter ON quiz_chapter.chapter_id = chapter.chapter_id JOIN subject ON chapter.subject_id = subject.subject_id WHERE tp.rownum = 1 AND question.deleted = 0 AND chapter.deleted = 0 AND subject.deleted = 0 AND quiz_chapter.quiz_id = ? AND question.difficulty = ?", $quiz_id, $diff[0])->fetchAll();
+        }
+
         return $this->questionObj->executeQuery("SELECT question.question_id, question.question, tp.marks, tp.`w.e.f`, chapter.chapter_name, chapter.chapter_no FROM (SELECT *, @rownum := IF( @prev = question_id,@rownum + 1,1) AS rownum, @prev := question_id FROM question_marks, (SELECT @rownum := 0, @prev := 0) AS t ORDER BY question_id ASC, `w.e.f` DESC) AS tp JOIN question ON tp.question_id = question.question_id JOIN chapter ON question.chapter_id = chapter.chapter_id JOIN quiz_chapter ON quiz_chapter.chapter_id = chapter.chapter_id JOIN subject ON chapter.subject_id = subject.subject_id WHERE tp.rownum = 1 AND question.deleted = 0 AND chapter.deleted = 0 AND subject.deleted = 0 AND quiz_chapter.quiz_id = ?", $quiz_id)->fetchAll();
+
     }
 
     private $questionObj;
@@ -95,3 +112,6 @@ class Question{
 //select DISTINCT question.question_id, question.question from question JOIN question_marks ON question_marks.question_id = question.question_id WHERE question_marks.marks = 2 ORDER BY RAND() limit 2
 
 //SELECT question.question_id, question.question, tp.marks, tp.`w.e.f`, chapter.chapter_name, chapter.chapter_no FROM (SELECT *, @rownum := IF( @prev = question_id,@rownum + 1,1) AS rownum, @prev := question_id FROM question_marks, (SELECT @rownum := 0, @prev := 0) AS t ORDER BY question_id ASC, `w.e.f` DESC) AS tp JOIN question ON tp.question_id = question.question_id JOIN chapter ON question.chapter_id = chapter.chapter_id JOIN quiz_chapter ON quiz_chapter.chapter_id = chapter.chapter_id JOIN subject ON chapter.subject_id = subject.subject_id WHERE tp.rownum = 1 AND question.deleted = 0 AND chapter.deleted = 0 AND subject.deleted = 0 AND quiz_chapter.quiz_id = 3
+
+//SELECT tp.marks, COUNT(tp.marks) FROM (SE
+//LECT *, @rownum := IF( @prev = question_id,@rownum + 1,1) AS rownum, @prev := question_id FROM question_marks, (SELECT @rownum := 0, @prev := 0) AS t ORDER BY question_id ASC, `w.e.f` DESC) AS tp JOIN question ON question.question_id = tp.question_id JOIN chapter ON chapter.chapter_id = question.chapter_id WHERE tp.rownum = 1 AND chapter.chapter_id = 1 GROUP BY tp.marks

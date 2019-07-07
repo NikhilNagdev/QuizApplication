@@ -68,7 +68,7 @@ END;
 
                         switch($source){
                             case "view-all-quizzes.php":
-                                include_once "includes/pages/quiz/view-all-quizzes.php";
+                                include_once "includes/quiz/view-all-quizzes.php";
                         }
 
                     }else{
@@ -84,6 +84,9 @@ END;
 include_once "includes/practice-modal.php";
 //   Core JS Files
 include_once("../includes/core-scripts.php");
+if($additionalScripts === ""){
+    echo $additionalScripts;
+}
 ?>
 
 </body>
