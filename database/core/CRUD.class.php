@@ -225,7 +225,7 @@ class CRUD
     }
 
     public function groupBy($column){
-        $this->groupBy = "GROUP BY $column";
+        $this->groupBy = " GROUP BY $column";
         return $this;
     }
 

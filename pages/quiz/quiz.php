@@ -5,38 +5,35 @@
 require_once "../../document_root.php";
 
 require_once $_SERVER['DOCUMENT_ROOT']."/database/models/Subject.class.php";
-require_once $_SERVER['DOCUMENT_ROOT']."/pages/includes/header.php";
-require_once $_SERVER['DOCUMENT_ROOT']."/pages/includes/header.php";
-require_once $_SERVER['DOCUMENT_ROOT'] . "/database/models/Subject.class.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/database/models/Answer.class.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/database/models/Question.class.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/pages/quiz/includes/header.php";
-
+//require_once $_SERVER['DOCUMENT_ROOT']."";
 $questionObj = new Question();
 
 ?>
 
 <body>
-
 <?php
+$questionType="multiplechoicequestion";
+$question_no=1;
+//echo "$questionText";
 
-//we have to fetch the questions and their options for the quiz
-
-$question_no = "1";
-
-$questionText = "Which of these is not a bitwise operator?";
-
-$options = array("&", "&=", "^=", "<=");
-
-    if(strcasecmp($questionType, "multiplechoicequestion") == 0){
-        include_once $_SERVER['DOCUMENT_ROOT']."/pages/quiz/includes/multi-choice.php";
-    }elseif (strcasecmp($questionType, "multiplecorrectanswer") == 0){
-        include_once $_SERVER['DOCUMENT_ROOT']."/pages/quiz/includes/multi-correct.php";
-    }elseif (strcasecmp($questionType, "truefalse") == 0){
-        include_once $_SERVER['DOCUMENT_ROOT']."/pages/quiz/includes/true-false.php";
-    }
-
-$questionType = "multiplechoicequestion";
-
+//echo "<br>".$ans[0]->question_id;
+//echo "<br>".$ans[0]->question;
+//echo "<br>".$ans[0]->answer_id;
+//echo "<br>".$ans[0]->answer;
+//echo "<br>".$ans[0]->no_of_options;
+//foreach ($ans as $a){
+//    echo "<br>".$a->question_id;
+//    echo " ".$a->question;
+//    echo " ".$a->answer_id;
+//    echo " ".$a->answer;
+//    echo " ".$a->no_of_options;
+////    echo "  ".$a->no_of_options;
+////    echo "  ".$a->count;
+//}
+//print_r($options);
 ?>
 
 <!--<div class="loader-wrapper">-->
@@ -46,8 +43,9 @@ $questionType = "multiplechoicequestion";
 
 <div class="container-fluid">
     <div class="full-page">
-        <div class="header">SUBJECT NAME : <?php echo $_POST['subject_name'] ?></div>
-
+<!--        <div class="header">SUBJECT NAME : --><?php //echo $_POST['subject_name'] ?><!--</div>-->
+        <p id="container"><!-- currently it's empty --></p>
+        <p>Hello, click this button: <a type="button" role="button" id="button1" href="receiver.php" onclick="return false;" >Click me</a></p>
         <?php
         include_once("left-panel.php");
         ?>
@@ -73,10 +71,10 @@ $questionType = "multiplechoicequestion";
 
 <!--END OF /MULTIPLE-CHOICE SECTION-->
 
-
 <?php
 require_once "includes/core-scripts.php";
 ?>
+
 </body>
 
 </html>
