@@ -22,11 +22,11 @@ class Answer{
         $array[$key] = $value;
         return $array;
     }
-    public function generateCorrectOptions($quiz_id,$question_id){
+    public function generateCorrectOptions($quiz_id,$question_id=-1){
         $this->correct_question_answer = CRUD::table("correct_question_answer");
 //        return $this->correct_question_answer->select("correct_question_answer.answer_id", "answer.answer", "quiz_question.question_id", "question.question","quiz_question.no_of_options")->join("quiz_question", "quiz_question.question_id", "correct_question_answer.question_id")->join("question", "question.question_id", "quiz_question.question_id")->join("answer", "correct_question_answer.answer_id", "answer.answer_id")->where("quiz_question.quiz_id", $quiz_id)->andWhere("quiz_question.question_id",$question_id)->get();
         $obj = $this->correct_question_answer->select("correct_question_answer.answer_id", "answer.answer", "quiz_question.question_id", "question.question","quiz_question.no_of_options")->join("quiz_question", "quiz_question.question_id", "correct_question_answer.question_id")->join("question", "question.question_id", "quiz_question.question_id")->join("answer", "correct_question_answer.answer_id", "answer.answer_id")->where("quiz_question.quiz_id", $quiz_id)->get();
-        echo "<br><br>";
+//        echo "<br><br>";
 //        var_dump($obj->fetchAll());
         $returnArray = array();
         $answers = array();
@@ -68,13 +68,13 @@ class Answer{
 //        }
 //        $i=0;
         foreach ($obj1 as $item){
-            echo "<br>";
+//            echo "<br>";
             $q_id =  $item->question_id;
 //            print_r($item->question_id);
             $obj2 = $this->generateWrongOptions($quiz_id,$q_id);
 //            if($obj2 != false) {
 
-                echo "<br>";
+//                echo "<br>";
                 $ans = $obj2->fetchAll();
 
 //                var_dump($ans);
@@ -98,6 +98,7 @@ class Answer{
 //
 //            $i++;
 //        }
+//        print_r($obj);
         return $obj;
     }
     public function generateWrongOptions($quiz_id,$question_id=-1){
@@ -125,7 +126,7 @@ class Answer{
 //print_r($ans);
         $noOfWrongOption = $noOfWrongOptions[0]->noOfWrongOption;
         return Connection::connectToDB()->query("SELECT
-    answer.answer_id,quiz_question.question_id,answer, question
+    quiz_question.quiz_id,quiz_question.question_id,question,answer.answer_id,answer
 FROM
     answer
 JOIN quiz_question ON quiz_question.question_id = answer.question_id

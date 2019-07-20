@@ -3,16 +3,33 @@ $(document).ready(function(){
     //     alert(data);
     //     $('#container').html(data);
     // });
-    alert("hi");
+    // alert("hi");
     $.ajax({
 
         url: "quiz-question.php",
         type: 'post',
         dataType: 'html',
         success: function (data) {
-            $('.question-header').html(data);
-        }
-    });
+            var arr = JSON.parse(data);
+
+            i=0;
+            $("div.options form").empty();
+            $.each(arr, function (key, value) {
+                if (key!="question") {
+                    $("div.options form").append("<div class=\"inputGroup\"><input id=\"option" + i + "\" name=\"option" + i + "\" type=\"checkbox\" class=\"sev_check\"><label for=\"option" + i + "\" class=\"hover-to-big\">" + value + "</label></div>");
+
+
+                }else{
+                    $.each(value,function (key,value) {
+
+                        $('.question-header').html(value);
+
+                    })
+                }
+                i++;
+            });
+        },
+}),
     $var=1;
     $('#submit-answer').click(function(){
 
@@ -22,14 +39,24 @@ $(document).ready(function(){
             dataType: 'html',
             success: function (data) {
                 var arr = JSON.parse(data);
-                $('.question-header').html(arr.question);
+
+                $('.question-header').html(arr.key);
                 i=0;
                 $("div.options form").empty();
                 $.each (arr,function (key,value) {
-                    if (key!=="question") {
+                    if (key!="question") {
                         $("div.options form").append("<div class=\"inputGroup\"><input id=\"option" + i + "\" name=\"option" + i + "\" type=\"checkbox\" class=\"sev_check\"><label for=\"option" + i + "\" class=\"hover-to-big\">" + value + "</label></div>");
-                        i++;
+
+
+                    }else{
+                        $.each(value,function (key,value) {
+
+                            $('.question-header').html(value);
+
+                        })
                     }
+                    i++;
+
                 });
             }
         });
