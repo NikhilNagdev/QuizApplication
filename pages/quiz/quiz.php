@@ -44,8 +44,7 @@ $question_no=1;
 <div class="container-fluid">
     <div class="full-page">
 <!--        <div class="header">SUBJECT NAME : --><?php //echo $_POST['subject_name'] ?><!--</div>-->
-        <p id="container"><!-- currently it's empty --></p>
-        <p>Hello, click this button: <a type="button" role="button" id="button1" href="receiver.php" onclick="return false;" >Click me</a></p>
+
         <?php
         include_once("left-panel.php");
         ?>

@@ -30,7 +30,9 @@
     </div>
     <div class="submit-ans">
         <!--        <a href="receiver.php" id="button1">Submit Answer</a>-->
-        <button type="submit" class="submit-ans-btn" id="submit-answer">Submit Answer</button>
+        <button type="submit" class="submit-ans-btn" id="previous" value="previous">Previous</button>
+        <button type="submit" class="submit-ans-btn" id="next" value="next">Next</button>
+
     </div>
 
 
