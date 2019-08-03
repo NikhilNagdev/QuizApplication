@@ -14,34 +14,50 @@ $(document).ready(function(){
         dataType: 'html',
         // data:{val:val},
         success: function (data) {
-             arr = JSON.parse(data);
-             var temp=arr[0];
+            arr = JSON.parse(data);
+            var count=0;
+            $.each(arr, function (key, value) {
+
+                var tempQuestion = value["question"];
+                $.each(tempQuestion, function (key, value) {
+
+
+                    $("div.side").append("<div id=\"question\" class=\"left-question\"> <p class=\"question-no\" id=\""+count+"\">" +(count+1)+ "</p> <i class=\"fa fa-square-o\"></i> <a class=\"question-text gist\">" + value + "</a> <p class=\"marks\">(5M)</p> </div>");
+                });
+                count++;
+
+
+            });
+
+
+            var temp = arr[0];
             $('#next').removeAttr('disabled');
 
             $('#previous').removeAttr('disabled');
-            i=0;
+            i = 0;
             $("div.options form").empty();
             $.each(temp, function (key, value) {
-                if (key!="question" && key!="end" && key!="start") {
+                if (key != "question" && key != "end" && key != "start") {
                     $("div.options form").append("<div class=\"inputGroup\"><input id=\"option" + i + "\" name=\"option" + i + "\" type=\"checkbox\" class=\"sev_check\"><label for=\"option" + i + "\" class=\"hover-to-big\">" + value + "</label></div>");
 
 
-                }else if(key=="end" && value=="true"){
-                    $('#next').attr('disabled','disabled');
-                }else if(key=="start" && value=="true"){
-                    $('#previous').attr('disabled','disabled');
-                    alert("start");
-                }else{
-                    $.each(value,function (key,value) {
+                } else if (key == "end" && value == "true") {
+                    $('#next').attr('disabled', 'disabled');
+                } else if (key == "start" && value == "true") {
+                    $('#previous').attr('disabled', 'disabled');
+                    // alert("start");
+                } else {
+                    $.each(value, function (key, value) {
 
                         $('.question-header').html(value);
 
-                    });
 
+                    });
+                    i++;
                 }
-                i++;
             });
-        },
+        }
+
 }),
     $var=1;
     $('.submit-ans-btn').click(function() {
@@ -94,4 +110,7 @@ $(document).ready(function(){
     });
         // });
     // });
+    $(document).on("click", ".left-question", function(){
+        alert("s");
+    });
 });

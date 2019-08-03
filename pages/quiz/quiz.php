@@ -9,7 +9,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/database/models/Answer.class.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/database/models/Question.class.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/pages/quiz/includes/header.php";
 //require_once $_SERVER['DOCUMENT_ROOT']."";
-$questionObj = new Question();
+//$questionObj = new Question();
 
 ?>
 
