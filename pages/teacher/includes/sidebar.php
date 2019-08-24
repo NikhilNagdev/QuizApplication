@@ -99,12 +99,22 @@
                     <div class="collapse" id="forms">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="create-quiz.php">
+                                <a href="index.php?src=create-quiz">
                                     <span class="sub-item">Create Quiz</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="view-all-quizzes.php">
+                                <a id="add-questions" href="" onclick="return false;">
+                                    <span class="sub-item">Add Quiz Questions</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.php?src=view-all-quizzes" id="quiz-reports" onclick="return false;">
+                                    <span class="sub-item">Show quiz reports</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.php?src=view-all-quizzes">
                                     <span class="sub-item">All Quizzes</span>
                                 </a>
                             </li>

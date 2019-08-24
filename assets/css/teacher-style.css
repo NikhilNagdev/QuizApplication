@@ -1,0 +1,120 @@
+
+*.disabled{
+    cursor: not-allowed!important;
+}
+
+
+.start-adding-question button{
+    margin: 0.75rem;
+}
+
+.blur{
+    -webkit-filter: blur(3px); /* Safari 6.0 - 9.0 */
+    filter: blur(3px);
+}
+
+#myModal{
+    z-index: 99999;
+}
+
+.modal-backdrop{
+    opacity:0.5 !important;
+}
+
+.card{
+    border-radius: 25px;
+}
+
+.selectize-input{
+    background-color: #f5f6f7!important;
+}
+
+.loader-wrapper {
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #242f3f;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.loader-box {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    position: relative;
+    border: 4px solid #Fff;
+    animation: loader 2s infinite ease;
+
+}
+.loader-inner {
+    vertical-align: top;
+    display: inline-block;
+    width: 100%;
+    background-color: #fff;
+    animation: loader-inner 2s infinite ease-in;
+}
+.loader-content{
+    display: inline-block;
+    font-size: 40px;
+}
+@keyframes loader {
+    0% { transform: rotate(0deg);}
+    25% { transform: rotate(180deg);}
+    50% { transform: rotate(180deg);}
+    75% { transform: rotate(360deg);}
+    100% { transform: rotate(360deg);}
+}
+@keyframes loader-inner {
+    0% { height: 0%;}
+    25% { height: 0%;}
+    50% { height: 100%;}
+    75% { height: 100%;}
+    100% { height: 0%;}
+}
+
+/*CREATE QUIZ */
+.gray-form .form-control{
+    box-shadow: none;
+    border: 1px solid #f5f5f5;
+    background: #f5f6f7;
+    width: 100%;
+    font-size: 14px
+}
+
+select.form-control{
+    box-shadow: none!important;
+    border: 1px solid #f5f5f5!important;
+    background: #f5f6f7!important;
+    width: 100%!important;
+    font-size: 14px!important;
+}
+
+.gray-form input.form-control:focus{
+    background: #ffffff!important;;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1)!important;;
+    -webkit-transition: all 0.5s ease-out 0s!important;;
+    -moz-transition: all 0.5s ease-out 0s!important;;
+    -ms-transition: all 0.5s ease-out 0s!important;;
+    -o-transition: all 0.5s ease-out 0s!important;
+    transition: all 0.3s ease-out 0s!important;;
+}
+
+.modal-dialog{
+    overflow-y: initial !important
+}
+.modal-student-body{
+    height: 70vh;
+    overflow-y: auto;
+}
+.modal-content{
+    border-radius: 20px!important;
+}
+table.view-all-students{
+    width: 100%!important;
+}
+

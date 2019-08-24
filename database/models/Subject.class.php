@@ -6,8 +6,8 @@
  * Time: 4:39 AM
  */
 
-require_once "database/core/CRUD.class.php";
-require_once "database/models/Branch.class.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/database/core/CRUD.class.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/database/models/Branch.class.php";
 
 class Subject{
 
@@ -38,6 +38,54 @@ class Subject{
                                 ->select("subject_id")
                                 ->get();
 
+    }
+
+    public function getSubjectsBySemAndBranch($semNo, $branch_id){
+
+        return $this->subjectObj->select("subject_name", "subject_id")
+            ->join("branch", "subject.branch_id", "branch.branch_id")
+            ->where("subject.branch_id", $branch_id)
+            ->andWhere("subject.sem_no", $semNo)
+            ->get()
+            ->fetchAll();
+
+
+//        SELECT
+//    subject_name
+//FROM
+//    `subject`
+//JOIN branch ON
+//    subject.branch_id = branch.branch_id
+//WHERE
+//    subject.branch_id = 1 AND SUBJECT.sem_no = 4
+    }
+
+    public function getSubjectIdByTeacher($teacher_id){
+//        SELECT * FROM subject JOIN teaches ON teaches.subject_id = subject.subject_id WHERE teaches.teacher_id = 2 AND teaches.is_teaching = 0 GROUP BY subject.subject_id
+
+        return $this->subjectObj->select("subject.subject_id as id", "subject.subject_name as name")
+            ->join("teaches", "teaches.subject_id", "subject.subject_id")
+            ->where("teaches.teacher_id", $teacher_id)
+            ->andWhere("teaches.is_teaching", 0)
+            ->groupBy("subject.subject_id")
+            ->get()
+            ->fetchAll();
+
+    }
+
+    public function getSubjectByTeacherAndBatch($teacher_id, $batch_id){
+        //SELECT * FROM subject JOIN teaches ON teaches.subject_id = subject.subject_id JOIN batch ON batch.batch_id = teaches.batch_id JOIN class ON batch.class_id = class.class_id  WHERE teaches.teacher_id = 2 AND batch.batch_id = 3 AND teaches.is_teaching = 0 GROUP BY subject.subject_id
+
+        return $this->subjectObj->select("subject.subject_id", "subject.subject_name")
+            ->join("teaches", "teaches.subject_id", "subject.subject_id")
+            ->join("batch", "batch.batch_id", "teaches.batch_id")
+            ->join("class", "batch.class_id", "class.class_id")
+            ->where("teaches.teacher_id", $teacher_id)
+            ->andWhere("batch.batch_id", $batch_id)
+            ->andWhere("teaches.is_teaching", 0)
+            ->groupBy("subject.subject_id")
+            ->get()
+            ->fetchAll();
     }
 
     private $subjectObj;

@@ -5,20 +5,10 @@
 
 <script src="https://localhost/quizapplication/assets/js/core/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#quiz-class-checkbox > option').prop("selected",true);
-        $("#quiz-subject").prop("selectedIndex", -1);
-        $("#quiz-difficulty").prop("selectedIndex", -1);
-        $("#quiz-type").prop("selectedIndex", -1);
-        $('.quiz-chapter').select2();
-        $('#quiz-batch').select2();
-        $('#quiz-class').select2();
-    });
-</script>
+
 
 <!-- jQuery UI -->
-<script src="https://localhost/quizapplication/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<!--<script src="https://localhost/quizapplication/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>-->
 <script src="https://localhost/quizapplication/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
 
 <!-- jQuery Scrollbar -->
@@ -37,12 +27,15 @@
 <!-- Datatables -->
 <script src="https://localhost/quizapplication/assets/js/plugin/datatables/datatables.min.js"></script>
 
-<!-- Bootstrap Notify -->
-<!--<script src="../../assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>-->
+<!--DATE AND TIMEPICKER-->
+<script src="https://localhost/quizapplication/assets/js/plugin/bootstrap-datetimepicker/moment.min.js" type="text/javascript"></script>
+<script src="https://localhost/quizapplication/assets/js/plugin/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
 
-<!-- jQuery Vector Maps -->
-<script src="https://localhost/quizapplication/assets/js/plugin/jqvmap/jquery.vmap.min.js"></script>
-<script src="https://localhost/quizapplication/assets/js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
+<!-- Bootstrap Notify -->
+<script src="https://localhost/quizapplication/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+
+
+<script src="https://localhost/quizapplication/assets/js/plugin/selectize/selectize.min.js"></script>
 
 <!-- Sweet Alert -->
 <script src="https://localhost/quizapplication/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
@@ -50,91 +43,98 @@
 <!-- Atlantis JS -->
 <script src="https://localhost/quizapplication/assets/js/atlantis.min.js"></script>
 
+<!-- OUR SCRIPT-->
+<script src="https://localhost/quizapplication/assets/js/teacher-script.js"></script>
+
 <!-- Atlantis DEMO methods, don't include it in your project! -->
-<script src="https://localhost/quizapplication/assets/js/setting-demo.js"></script>
-<script src="https://localhost/quizapplication/assets/js/demo.js"></script>
+<!--<script src="https://localhost/quizapplication/assets/js/setting-demo.js"></script>-->
+<!--<script src="https://localhost/quizapplication/assets/js/demo.js"></script>-->
 <script>
-    Circles.create({
-        id:'circles-1',
-        radius:45,
-        value:60,
-        maxValue:100,
-        width:7,
-        text: 5,
-        colors:['#f1f1f1', '#FF9E27'],
-        duration:400,
-        wrpClass:'circles-wrp',
-        textClass:'circles-text',
-        styleWrapper:true,
-        styleText:true
-    })
+//
+//
+   var totalIncomeChart = document.getElementById('statisticsChart').getContext('2d');
 
-    Circles.create({
-        id:'circles-2',
-        radius:45,
-        value:70,
-        maxValue:100,
-        width:7,
-        text: 36,
-        colors:['#f1f1f1', '#2BB930'],
-        duration:400,
-        wrpClass:'circles-wrp',
-        textClass:'circles-text',
-        styleWrapper:true,
-        styleText:true
-    })
+   var mytotalIncomeChart = new Chart(totalIncomeChart, {
+       type: 'bar',
+       data: {
+           labels: ["Subject 1", "Subject 1", "Subject 1", "Subject 1", "Subject 1"],
+           datasets : [{
+               label: "Total Generated Quiz",
+               backgroundColor: '#ff9e27',
+               borderColor: 'rgb(23, 125, 255)',
+               data: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10],
+           }],
+       },
+       options: {
+           responsive: true,
+           maintainAspectRatio: false,
+           legend: {
+               display: false,
+           },
+           scales: {
+               yAxes: [{
+                   ticks: {
+                       display: true //this will remove only the label
+                   },
+                   gridLines : {
+                       drawBorder: false,
+                       display : true
+                   }
+               }],
+               xAxes : [ {
+                   gridLines : {
+                       drawBorder: false,
+                       display : false
+                   }
+               }]
+           },
+       }
+   });
 
-    Circles.create({
-        id:'circles-3',
-        radius:45,
-        value:40,
-        maxValue:100,
-        width:7,
-        text: 12,
-        colors:['#f1f1f1', '#F25961'],
-        duration:400,
-        wrpClass:'circles-wrp',
-        textClass:'circles-text',
-        styleWrapper:true,
-        styleText:true
-    })
+    var lineChart = document.getElementById('totalIncomeChart').getContext('2d');
 
-    var totalIncomeChart = document.getElementById('totalIncomeChart').getContext('2d');
-
-    var mytotalIncomeChart = new Chart(totalIncomeChart, {
-        type: 'bar',
+    var myLineChart = new Chart(lineChart, {
+        type: 'line',
         data: {
-            labels: ["S", "M", "T", "W", "T", "F", "S", "S", "M", "T"],
-            datasets : [{
-                label: "Total Income",
-                backgroundColor: '#ff9e27',
-                borderColor: 'rgb(23, 125, 255)',
-                data: [6, 4, 9, 5, 4, 6, 4, 3, 8, 10],
-            }],
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            datasets: [{
+                label: "Quiz Created",
+                borderColor: "#1d7af3",
+                pointBorderColor: "#FFF",
+                pointBackgroundColor: "#1d7af3",
+                pointBorderWidth: 2,
+                pointHoverRadius: 4,
+                pointHoverBorderWidth: 1,
+                pointRadius: 4,
+                backgroundColor: 'transparent',
+                fill: true,
+                borderWidth: 2,
+                data: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10]
+            }]
         },
-        options: {
+        options : {
             responsive: true,
             maintainAspectRatio: false,
             legend: {
-                display: false,
+                // position: 'bottom',
+                // labels : {
+                //     padding: 10,
+                //     fontColor: '#1d7af3',
+                // }
+                display: false
             },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        display: false //this will remove only the label
-                    },
-                    gridLines : {
-                        drawBorder: false,
-                        display : false
-                    }
-                }],
-                xAxes : [ {
-                    gridLines : {
-                        drawBorder: false,
-                        display : false
-                    }
-                }]
+            tooltips: {
+                bodySpacing: 4,
+                mode:"nearest",
+                intersect: 0,
+                position:"nearest",
+                xPadding:10,
+                yPadding:10,
+                caretPadding:10
             },
+            layout:{
+                padding:{left:15,right:15,top:15,bottom:15}
+            }
         }
     });
 
@@ -145,5 +145,23 @@
         lineWidth: '2',
         lineColor: '#ffa534',
         fillColor: 'rgba(255, 165, 52, .14)'
+    });
+
+
+
+
+</script>
+
+<script>
+    $(document).ready(function() {
+        $.notify({
+            // options
+            icon: 'flaticon-alarm-1',
+            title: 'Bootstrap notify',
+            message: 'Hello World'
+        },{
+            // settings
+            type: "info",
+        });
     });
 </script>

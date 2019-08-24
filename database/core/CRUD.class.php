@@ -21,16 +21,22 @@ class CRUD
     }
 
     //CRUD FUNCTIONS
+
     /**
      * This method is used to insert values in database tables
      * @param $fieldValue It is an array which will contain the column name and it's value that is
      * to be inserted in the table
+     * @return bool
      */
     public function insert($fieldValue)
     {
         $preparedStatement = $this->getPDOdStatement($this->createQueryString($fieldValue, "insert"));
-        if(!($preparedStatement->execute(array_values($fieldValue)))){
+        $status = $preparedStatement->execute(array_values($fieldValue));
+        if(!$status){
+            echo $this->createQueryString($fieldValue, "insert");
             echo "<br>".$preparedStatement->errorInfo()[2];
+        }else{
+            return $status;
         }
     }
 
@@ -116,7 +122,6 @@ class CRUD
      * @return bool|PDOStatement object
      */
     private function getPDOdStatement($query){
-        echo $query;
         return $this->pdo->prepare($query);
     }
 
@@ -152,7 +157,7 @@ class CRUD
     }
 
     private function buildQuery(){
-        $this->query.=$this->join.$this->where.$this->orderBy.$this->limit;
+        $this->query.=$this->join.$this->where.$this->groupBy.$this->orderBy.$this->limit;
     }
 
     /**
@@ -161,6 +166,7 @@ class CRUD
     public function get(){
         try{
             $this->buildQuery();
+//            echo($this->count++."".$this->query);
             $pdoStatement = $this->getPDOdStatement($this->query);
 //            echo "<br>".($this->query);
 //            echo "<br>".print_r($this->values);
@@ -171,6 +177,10 @@ class CRUD
             $this->values = array();
             $this->query = "";
             $this->where = "";
+            $this->join = "";
+            $this->groupBy = "";
+            $this->orderBy = "";
+            $this->limit = "";
             $this->i=0;
             if($status){
                 return $pdoStatement;
@@ -180,7 +190,20 @@ class CRUD
         }catch(PDOException $e){
             die($e);
         }
+    }
 
+    public function executeQuery($query, ...$values){
+        $pdoStatement = $this->getPDOdStatement($query);
+        for($i=0; $i<count($values); $i++){
+            $pdoStatement->bindValue($i+1, $values[$i]);
+        }
+        $status = $pdoStatement->execute();
+        if($status){
+            return $pdoStatement;
+        }else{
+            echo "<br>".($pdoStatement->errorInfo()[2]);
+            return null;
+        }
     }
 
     public function getCurrentDT(){
@@ -218,8 +241,12 @@ class CRUD
 
     public function join($tableName,$columnName1,$columnName2,$operatorType="=",$forLeftRight="")
     {
-        echo "called";
         $this->join .= " ".$forLeftRight." JOIN ". $tableName . " ON " . $columnName1 ." ".$operatorType." " . $columnName2;
+        return $this;
+    }
+
+    public function groupBy($column){
+        $this->groupBy = " GROUP BY $column";
         return $this;
     }
 
@@ -231,7 +258,7 @@ class CRUD
 
     /*Variable declarations*/
     private $current_table;
-    private $pdo;
+    public $pdo;
     private $join="";
     private $query;
     private $where = "";
@@ -239,5 +266,7 @@ class CRUD
     private $i = 0;
     private $limit = "";
     private $orderBy = "";
+    private $groupBy = "";
+    private $count = 0;
     /*End of variable declarations*/
 }
