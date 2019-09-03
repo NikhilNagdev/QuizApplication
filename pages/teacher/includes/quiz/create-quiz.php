@@ -65,7 +65,7 @@ if (isset($_POST['submit'])) {
                         <select class="" name="quiz-subject" id="quiz-subject" required>
                             <option value="" selected disabled>Select Subject Here</option>
                             <?php
-                            $subjects = $subjectObj->getSubjectIdByTeacher(2);
+                            $subjects = $subjectObj->getSubjectIdByTeacher(1);
                             echo $helper->getOptions($subjects);
                             ?>
                             <option value="5">2</option>

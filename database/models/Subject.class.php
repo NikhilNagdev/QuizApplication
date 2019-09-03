@@ -48,8 +48,6 @@ class Subject{
             ->andWhere("subject.sem_no", $semNo)
             ->get()
             ->fetchAll();
-
-
 //        SELECT
 //    subject_name
 //FROM
@@ -67,6 +65,7 @@ class Subject{
             ->join("teaches", "teaches.subject_id", "subject.subject_id")
             ->where("teaches.teacher_id", $teacher_id)
             ->andWhere("teaches.is_teaching", 0)
+            ->andWhere("subject.deleted", 0)
             ->groupBy("subject.subject_id")
             ->get()
             ->fetchAll();
@@ -83,6 +82,7 @@ class Subject{
             ->where("teaches.teacher_id", $teacher_id)
             ->andWhere("batch.batch_id", $batch_id)
             ->andWhere("teaches.is_teaching", 0)
+            ->andWhere("subject.deleted", 0)
             ->groupBy("subject.subject_id")
             ->get()
             ->fetchAll();
