@@ -3,27 +3,37 @@
 
 <?php
 require_once "../../document_root.php";
-require_once $_SERVER['DOCUMENT_ROOT'] . "/database/models/Subject.class.php";
+
+require_once $_SERVER['DOCUMENT_ROOT']."/database/models/Subject.class.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/database/models/Answer.class.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/database/models/Question.class.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/pages/quiz/includes/header.php";
-
-$questionObj = new Question();
+//require_once $_SERVER['DOCUMENT_ROOT']."";
+//$questionObj = new Question();
 
 ?>
 
 <body>
-
 <?php
+$questionType="multiplechoicequestion";
+$question_no=1;
+//echo "$questionText";
 
-//we have to fetch the questions and their options for the quiz
-
-$question_no = "1";
-
-$questionText = "Which of these is not a bitwise operator?";
-
-$options = array("&", "&=", "^=", "<=");
-
-$questionType = "multiplechoicequestion";
+//echo "<br>".$ans[0]->question_id;
+//echo "<br>".$ans[0]->question;
+//echo "<br>".$ans[0]->answer_id;
+//echo "<br>".$ans[0]->answer;
+//echo "<br>".$ans[0]->no_of_options;
+//foreach ($ans as $a){
+//    echo "<br>".$a->question_id;
+//    echo " ".$a->question;
+//    echo " ".$a->answer_id;
+//    echo " ".$a->answer;
+//    echo " ".$a->no_of_options;
+////    echo "  ".$a->no_of_options;
+////    echo "  ".$a->count;
+//}
+//print_r($options);
 ?>
 
 <!--<div class="loader-wrapper">-->
@@ -33,7 +43,7 @@ $questionType = "multiplechoicequestion";
 
 <div class="container-fluid">
     <div class="full-page">
-        <div class="header">SUBJECT NAME : <?php echo $_POST['subject_name'] ?></div>
+<!--        <div class="header">SUBJECT NAME : --><?php //echo $_POST['subject_name'] ?><!--</div>-->
 
         <?php
         include_once("left-panel.php");
@@ -60,10 +70,10 @@ $questionType = "multiplechoicequestion";
 
 <!--END OF /MULTIPLE-CHOICE SECTION-->
 
-
 <?php
 require_once "includes/core-scripts.php";
 ?>
+
 </body>
 
 </html>

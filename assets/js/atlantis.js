@@ -328,7 +328,7 @@ $(document).ready(function () {
         }
     }
 
-    $('.input-file-image input[type="file"').change(function () {
+    $('.input-file-image input[type="file"]').change(function () {
         readURL(this);
     });
 
@@ -391,7 +391,25 @@ $(document).ready(function () {
         }
     })
 
-
+    function addCircle(circleNo, maxValue, marks, color) {
+        console.log("fgdfgfdg");
+        Circles.create({
+            id: 'circles-' + circleNo,
+            radius: 45,
+            value: marks,
+            maxValue: maxValue,
+            width: 7,
+            text: marks + "/" + maxValue,
+            colors: ['#F1F1F1', color],
+            duration: 400,
+            wrpClass: 'circles-wrp',
+            textClass: 'circles-text',
+            styleWrapper: true,
+            styleText: true,
+            fontSize: 1,
+        });
+        window.alert("hekki");
+    }
 
 
 });

@@ -5,5 +5,6 @@
 <script src="../../user-assets/plugin/bootstrap/js/bootstrap.min.js"></script>
 <!--OUR SCRIPT-->
 <script src="../../user-assets/js/script.js"></script>
+<script src="../../user-assets/js/script1.js"></script>
 
 </script>

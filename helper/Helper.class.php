@@ -31,6 +31,7 @@ class Helper
     /**********************************************************************/
     //CHART FUNCTIONS
     /**********************************************************************/
+
     public function createCircles($circleNo, $maxValue, $marks, $passingValue)
     {
         $circleNo = (int)$circleNo;
@@ -59,4 +60,3 @@ CIRCLE;
 
 
 }
-

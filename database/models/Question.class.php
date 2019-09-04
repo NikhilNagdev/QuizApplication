@@ -11,12 +11,31 @@ require_once $_SERVER['DOCUMENT_ROOT'] ."/database/models/Chapter.class.php";
 class Question{
 
     function __construct(){
-        $this->questionObj = CRUD::table("question");
+        $this->questionObj = CRUD::table("quiz_question");
     }
 
+    public function generateNextQuestion($quizId,$currentQuestionId=-1){
+
+//            return $this->questionObj->where("quiz_id",$quizId)->limit(1)->select("*")->get();
+        if($currentQuestionId==-1){
+            echo "if";
+            return Connection::connectToDB()->query("SELECT quiz_question.question_id,question.question from quiz_question JOIN question ON question.question_id=quiz_question.question_id WHERE quiz_id = $quizId LIMIT 1");
+        }
+            //        return $this->questionObj->where("quiz_id",$quizId)->andWhere("question_id",$currentQuestionId,">")->limit(1)->select("*")->get();
+        return Connection::connectToDB()->query("SELECT quiz_question.question_id,question.question from quiz_question JOIN question ON question.question_id=quiz_question.question_id WHERE quiz_id = $quizId AND quiz_question.question_id>$currentQuestionId LIMIT 1");
+    }
+    /*public function getQuestion($subject, $chapterNo, $difficulty){
     public function getQuestion($subject, $chapterNo, $difficulty){
         $chapter = new Chapter();
-    }
+        return $this->questionObj->where("chapter_id", $chapter
+            ->getChapterID($subject, $chapterNo))
+            ->andWhere("marks", $marks)->andWhere("difficulty", $difficulty)
+            ->orderBy("RAND()")
+            ->limit("1")
+            ->select("question")
+            ->get()
+            ->fetch()->question;
+    }*/
 
     public function getRandomQuestions($noOfQuestions, $subject, $chapterNo="", $difficulty=""){
         $chapter = new Chapter();
