@@ -8,7 +8,7 @@
 
     //Creating constants for database connection
     define("HOST","localhost");
-    define("DB","quizdup");
+    define("DB","quiz");
     define("USERNAME","root");
     define("PASSWORD","");
     define("BASE_PATH", "C:\\xampp\\htdocs\\QuizApplication");

@@ -42,7 +42,7 @@ class CRUD
 
     /**
      * This method is used to update fields in database tables
-     * @param $fieldValue an array of columns and their values that are be changed
+     * @param $fieldValue an array of co lumns and their values that are be changed
      * @return bool returns true if values were successfully updated and false if
      * values were not updated
      */
@@ -104,7 +104,7 @@ class CRUD
             if($this->pdo->query("SHOW COLUMNS FROM ".$this->current_table." LIKE 'updated_at'")->fetch()){
                 $field .= ", updated_at = "."'".$this->getCurrentDT()."'";
             }
-            return "UPDATE {$this->current_table} SET $field {$this->where}";
+            return "UPDATE {$this->current_table} SET $field";
         }
         else if(strcasecmp($queryType, "select") == 0){
             $query = "SELECT ";
