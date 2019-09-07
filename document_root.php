@@ -6,4 +6,4 @@
  * Time: 2:30 AM
  */
 
-$_SERVER['DOCUMENT_ROOT'].="/QuizApplication";
+$_SERVER['DOCUMENT_ROOT'].="/qq/QuizApplication";
