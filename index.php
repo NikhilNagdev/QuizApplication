@@ -1,2 +1,2 @@
 <?php
-include_once "pages/includes/login.php";
+include_once "login.php";

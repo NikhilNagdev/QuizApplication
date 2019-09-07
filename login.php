@@ -1,3 +1,6 @@
+<?php
+require_once "document_root.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,8 +29,9 @@
 </head>
 <?php
 if(isset($_POST["Login"])){
-    require_once("helper/Helper.class.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."/helper/Helper.class.php");
     $helper = new Helper();
+//    die(var_dump($_POST));
     $helper->processLogin();
 }
 
@@ -73,7 +77,7 @@ if(isset($_POST["Login"])){
 <script src="assets/js/core/jquery.3.2.1.min.js"></script>
 <?php
 
-include_once("pages/includes/core-scripts.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/pages/includes/core-scripts.php");
 ?>
 <script src="assets/js/ready.min.js"></script>
 </html>

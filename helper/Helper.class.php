@@ -5,7 +5,8 @@
  * Date: 6/23/2019
  * Time: 5:33 AM
  */
-require_once("../../database/core/CRUD.class.php");
+
+require_once($_SERVER['DOCUMENT_ROOT']."/database/core/CRUD.class.php");
 
 class Helper
 {
@@ -54,15 +55,21 @@ CIRCLE;
     public function processLogin()
     {
         $email = $_POST['email'];
+        echo $email;
         $password = $_POST['password'];
-        $rs = CRUD::table("user")->join("user_role", "user.user_id", "user_role.user_id")->where("email", $email)->select("user.user_id,user.username,user.password,user_role.role")->get();
+        $rs = CRUD::table("user")
+            ->join("user_role", "user.user_id", "user_role.user_id")
+            ->where("email", $email)
+            ->select("user.user_id, user.email, user.password, user_role.role")
+            ->get();
         $entry = $rs->rowCount();
+        echo $entry;
         if ($entry == 1) {
             $row = $rs->fetch();
             $user_id = $row->user_id;
             $dbpassword = $row->password;
             $role = $row->role;
-            if (password_verify($password, $dbpassword)) {
+            if (strcmp($password, $dbpassword) == 0) {
                 if (!isset($_SESSION['user_id'])) {
                     session_start();
                 }
@@ -76,7 +83,7 @@ CIRCLE;
                     //HEADER FOR ADMIN
                 }
             } else {
-                //UI FOR WRONG PASSWORD
+                echo "WRONG PASSS";
             }
         } else {
             //UI FOR DISPLAYING ERROR IN INPUT
