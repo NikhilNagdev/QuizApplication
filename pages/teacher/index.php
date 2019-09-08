@@ -13,6 +13,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/database/models/Question.class.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/helper/Helper.class.php";
 
 $quizObj = new Quiz();
+$quizObj->getLatestConductedQuiz(1);
 $classObj = new ClassTable();
 $batchObj = new Batch();
 $subjectObj = new Subject();
