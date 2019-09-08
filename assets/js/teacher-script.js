@@ -101,19 +101,20 @@ $(document).ready(function () {
     });
 
 
-    $('table.view-all-manual-questions tbody').on('click', 'tr', function () {
+    $('table.view-all-manual-questions tbody').on('click', 'tr td input', function (event) {
 
-        var rowMarks = parseInt($(this).find('td').eq(3).text());
-        if ($(this).find('input').prop('checked') == true) {
-            $(this).find('input').prop('checked', false);
-            setCheckbox($(this).find('input').val(), false);
+        var rowMarks = parseInt($(event.target).parent().parent().find('td').eq(3).text());
+        if ($(this).prop('checked') != true) {
+            $(this).prop('checked', false);
+            setCheckbox($(this).val(), false);
+            alert($(this).val());
             if (marks - rowMarks >= 0)
                 marks = marks - rowMarks;
             $('span.marks-text').html(marks);
         } else {
-            $(this).find('input').prop('checked', true);
+            $(this).prop('checked', true);
             // alert($(this).find('input').val());
-            setCheckbox($(this).find('input').val(), true);
+            setCheckbox($(this).val(), true);
             if (marks + rowMarks >= 0)
                 marks = marks + rowMarks;
             $('span.marks-text').html(marks);
@@ -128,7 +129,7 @@ $(document).ready(function () {
             // alert();
             questionsTable.rows().every(function(rowIdx) {
                 var col = questionsTable.cell( rowIdx, 4).data().slice(0,-1) + " checked=true>";
-                alert(col);
+                // alert(col);
                 questionsTable.cell( rowIdx, 4).data(col).draw();
             });
 
@@ -147,8 +148,9 @@ $(document).ready(function () {
     });
 
     function setCheckbox(value, status) {
-        alert(value);
-        $("input[value=" + value + "]").prop('checked', status);
+        alert(status);
+        alert($("input[name='questionIds[]'][value=" + value + "]").prop('checked'));
+        $("input[name='questionIds[]'][value=" + value + "]").prop('checked', status);
     }
 
 

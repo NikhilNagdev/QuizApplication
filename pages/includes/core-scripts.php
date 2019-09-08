@@ -38,13 +38,11 @@
 <script src="https://localhost/quizapplication/assets/js/plugin/datatables/datatables.min.js"></script>
 
 <!-- Bootstrap Notify -->
-<script src="https://localhost/quizapplication/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+<!--<script src="../../assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>-->
 
 <!-- jQuery Vector Maps -->
 <script src="https://localhost/quizapplication/assets/js/plugin/jqvmap/jquery.vmap.min.js"></script>
 <script src="https://localhost/quizapplication/assets/js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
-
-<!--<script src="https://localhost/quizapplication/assets/js/plugin/selectize/selectize.min.js"></script>-->
 
 <!-- Sweet Alert -->
 <script src="https://localhost/quizapplication/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
@@ -54,7 +52,6 @@
 
 <!-- OUR SCRIPT-->
 <script src="https://localhost/quizapplication/assets/js/script.js"></script>
-<script src="https://localhost/quizapplication/assets/js/teacher-script.js"></script>
 
 <!-- Atlantis DEMO methods, don't include it in your project! -->
 <!--<script src="https://localhost/quizapplication/assets/js/setting-demo.js"></script>-->
@@ -111,6 +108,8 @@
     });
 
 
-
-
 </script>
+<?php
+if(isset($additionalScripts)){
+    echo $additionalScripts;
+}

@@ -48,6 +48,8 @@ class Subject{
             ->andWhere("subject.sem_no", $semNo)
             ->get()
             ->fetchAll();
+
+
 //        SELECT
 //    subject_name
 //FROM
@@ -56,6 +58,8 @@ class Subject{
 //    subject.branch_id = branch.branch_id
 //WHERE
 //    subject.branch_id = 1 AND SUBJECT.sem_no = 4
+
+
     }
 
     public function getSubjectIdByTeacher($teacher_id){
